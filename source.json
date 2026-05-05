@@ -8,24 +8,24 @@
       "bundleIdentifier": "pro.kinemotor.makkod",
       "developerName": "KINEMOTOR",
       "subtitle": "Терминал-чат с Claude Code",
-      "version": "1.24",
-      "versionDate": "2026-05-05T10:00:00.000Z",
-      "versionDescription": "Бамп надписи Версии в настройках до 1.24",
-      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.24.ipa",
+      "version": "1.25",
+      "versionDate": "2026-05-05T14:10:00.000Z",
+      "versionDescription": "Свежая mini-app: новая drawer-панель с 5 иконками (Скиллы/MCP/Конфиги/Общая память/Настройки)",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.25.ipa",
       "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
       "tintColor": "1A1A1A",
-      "size": 5625365,
+      "size": 5615003,
       "localizedDescription": "Мобильный фронт к Claude Code на мак-мини. Чат, скриншоты, голосовые, файлы.",
       "screenshotURLs": [],
       "permissions": [],
       "versions": [
         {
-          "version": "1.24",
-          "buildVersion": "124",
-          "date": "2026-05-05T10:00:00.000Z",
-          "localizedDescription": "Бамп надписи Версии в настройках до 1.24",
-          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.24.ipa",
-          "size": 5625365
+          "version": "1.25",
+          "buildVersion": "125",
+          "date": "2026-05-05T14:10:00.000Z",
+          "localizedDescription": "Свежая mini-app: новая drawer-панель с 5 иконками (Скиллы/MCP/Конфиги/Общая память/Настройки)",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.25.ipa",
+          "size": 5615003
         }
       ]
     }
