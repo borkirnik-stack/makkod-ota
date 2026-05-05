@@ -1,0 +1,24 @@
+{
+  "name": "Маккод KINEMOTOR",
+  "identifier": "pro.kinemotor.makkod-source",
+  "sourceURL": "https://borkirnik-stack.github.io/makkod-ota/source.json",
+  "apps": [
+    {
+      "name": "Маккод",
+      "bundleIdentifier": "pro.kinemotor.makkod",
+      "developerName": "KINEMOTOR",
+      "subtitle": "Терминал-чат с Claude Code",
+      "version": "1.22",
+      "versionDate": "2026-05-05",
+      "versionDescription": "Авто-обновление через AltStore Source",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.22.ipa",
+      "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
+      "tintColor": "1A1A1A",
+      "size": 5625363,
+      "localizedDescription": "Мобильный фронт к Claude Code на мак-мини. Чат, скриншоты, голосовые, файлы.",
+      "screenshotURLs": [],
+      "permissions": []
+    }
+  ],
+  "news": []
+}
