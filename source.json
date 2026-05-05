@@ -9,7 +9,7 @@
       "developerName": "KINEMOTOR",
       "subtitle": "Терминал-чат с Claude Code",
       "version": "1.24",
-      "versionDate": "2026-05-05",
+      "versionDate": "2026-05-05T10:00:00.000Z",
       "versionDescription": "Бамп надписи Версии в настройках до 1.24",
       "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.24.ipa",
       "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
@@ -22,7 +22,7 @@
         {
           "version": "1.24",
           "buildVersion": "124",
-          "date": "2026-05-05",
+          "date": "2026-05-05T10:00:00.000Z",
           "localizedDescription": "Бамп надписи Версии в настройках до 1.24",
           "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.24.ipa",
           "size": 5625365
