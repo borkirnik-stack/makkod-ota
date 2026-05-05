@@ -17,7 +17,17 @@
       "size": 5625365,
       "localizedDescription": "Мобильный фронт к Claude Code на мак-мини. Чат, скриншоты, голосовые, файлы.",
       "screenshotURLs": [],
-      "permissions": []
+      "permissions": [],
+      "versions": [
+        {
+          "version": "1.24",
+          "buildVersion": "124",
+          "date": "2026-05-05",
+          "localizedDescription": "Бамп надписи Версии в настройках до 1.24",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.24.ipa",
+          "size": 5625365
+        }
+      ]
     }
   ],
   "news": []
