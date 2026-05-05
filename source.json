@@ -8,24 +8,24 @@
       "bundleIdentifier": "pro.kinemotor.makkod",
       "developerName": "KINEMOTOR",
       "subtitle": "Терминал-чат с Claude Code",
-      "version": "1.26",
-      "versionDate": "2026-05-05T14:30:00.000Z",
-      "versionDescription": "Бамп до 1.26 (тестовая раскатка через AltStore Source)",
-      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.26.ipa",
+      "version": "1.56",
+      "versionDate": "2026-05-05T18:00:00.000Z",
+      "versionDescription": "Голосовой ввод: таймер времени записи во время voice-mode",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.56.ipa",
       "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
       "tintColor": "1A1A1A",
-      "size": 5615001,
+      "size": 5625460,
       "localizedDescription": "Мобильный фронт к Claude Code на мак-мини. Чат, скриншоты, голосовые, файлы.",
       "screenshotURLs": [],
       "permissions": [],
       "versions": [
         {
-          "version": "1.26",
-          "buildVersion": "126",
-          "date": "2026-05-05T14:30:00.000Z",
-          "localizedDescription": "Бамп до 1.26 (тестовая раскатка через AltStore Source)",
-          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.26.ipa",
-          "size": 5615001
+          "version": "1.56",
+          "buildVersion": "156",
+          "date": "2026-05-05T18:00:00.000Z",
+          "localizedDescription": "Голосовой ввод: таймер времени записи во время voice-mode",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.56.ipa",
+          "size": 5625460
         }
       ]
     }
