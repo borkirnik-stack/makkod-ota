@@ -14,7 +14,7 @@
       "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.67.ipa",
       "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
       "tintColor": "1A1A1A",
-      "size": 5631258,
+      "size": 5631257,
       "localizedDescription": "Мобильный фронт к Claude Code на мак-мини. Чат, скриншоты, голосовые, файлы.",
       "screenshotURLs": [],
       "permissions": [],
@@ -25,7 +25,7 @@
           "date": "2026-05-15T00:08:00.000Z",
           "localizedDescription": "Service Worker заработал в WKWebView: добавлен WKAppBoundDomains + limitsNavigationsToAppBoundDomains=true. Появится оффлайн-кеш.",
           "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.67.ipa",
-          "size": 5631258
+          "size": 5631257
         },
         {
           "version": "1.66",
