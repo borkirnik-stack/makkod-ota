@@ -14,7 +14,7 @@
       "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.68.ipa",
       "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
       "tintColor": "1A1A1A",
-      "size": 5878978,
+      "size": 5878992,
       "localizedDescription": "Мобильный фронт к Claude Code на мак-мини. Чат, скриншоты, голосовые, файлы.",
       "screenshotURLs": [],
       "permissions": [],
@@ -25,7 +25,7 @@
           "date": "2026-05-15T00:30:00.000Z",
           "localizedDescription": "Натив-пикер галереи/камеры/файлов через @capacitor/camera и @capawesome/capacitor-file-picker — больше нет промежуточного iOS action sheet.",
           "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.68.ipa",
-          "size": 5878978
+          "size": 5878992
         },
         {
           "version": "1.67",
