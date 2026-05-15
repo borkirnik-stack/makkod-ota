@@ -20,6 +20,14 @@
       "permissions": [],
       "versions": [
         {
+          "version": "1.71",
+          "buildVersion": "171",
+          "date": "2026-05-15T14:46:00.000Z",
+          "localizedDescription": "Пересборка после iOS update. Откат WKAppBoundDomains, фикс UX прикрепления фото (кастомная модалка с тремя пунктами, нативный шит при выборе через HTML).",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.71.ipa",
+          "size": 5628753
+        },
+        {
           "version": "1.70",
           "buildVersion": "170",
           "date": "2026-05-15T13:55:00.000Z",
