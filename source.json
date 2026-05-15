@@ -8,17 +8,25 @@
       "bundleIdentifier": "pro.kinemotor.makkod",
       "developerName": "KINEMOTOR",
       "subtitle": "Терминал-чат с Claude Code",
-      "version": "1.69",
-      "versionDate": "2026-05-15T00:45:00.000Z",
-      "versionDescription": "Подцепил capacitor.js — Camera/FilePicker плагины теперь видны из JS, кнопки пикера работают.",
-      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.69.ipa",
+      "version": "1.68",
+      "versionDate": "2026-05-15T13:30:00.000Z",
+      "versionDescription": "Откат WKAppBoundDomains из 1.67: ломалось прикрепление фоток (Capacitor Camera fetch на capacitor:// блокировался). Service Worker в обёртке отключён, кеш — только в Safari/TG.",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.68.ipa",
       "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
       "tintColor": "1A1A1A",
-      "size": 5882750,
+      "size": 5631221,
       "localizedDescription": "Мобильный фронт к Claude Code на мак-мини. Чат, скриншоты, голосовые, файлы.",
       "screenshotURLs": [],
       "permissions": [],
       "versions": [
+        {
+          "version": "1.68",
+          "buildVersion": "168",
+          "date": "2026-05-15T13:30:00.000Z",
+          "localizedDescription": "Откат WKAppBoundDomains из 1.67: ломалось прикрепление фоток (Capacitor Camera fetch на capacitor:// блокировался). Service Worker в обёртке отключён, кеш — только в Safari/TG.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.68.ipa",
+          "size": 5631221
+        },
         {
           "version": "1.69",
           "buildVersion": "169",
@@ -26,14 +34,6 @@
           "localizedDescription": "Подцепил capacitor.js — Camera/FilePicker плагины теперь видны из JS, кнопки пикера работают.",
           "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.69.ipa",
           "size": 5882750
-        },
-        {
-          "version": "1.68",
-          "buildVersion": "168",
-          "date": "2026-05-15T00:30:00.000Z",
-          "localizedDescription": "Натив-пикер галереи/камеры/файлов через @capacitor/camera и @capawesome/capacitor-file-picker — больше нет промежуточного iOS action sheet.",
-          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.68.ipa",
-          "size": 5878992
         },
         {
           "version": "1.67",
