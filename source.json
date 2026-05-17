@@ -182,7 +182,7 @@
       "versionDate": "2026-05-18T02:14:00.000Z",
       "versionDescription": "Первая сборка. SwiftUI клиент Xbox Cloud Gaming / xHome через WebRTC, виртуальный геймпад.",
       "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/XboxRemotePlay-1.0.ipa",
-      "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
+      "iconURL": "https://borkirnik-stack.github.io/makkod-ota/xbox-icon.png",
       "tintColor": "107C10",
       "size": 5217930,
       "localizedDescription": "iOS-клиент Xbox Remote Play. Логин в Xbox Live, доступ к Cloud Gaming каталогу и стриму с домашней консоли, виртуальный геймпад поверх видео.",
