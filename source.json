@@ -230,6 +230,32 @@
           "size": 5218003
         }
       ]
+    },
+    {
+      "name": "MakkodSwift",
+      "bundleIdentifier": "pro.kinemotor.makkod.swift",
+      "developerName": "KINEMOTOR",
+      "subtitle": "Нативный SwiftUI-Маккод",
+      "version": "0.2",
+      "versionDate": "2026-05-19T22:30:00.000Z",
+      "versionDescription": "Drawer тредов открывается свайпом от левой кромки + анимация. Гамбургер-кнопка работает как и раньше.",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.2.ipa",
+      "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
+      "tintColor": "1A1A1A",
+      "size": 726870,
+      "localizedDescription": "Эксперимент: тот же Маккод-мини-аппа, но переписанный на нативном SwiftUI поверх того же WebSocket-сервера. Без WebView, без Capacitor — чистый Swift. Live параллельно с обычным Маккодом, отдельный bundle id.",
+      "screenshotURLs": [],
+      "permissions": [],
+      "versions": [
+        {
+          "version": "0.2",
+          "buildVersion": "2",
+          "date": "2026-05-19T22:30:00.000Z",
+          "localizedDescription": "Drawer тредов открывается свайпом от левой кромки + анимация. Гамбургер-кнопка работает как и раньше.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.2.ipa",
+          "size": 726870
+        }
+      ]
     }
   ],
   "news": []
