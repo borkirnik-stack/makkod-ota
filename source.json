@@ -8,17 +8,36 @@
       "bundleIdentifier": "pro.kinemotor.makkod",
       "developerName": "KINEMOTOR",
       "subtitle": "Терминал-чат с Claude Code",
-      "version": "1.87",
-      "versionDate": "2026-05-30T16:02:12+03:00",
-      "versionDescription": "1.87 — починен офлайн-старт и выровнен скелетон. (1) Без интернета аппа больше не застревает на скелетоне холодного старта: на file://-origin (вшитая в IPA офлайн-копия) WKWebView подвешивал IndexedDB.open без ответа и стопорил весь boot — добавлен таймаут на открытие базы плюс безусловная страховка, снимающая скелетон через 4с. (2) Скелетон выровнен по фактическому топбару: раньше его полоса с гамбургером висела выше реального меню (floor-отступ 50px вместо точной safe-area), теперь привязан к той же формуле, что и реальный #topbar (calc(2px + var(--safe-top))). v1046 мини-аппы.",
-      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.87.ipa",
+      "version": "1.88",
+      "versionDate": "2026-05-30T17:12:00+03:00",
+      "versionDescription": "1.88 — вместо скелетона холодного старта в нативной обёртке (IPA) теперь заставка-сплеш: пиксельный маскот-инвейдер по центру с мягкой пульсацией, подпись МАККОД и версия обёртки (v1.88) внизу экрана. Сплеш показывается только в IPA (детект по UA MaccodNative), на вебе и в Telegram остаётся прежний скелетон. Снимается той же готовностью приложения (app-ready). Фон сплеша подстраивается под тему (классика/светлая/Стекло). v1046 мини-аппы.",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.88.ipa",
       "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
       "tintColor": "1A1A1A",
-      "size": 7365388,
+      "size": 7366114,
       "localizedDescription": "Мобильный фронт к Claude Code на мак-мини. Чат, скриншоты, голосовые, файлы.",
       "screenshotURLs": [],
       "permissions": [],
       "versions": [
+        {
+          "version": "1.88",
+          "buildVersion": "188",
+          "date": "2026-05-30T17:12:00+03:00",
+          "localizedDescription": "1.88 — вместо скелетона холодного старта в нативной обёртке (IPA) теперь заставка-сплеш: пиксельный маскот-инвейдер по центру с мягкой пульсацией, подпись МАККОД и версия обёртки (v1.88) внизу экрана. Сплеш показывается только в IPA (детект по UA MaccodNative), на вебе и в Telegram остаётся прежний скелетон. Снимается той же готовностью приложения (app-ready). Фон сплеша подстраивается под тему (классика/светлая/Стекло). v1046 мини-аппы.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.88.ipa",
+          "size": 7366114,
+          "minOSVersion": "15.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+              "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+              "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
+            }
+          }
+        },
         {
           "version": "1.87",
           "buildVersion": "187",
