@@ -26,7 +26,17 @@
           "localizedDescription": "1.87 — починен офлайн-старт и выровнен скелетон. (1) Без интернета аппа больше не застревает на скелетоне холодного старта: на file://-origin (вшитая в IPA офлайн-копия) WKWebView подвешивал IndexedDB.open без ответа и стопорил весь boot — добавлен таймаут на открытие базы плюс безусловная страховка, снимающая скелетон через 4с. (2) Скелетон выровнен по фактическому топбару: раньше его полоса с гамбургером висела выше реального меню (floor-отступ 50px вместо точной safe-area), теперь привязан к той же формуле, что и реальный #topbar (calc(2px + var(--safe-top))). v1046 мини-аппы.",
           "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.87.ipa",
           "size": 7365388,
-          "minOSVersion": "15.0"
+          "minOSVersion": "15.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+              "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+              "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
+            }
+          }
         },
         {
           "version": "1.86",
@@ -271,7 +281,17 @@
           "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.56.ipa",
           "size": 5625460
         }
-      ]
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {
+          "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+          "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+          "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+          "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+          "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
+        }
+      }
     },
     {
       "name": "Xbox Remote Play",
