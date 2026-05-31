@@ -8,17 +8,36 @@
       "bundleIdentifier": "pro.kinemotor.makkod",
       "developerName": "KINEMOTOR",
       "subtitle": "Терминал-чат с Claude Code",
-      "version": "1.91",
-      "versionDate": "2026-05-31T19:11:54+03:00",
-      "versionDescription": "1.91 — версия приложения теперь видна внизу стартового маскот-экрана (того, что показывается до загрузки и в офлайне). Плюс свежая вебка (билд 1060) с фиксом офлайн-зависания: на запуске без сети обёртка больше не залипает на заставке — через пару секунд разворачивает интерфейс из вшитой копии. Кеш превью и медиа подтянут.",
-      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.91.ipa",
+      "version": "1.92",
+      "versionDate": "2026-05-31T20:33:34+03:00",
+      "versionDescription": "1.92 — настоящий офлайн с историей. Аппа теперь грузится из самой себя (вшитая в IPA копия на постоянном origin capacitor://localhost), а не каждый раз с Vercel. Раньше офлайн-копия открывалась как file://, где WKWebView не открывает IndexedDB — история чата и настройки в офлайне были мертвы и старт залипал. Теперь кеш истории (до 200 сообщений на чат), превью и медиа живут на одном стабильном origin и доступны без сети. Связь с сервером (WebSocket) от origin не зависит — работает как раньше. ВАЖНО: при первом запуске 1.92 один раз спросит PIN заново и сбросит тему на дефолт (origin сменился — старые localStorage/IndexedDB с Vercel-домена браузер по изоляции не отдаёт), история чата сама перетечёт с сервера. Пока правки вебки требуют переустановки IPA — фоновая докачка свежей вебки будет вторым заходом.",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.92.ipa",
       "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
       "tintColor": "1A1A1A",
-      "size": 7399083,
+      "size": 7394292,
       "localizedDescription": "Мобильный фронт к Claude Code на мак-мини. Чат, скриншоты, голосовые, файлы.",
       "screenshotURLs": [],
       "permissions": [],
       "versions": [
+        {
+          "version": "1.92",
+          "buildVersion": "192",
+          "date": "2026-05-31T20:33:34+03:00",
+          "localizedDescription": "1.92 — настоящий офлайн с историей. Аппа теперь грузится из самой себя (вшитая в IPA копия на постоянном origin capacitor://localhost), а не каждый раз с Vercel. Раньше офлайн-копия открывалась как file://, где WKWebView не открывает IndexedDB — история чата и настройки в офлайне были мертвы и старт залипал. Теперь кеш истории (до 200 сообщений на чат), превью и медиа живут на одном стабильном origin и доступны без сети. Связь с сервером (WebSocket) от origin не зависит — работает как раньше. ВАЖНО: при первом запуске 1.92 один раз спросит PIN заново и сбросит тему на дефолт (origin сменился — старые localStorage/IndexedDB с Vercel-домена браузер по изоляции не отдаёт), история чата сама перетечёт с сервера. Пока правки вебки требуют переустановки IPA — фоновая докачка свежей вебки будет вторым заходом.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.92.ipa",
+          "size": 7394292,
+          "minOSVersion": "15.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+              "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+              "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
+            }
+          }
+        },
         {
           "version": "1.91",
           "buildVersion": "191",
