@@ -1,0 +1,50 @@
+{
+  "build": 1064,
+  "files": [
+    {
+      "name": "index.html",
+      "sha256": "fa53af90b44b33eebde96b35d13814b7670779239d9bff3862a889abda7b9be0",
+      "size": 97241
+    },
+    {
+      "name": "app.js",
+      "sha256": "f3d67a0eda9ea96ec59e64120aebdada38a9dc0aa9c6b2303f21626d9a417eed",
+      "size": 1287791
+    },
+    {
+      "name": "styles.css",
+      "sha256": "74485833ba892096573d5798c50d0356de4ae4726f7d8401645c939f7be5e0f7",
+      "size": 455003
+    },
+    {
+      "name": "sw.js",
+      "sha256": "096056769de57bba2cd8ec4e1ee24406893133360456faf20923aa58e9415060",
+      "size": 8630
+    },
+    {
+      "name": "capacitor.js",
+      "sha256": "119be569b5ef3eaf347522e3e09278eca82abcac6ccb0c040e1903eab7173925",
+      "size": 8718
+    },
+    {
+      "name": "config.js",
+      "sha256": "bb14f544cb014d73bfc1431f1851f6de5ec3dd239e79a1d5d4669653c34c7f32",
+      "size": 442
+    },
+    {
+      "name": "tg-shim.js",
+      "sha256": "6c3f9e90736b8ac1ca596eab8bf6a62d375796ef7473c70b23dde2c64a9aa75d",
+      "size": 9386
+    },
+    {
+      "name": "news.json",
+      "sha256": "3f4ea23cb974945cbedacfbcb599fec16e8ec74d2d83f7b13c27acc6f1c56838",
+      "size": 2028
+    },
+    {
+      "name": "icon.svg",
+      "sha256": "39f373ee9dbf00722d82d49e0e7f69319fb13dc524d26286bcfa2d75484f74ff",
+      "size": 721
+    }
+  ]
+}
