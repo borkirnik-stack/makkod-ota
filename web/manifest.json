@@ -1,15 +1,15 @@
 {
-  "build": 1066,
+  "build": 1067,
   "files": [
     {
       "name": "index.html",
-      "sha256": "350ad8dc979e8b4f0f24fc8c5dac9a7f4bd07c4b23928e3314893a319877d28f",
+      "sha256": "a458046a1e535ccde2f2212c8cad19d642c8434b4fb0e1e7cb575a316c123ac6",
       "size": 97241
     },
     {
       "name": "app.js",
-      "sha256": "308bcbd6db1700a68cd155f00b44ecfacc0c4aa1acecfd9fda1b040471ccb663",
-      "size": 1297123
+      "sha256": "0a82b553d3ef79caad9d3bf41779aecd09f39405b9302f17b3c856bcd377c7f5",
+      "size": 1299330
     },
     {
       "name": "styles.css",
@@ -18,7 +18,7 @@
     },
     {
       "name": "sw.js",
-      "sha256": "29f20d4f6a7e8f8c532db4419f70bb8e01dff7f61e49a28a0a44f99e463b4521",
+      "sha256": "b2fba9debc70187861150bd6777ca91dc3ff77f33d721f7a9d3bc16adacce3db",
       "size": 8630
     },
     {
