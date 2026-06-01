@@ -1,0 +1,1349 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" id="meta-theme-color" content="#262624" />
+  <meta name="color-scheme" id="meta-color-scheme" content="dark" />
+  <title>Маккод</title>
+  <link rel="icon" type="image/svg+xml" href="icon.svg" />
+  <script>
+    (function () {
+      try {
+        // Inline-резолв темы для boot-skeleton'а — должен покрывать ВСЕ режимы
+        // (light/dark/auto/schedule) без app.js, иначе на холодный старт после
+        // апдейта/чистого кеша скелетон рисуется тёмным под светлой темой.
+        // Зеркалит resolveThemeIsLight() и _scheduleIsLight() из app.js.
+        var isLight, isGlass;
+        var applied = localStorage.getItem("maccod:appliedTheme") || "";
+        if (applied === "light" || applied === "dark" || applied === "glass" || applied === "glass-light") {
+          isLight = (applied === "light" || applied === "glass-light");
+          isGlass = (applied === "glass" || applied === "glass-light");
+        } else {
+          // Новая схема: themeStyle (classic|glass) + themeMode (light|dark|auto)
+          // Старый ключ maccod:theme читаем как fallback для миграции в первый запуск.
+          var style = localStorage.getItem("maccod:themeStyle");
+          var mode = localStorage.getItem("maccod:themeMode");
+          if (!style && !mode) {
+            var legacy = localStorage.getItem("maccod:theme") || "";
+            if (legacy === "glass") { style = "glass"; mode = "dark"; }
+            else if (legacy === "light") { style = "classic"; mode = "light"; }
+            else if (legacy === "dark") { style = "classic"; mode = "dark"; }
+            else if (legacy === "schedule") { style = "classic"; mode = "schedule"; }
+            else if (legacy === "auto") { style = "classic"; mode = "auto"; }
+            // Дефолт для первой установки — glass + schedule (день/ночь по времени).
+            else { style = "glass"; mode = "schedule"; }
+          }
+          isGlass = (style === "glass" || style === "liquid2");
+          if (mode === "light") isLight = true;
+          else if (mode === "dark") isLight = false;
+          else if (mode === "schedule") {
+            // Зеркалит _scheduleIsLight() из app.js.
+            var sch = { start: "06:00", end: "21:00" };
+            try {
+              var raw = localStorage.getItem("maccod:theme-schedule");
+              if (raw) {
+                var p = JSON.parse(raw);
+                if (/^\d{1,2}:\d{2}$/.test(p.start || "")) sch.start = p.start;
+                if (/^\d{1,2}:\d{2}$/.test(p.end || "")) sch.end = p.end;
+              }
+            } catch (_) {}
+            var sParts = sch.start.split(":"), eParts = sch.end.split(":");
+            var sMin = (+sParts[0]) * 60 + (+sParts[1]);
+            var eMin = (+eParts[0]) * 60 + (+eParts[1]);
+            var now = new Date();
+            var cur = now.getHours() * 60 + now.getMinutes();
+            if (sMin === eMin) isLight = false;
+            else if (sMin < eMin) isLight = (cur >= sMin && cur < eMin);
+            else isLight = (cur >= sMin || cur < eMin);
+          }
+          else isLight = !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches);
+          try {
+            localStorage.setItem("maccod:appliedTheme", isGlass ? (isLight ? "glass-light" : "glass") : (isLight ? "light" : "dark"));
+          } catch (_) {}
+        }
+        window.__maccodTheme = { isLight: isLight, isGlass: isGlass };
+        document.documentElement.classList.toggle("theme-light", isLight);
+        document.documentElement.classList.toggle("theme-glass", isGlass);
+        // Boot-скелетон на десктопе: рисуем с боковухой слева, чтобы не было
+        // мобильной разметки на широком экране. iOS-нативку (MaccodNative-V*)
+        // отсекаем — она всегда мобильная даже в landscape iPad.
+        try {
+          var bsUa = navigator.userAgent || "";
+          var bsMobileApp = /MaccodNative-V\d+/i.test(bsUa);
+          if (bsMobileApp) {
+            // Нативная обёртка (IPA) — показываем splash-заставку с маскотом
+            // поверх скелетона; на вебе/в TG её нет.
+            document.documentElement.classList.add("boot-native");
+            // Минимальная экспозиция splash: даже если app-ready прилетит
+            // мгновенно (прогретый кеш), держим заставку с версией ~1.2с, чтобы
+            // версия была видна при КАЖДОМ холодном старте, а не мелькала доли
+            // секунды. Под splash UI уже кликабелен (pointer-events:none), так
+            // что взаимодействие не задерживается — только визуальный оверлей.
+            document.documentElement.classList.add("splash-hold");
+            setTimeout(function () {
+              document.documentElement.classList.remove("splash-hold");
+            }, 1200);
+          }
+          if (window.innerWidth >= 820 && !bsMobileApp) {
+            document.documentElement.classList.add("boot-desktop");
+          }
+        } catch (_) {}
+        var meta = document.getElementById("meta-theme-color");
+        if (meta) meta.setAttribute("content", isGlass ? (isLight ? "#f5f3ee" : "#0c0c18") : (isLight ? "#f5f3ee" : "#262624"));
+        var csMeta = document.getElementById("meta-color-scheme");
+        if (csMeta) csMeta.setAttribute("content", isLight ? "light" : "dark");
+      } catch (_) {}
+    })();
+  </script>
+  <style>
+    html, body { margin: 0; padding: 0; background: #262624; color: #f0efe9; }
+    html.theme-light, html.theme-light body { background: #f5f3ee; color: #2b2a28; }
+    html.theme-glass, html.theme-glass body { background: #000000; color: #ffffff; }
+    html.theme-glass.theme-light, html.theme-glass.theme-light body { background: #f5f3ee; color: #1a1a1a; }
+    body { visibility: hidden; }
+    body.app-ready { visibility: visible; }
+
+    /* Boot skeleton — рисуется ДО загрузки styles.css/app.js, чтобы не было чёрного экрана при refresh */
+    #boot-skeleton {
+      visibility: visible;
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; flex-direction: column;
+      background: #262624;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    html.theme-light #boot-skeleton { background: #f5f3ee; }
+    body.app-ready #boot-skeleton { display: none; }
+    /* В iOS-обёртке (Capacitor) первые ~200мс рисует нативный LaunchScreen.storyboard
+       (он зашит в IPA-бандл, выглядит как набор тёмных прямоугольников classic-стиля).
+       HTML-скелетон оставляем — он перекрывает LaunchScreen как только WKWebView
+       подгрузит index.html. Это даёт glass-юзерам пилюли поверх LaunchScreen
+       и в целом восстанавливает HTML-скелетон при refresh внутри WebView
+       (без cold-start LaunchScreen раньше был чёрный экран). */
+
+    /* Размеры повторяют реальный #topbar (styles.css:210) — 10px 8px padding, gap 10px;
+       safe-area top для iPhone-обёртки. Цвет бордера = var(--border). */
+    .bs-bar {
+      flex: 0 0 auto;
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 8px;
+      /* ТОЧНО та же формула, что у реального #topbar (styles.css:188
+         body.maccode-native #topbar → calc(2px + var(--safe-top))). --safe-top
+         задаётся в styles.css:30 = env(safe-area-inset-top,0px) и доступен сразу,
+         ещё до app.js. Раньше тут стоял floor max(50px, env()) — он давал ПОСТОЯННЫЙ
+         рассинхрон: на iPhone 16 Pro env≈59px, а floor 50px ≠ реальному отступу,
+         скелетон вис на 9px выше топбара. Привязка к той же переменной убирает зазор. */
+      padding-top: calc(2px + var(--safe-top, env(safe-area-inset-top, 0px)));
+      border-bottom: 1px solid #383735;
+      background: #30302e;
+    }
+    html.theme-light .bs-bar { border-color: #d8d6d0; background: #ffffff; }
+    /* ☰ — у реального .icon-btn фон совпадает с фоном топбара (var(--bg-card)),
+       видна только тонкая рамка. Внутри — три горизонтальные полоски бургера
+       (имитация SVG-иконки threads-btn), нарисованы через box-shadow по центру. */
+    .bs-icon {
+      width: 32px; height: 32px; border: 1px solid #383735; background: transparent;
+      flex: 0 0 auto; position: relative;
+    }
+    .bs-icon::before {
+      content: ""; position: absolute; left: 8px; right: 8px; top: 50%;
+      height: 2px; background: #8e8d87; transform: translateY(-1px);
+      box-shadow: 0 -6px 0 #8e8d87, 0 6px 0 #8e8d87;
+    }
+    html.theme-light .bs-icon { border-color: #d8d6d0; }
+    html.theme-light .bs-icon::before { background: #6f6e6a; box-shadow: 0 -6px 0 #6f6e6a, 0 6px 0 #6f6e6a; }
+    /* Реальный logo — название чата (input height 26px), тап открывает меню
+       чата. Полоса под название — 170px x 16px, чтобы приблизительно совпадать
+       с шириной «Приложение» при font-weight 700 + letter-spacing 1px. Shimmer
+       как у строк сообщений — реальное название чата всегда яркое/белое,
+       скелетон-полоска должна жить. */
+    .bs-logo { flex: 1 1 auto; display: flex; align-items: center; gap: 6px; min-width: 0; }
+    .bs-logo .l1 {
+      flex: 0 1 auto; width: 170px; max-width: calc(100% - 14px); height: 16px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #3a3937 0%, #6a6864 50%, #3a3937 100%);
+      background-size: 200% 100%;
+      animation: bs-shimmer 1.4s linear infinite;
+    }
+    html.theme-light .bs-logo .l1 {
+      background: linear-gradient(90deg, #d8d4c9 0%, #b5b0a4 50%, #d8d4c9 100%);
+      background-size: 200% 100%;
+    }
+    /* Статус справа — dot 8x8 (ON = зелёный, как .dot.on в styles.css:435) +
+       надпись «ONLINE» 11px UPPERCASE. У реальной .status margin-left: 14px.
+       Видимый зелёный квадратик — главный визуал, мерцанием не имитируем. */
+    .bs-status { flex: 0 0 auto; display: flex; align-items: center; gap: 6px; margin-left: 14px; }
+    .bs-status .bs-dot { width: 8px; height: 8px; background: #7fb87f; flex: 0 0 auto; box-shadow: 0 0 6px rgba(127, 184, 127, 0.5); }
+    .bs-status .bs-stext { width: 52px; height: 10px; border-radius: 2px; background: #5a5854; }
+    html.theme-light .bs-status .bs-dot { background: #4f9e4f; box-shadow: 0 0 6px rgba(79, 158, 79, 0.45); }
+    html.theme-light .bs-status .bs-stext { background: #c5c1b8; }
+
+    /* Чат — пустой блок-распорка между топбаром и композером (.bs-msg-пилюль больше нет). */
+    .bs-chat { flex: 1 1 auto; overflow: hidden; }
+    /* .bs-line оставлен — нужен для шиммера в десктоп-сайдбаре (.bs-side-row .bs-line). */
+    .bs-line {
+      height: 12px; border-radius: 3px;
+      background: linear-gradient(90deg, #2a2927 0%, #3a3937 50%, #2a2927 100%);
+      background-size: 200% 100%;
+      animation: bs-shimmer 1.4s linear infinite;
+    }
+    html.theme-light .bs-line { background: linear-gradient(90deg, #ebe9e2 0%, #dad7cf 50%, #ebe9e2 100%); background-size: 200% 100%; }
+
+    /* Композер — две строки: сверху ряд chip'ов (C/model/effort/view/команды),
+       снизу textarea + внутренняя полоса с иконками и кнопкой Send.
+       Размеры из #composer/styles.css:1136 и .input-bottom-bar/styles.css:5120. */
+    .bs-composer {
+      flex: 0 0 auto;
+      display: flex; flex-direction: column; gap: 6px;
+      padding: 6px 8px 18px 8px;
+      padding-bottom: max(18px, env(safe-area-inset-bottom));
+      border-top: 1px solid #383735;
+      background: #30302e;
+    }
+    html.theme-light .bs-composer { border-color: #d8d6d0; background: #ffffff; }
+    /* input-wrap = textarea (40px) сверху + input-bottom-bar (44px) снизу,
+       обе под одной рамкой с тенью 2px 2px (как .input-wrap в styles.css:1480). */
+    .bs-input-wrap {
+      position: relative;
+      box-shadow: 2px 2px 0 0 rgba(0,0,0,0.55);
+      border: 1px solid #383735;
+    }
+    html.theme-light .bs-input-wrap { border-color: #d8d6d0; }
+    .bs-input { height: 40px; background: #30302e; }
+    html.theme-light .bs-input { background: #ffffff; }
+    .bs-input-bar {
+      display: flex; align-items: center; gap: 2px;
+      height: 44px; padding: 0 4px;
+      background: #30302e;
+      border-top: 1px solid #383735;
+    }
+    html.theme-light .bs-input-bar { background: #ffffff; border-top-color: #d8d6d0; }
+    /* Иконки внутри input-bar поменьше топбарных, без бордера (visible-only через background). */
+    .bs-input-bar .bs-icon { width: 24px; height: 24px; background: #44423f; border: 0; border-radius: 2px; }
+    html.theme-light .bs-input-bar .bs-icon { background: #d9d5cc; }
+    .bs-input-bar .bs-spacer { flex: 1 1 auto; }
+    .bs-send { width: 30px; height: 30px; background: #d97757; border-radius: 15px; flex: 0 0 auto; margin-right: 4px; }
+
+    @keyframes bs-shimmer {
+      from { background-position: 200% 0; }
+      to   { background-position: -200% 0; }
+    }
+
+    /* ==== Glass-вариант boot-skeleton'а ====
+       Glass-тема не имеет жёстких рамок, классических 2px 2px теней и плотных плашек —
+       всё построено на полупрозрачных слоях rgba и backdrop-blur. В скелетоне backdrop-filter
+       работать не на чем (за ним только сам фон body), поэтому имитируем «стекло» через
+       более низкие alpha и пилюли (border-radius 999px / 18px). Никаких бордеров на плашках. */
+    html.theme-glass #boot-skeleton { background: #000000; }
+    html.theme-glass.theme-light #boot-skeleton { background: #f5f3ee; }
+
+    html.theme-glass .bs-bar { background: transparent; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    html.theme-glass.theme-light .bs-bar { background: transparent; border-bottom: 1px solid rgba(0,0,0,0.06); }
+
+    /* Бургер — круглая пилюля как настоящий #threads-btn в glass (styles.css:7432). */
+    html.theme-glass .bs-icon { background: rgba(255,255,255,0.08); border: none; border-radius: 999px; }
+    html.theme-glass.theme-light .bs-icon { background: rgba(0,0,0,0.06); }
+    html.theme-glass .bs-icon::before { background: rgba(255,255,255,0.55); box-shadow: 0 -6px 0 rgba(255,255,255,0.55), 0 6px 0 rgba(255,255,255,0.55); }
+    html.theme-glass.theme-light .bs-icon::before { background: rgba(0,0,0,0.55); box-shadow: 0 -6px 0 rgba(0,0,0,0.55), 0 6px 0 rgba(0,0,0,0.55); }
+
+    /* Название чата — пилюля-shimmer на полупрозрачном rgba, без жёстких краёв. */
+    html.theme-glass .bs-logo .l1 {
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0.04) 100%);
+      background-size: 200% 100%;
+    }
+    html.theme-glass.theme-light .bs-logo .l1 {
+      background: linear-gradient(90deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.14) 50%, rgba(0,0,0,0.04) 100%);
+      background-size: 200% 100%;
+    }
+
+    html.theme-glass .bs-status .bs-dot { background: #30d158; box-shadow: 0 0 6px rgba(48,209,88,0.5); }
+    html.theme-glass .bs-status .bs-stext { background: rgba(255,255,255,0.10); border-radius: 2px; }
+    html.theme-glass.theme-light .bs-status .bs-stext { background: rgba(0,0,0,0.10); }
+
+    /* .bs-line оставлен для шиммера сайдбара на десктопе. */
+    html.theme-glass .bs-line {
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.16) 50%, rgba(255,255,255,0.04) 100%);
+      background-size: 200% 100%;
+    }
+    html.theme-glass.theme-light .bs-line {
+      background: linear-gradient(90deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.14) 50%, rgba(0,0,0,0.04) 100%);
+      background-size: 200% 100%;
+    }
+
+    /* Композер — прозрачный (в живой теме под ним blur, тут просто нет жёсткой плашки). */
+    html.theme-glass .bs-composer { background: transparent; border-top: 1px solid rgba(255,255,255,0.08); }
+    html.theme-glass.theme-light .bs-composer { background: transparent; border-top: 1px solid rgba(0,0,0,0.06); }
+
+    /* Input-wrap — мягкое стекло вместо коробки с тенью 2px 2px. */
+    html.theme-glass .bs-input-wrap { box-shadow: none; border: 1px solid rgba(255,255,255,0.10); border-radius: 18px; overflow: hidden; }
+    html.theme-glass.theme-light .bs-input-wrap { border-color: rgba(0,0,0,0.08); }
+    html.theme-glass .bs-input { background: rgba(255,255,255,0.06); }
+    html.theme-glass.theme-light .bs-input { background: rgba(0,0,0,0.04); }
+    html.theme-glass .bs-input-bar { background: rgba(255,255,255,0.04); border-top: 1px solid rgba(255,255,255,0.08); }
+    html.theme-glass.theme-light .bs-input-bar { background: rgba(0,0,0,0.03); border-top-color: rgba(0,0,0,0.06); }
+    html.theme-glass .bs-input-bar .bs-icon { background: rgba(255,255,255,0.12); border-radius: 6px; }
+    html.theme-glass.theme-light .bs-input-bar .bs-icon { background: rgba(0,0,0,0.08); }
+    html.theme-glass .bs-input-bar .bs-icon::before,
+    html.theme-glass.theme-light .bs-input-bar .bs-icon::before { display: none; }
+
+    /* Send — синий glass-accent вместо classic-оранжевого. */
+    html.theme-glass .bs-send { background: #2a73e3; border-radius: 999px; }
+
+    /* ==== Десктоп-вариант boot-skeleton'а ====
+       На десктопе мини-аппа всегда показывает боковое меню слева (280px),
+       а топбар/чат/композер занимают только правую часть. Скелетон должен
+       это повторять, иначе на холодном старте видна мобильная разметка
+       растянутая на весь экран — раздражает. Класс boot-desktop ставит
+       inline-скрипт по window.innerWidth>=820 и !MaccodNative-V*. */
+    html.boot-desktop #boot-skeleton { padding-left: 280px; }
+    html.boot-desktop #boot-skeleton::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 280px;
+      background: #30302e;
+      border-right: 1px solid #383735;
+      z-index: 0;
+    }
+    html.boot-desktop.theme-light #boot-skeleton::before {
+      background: #ffffff;
+      border-right-color: #d8d6d0;
+    }
+    html.boot-desktop.theme-glass #boot-skeleton::before {
+      background: transparent;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    html.boot-desktop.theme-glass.theme-light #boot-skeleton::before {
+      border-right: 1px solid rgba(0,0,0,0.06);
+    }
+    /* На широком экране у настоящего #chat есть автоцентрирование контента
+       до 980px (styles.css:4417). Имитируем то же — limit ширины .bs-chat
+       и .bs-composer, чтобы скелетон-сообщения не растягивались на 1500px. */
+    html.boot-desktop .bs-chat,
+    html.boot-desktop .bs-composer {
+      max-width: 980px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ==== Содержимое десктоп-сайдбара boot-skeleton'а ====
+       Реальный #drawer на десктопе показывает: заголовок «ЧАТЫ», поиск,
+       chips (Чаты/MCP/Скиллы/...), список тредов с двумя строками текста.
+       Имитируем — несколько минималистичных рядов-«чатов», чтобы холодный
+       старт не показывал пустой серый прямоугольник вместо боковой панели.
+       На мобиле .bs-sidebar просто display:none. */
+    .bs-sidebar { display: none; }
+    html.boot-desktop .bs-sidebar {
+      display: flex; flex-direction: column;
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 280px;
+      padding: 12px 10px;
+      padding-top: calc(12px + max(50px, env(safe-area-inset-top, 0px)));
+      gap: 10px;
+      z-index: 1;
+      box-sizing: border-box;
+    }
+    .bs-side-head { display: flex; align-items: center; gap: 8px; }
+    .bs-side-title { width: 64px; height: 14px; background: #5a5854; border-radius: 2px; }
+    html.theme-light .bs-side-title { background: #c5c1b8; }
+    .bs-side-search {
+      height: 30px;
+      border: 1px solid #383735;
+      background: #30302e;
+    }
+    html.theme-light .bs-side-search { background: #ffffff; border-color: #d8d6d0; }
+    .bs-side-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+    .bs-side-chip {
+      height: 22px; min-width: 48px;
+      border: 1px solid #383735;
+      background: #30302e;
+      padding: 0 8px;
+    }
+    html.theme-light .bs-side-chip { background: #ffffff; border-color: #d8d6d0; }
+    .bs-side-list { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; flex: 1 1 auto; overflow: hidden; }
+    .bs-side-row {
+      display: flex; flex-direction: column; gap: 4px;
+      padding: 6px 8px;
+      border: 1px solid #383735;
+      background: #30302e;
+    }
+    html.theme-light .bs-side-row { background: #ffffff; border-color: #d8d6d0; }
+    .bs-side-row .bs-line { height: 9px; border-radius: 2px; }
+    .bs-side-row .bs-line.sub { height: 7px; opacity: 0.65; }
+
+    /* Glass-версия сайдбара — без жёстких рамок, пилюли вместо прямоугольников. */
+    html.theme-glass .bs-side-title { background: rgba(255,255,255,0.10); border-radius: 2px; }
+    html.theme-glass.theme-light .bs-side-title { background: rgba(0,0,0,0.10); }
+    html.theme-glass .bs-side-search {
+      border: none;
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+    }
+    html.theme-glass.theme-light .bs-side-search { background: rgba(0,0,0,0.04); }
+    html.theme-glass .bs-side-chip {
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+    }
+    html.theme-glass.theme-light .bs-side-chip {
+      border-color: rgba(0,0,0,0.10);
+      background: rgba(0,0,0,0.04);
+    }
+    html.theme-glass .bs-side-row {
+      border: none;
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+    }
+    html.theme-glass.theme-light .bs-side-row { background: rgba(0,0,0,0.04); }
+    html.theme-glass .bs-side-row .bs-line { border-radius: 999px; }
+
+    /* Splash-заставка нативной обёртки (IPA): маскот по центру + версия обёртки
+       снизу. Перекрывает скелетон (z выше). На вебе/в TG скрыта — показывается
+       только при html.boot-native (UA MaccodNative-V*). Снимается тем же app-ready. */
+    #boot-splash { display: none; }
+    html.boot-native #boot-splash {
+      display: flex;
+      visibility: visible;
+      position: fixed; inset: 0; z-index: 10000;
+      flex-direction: column;
+      align-items: center; justify-content: center;
+      /* Фон заставки всегда чёрный — точно совпадает с нативным
+         LaunchScreen.storyboard, чтобы стык native→web не моргал. Раньше тут
+         был #262624 + тёмо-зависимый фон: при теме Стекло серый нативный экран
+         сменялся чёрным web — выглядело как две разные картинки. */
+      background: #000000;
+      pointer-events: none;
+    }
+    html:not(.splash-hold) body.app-ready #boot-splash { display: none !important; }
+
+    .splash-center {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 20px;
+    }
+    .splash-mascot {
+      fill: #d97757;
+      animation: splashPulse 1.6s ease-in-out infinite;
+    }
+    .splash-name {
+      font: 600 14px/1 -apple-system, system-ui, "Segoe UI", sans-serif;
+      letter-spacing: 0.34em;
+      padding-left: 0.34em;
+      color: #f0efe9; opacity: 0.9;
+    }
+    .splash-version {
+      position: absolute; left: 0; right: 0;
+      bottom: calc(24px + env(safe-area-inset-bottom));
+      text-align: center;
+      font: 500 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: 0.04em;
+      color: #f0efe9; opacity: 0.4;
+    }
+    @keyframes splashPulse {
+      0%, 100% { opacity: 0.55; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-2px); }
+    }
+  </style>
+  <script>
+    // В Capacitor (iOS-обёртка) подгружаем локальный no-op shim Telegram.WebApp,
+    // он же выставляет window.MACCODE_NATIVE и класс body.maccode-native.
+    // В обычном TG/web — настоящий telegram-web-app.js с CDN.
+    (function () {
+      var ua = navigator.userAgent || "";
+      var isCap = /MaccodNative/i.test(ua) || !!(window.Capacitor && window.Capacitor.isNativePlatform);
+      document.write('<script src="' + (isCap ? "tg-shim.js?v=v1081" : "https://telegram.org/js/telegram-web-app.js") + '"><\/script>');
+    })();
+  </script>
+  <script>
+    (function () {
+      try {
+        var tg = window.Telegram && window.Telegram.WebApp;
+        if (!tg) return;
+        var isLight = (window.__maccodTheme && window.__maccodTheme.isLight) || false;
+        var bg = isLight ? "#f5f3ee" : "#262624";
+        tg.ready && tg.ready();
+        tg.setHeaderColor && tg.setHeaderColor(bg);
+        tg.setBackgroundColor && tg.setBackgroundColor(bg);
+        tg.setBottomBarColor && tg.setBottomBarColor(bg);
+        tg.expand && tg.expand();
+        try { tg.disableVerticalSwipes && tg.disableVerticalSwipes(); } catch (_) {}
+        var p = tg.platform;
+        var isMob = p === "android" || p === "android_x" || p === "ios";
+        if (isMob && tg.isVersionAtLeast && tg.isVersionAtLeast("8.0") && typeof tg.requestFullscreen === "function") {
+          tg.requestFullscreen();
+        }
+      } catch (_) {}
+    })();
+  </script>
+  <script src="config.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="styles.css?v=v1097" />
+</head>
+<body>
+  <!-- Переливающийся фон (включается в Настройки → Кастомизация).
+       Сам фон — radial-gradient прямо на body (см. styles.css,
+       body.with-aura). Никакого выделенного div: после трёх регрессий
+       с .aura-bg + z-index переехало на body. Параллакс автоматический —
+       body fixed, #chat скроллится отдельно. -->
+  <svg id="liquid-glass-svg-defs" width="0" height="0" aria-hidden="true"
+       style="position:absolute;width:0;height:0;pointer-events:none;overflow:hidden">
+    <defs>
+      <!-- Liquid Glass: PNG-карта мелкого равномерного шума (64×64) → feDisplacementMap.
+           Подход artemsnite (habr.com/ru/publications/974058) — мелкий равномерный
+           шум натуральнее облачного feTurbulence, особенно под малым blur.
+           Safari/WKWebView SVG-фильтры в backdrop-filter пока не умеет; для них
+           в CSS работает чистый blur-фоллбек. -->
+      <filter id="liquid-glass-refract" x="0%" y="0%" width="100%" height="100%"
+              color-interpolation-filters="sRGB">
+        <feImage result="turbulence" preserveAspectRatio="none"
+                 href="data:image/png;base64,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"/>
+        <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="180"
+                           xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+  <div id="boot-skeleton" aria-hidden="true">
+    <div class="bs-sidebar">
+      <div class="bs-side-head"><span class="bs-side-title"></span></div>
+      <div class="bs-side-search"></div>
+      <div class="bs-side-chips">
+        <span class="bs-side-chip"></span>
+        <span class="bs-side-chip"></span>
+        <span class="bs-side-chip"></span>
+      </div>
+      <div class="bs-side-list">
+        <div class="bs-side-row"><span class="bs-line" style="width:78%"></span><span class="bs-line sub" style="width:58%"></span></div>
+        <div class="bs-side-row"><span class="bs-line" style="width:62%"></span><span class="bs-line sub" style="width:42%"></span></div>
+        <div class="bs-side-row"><span class="bs-line" style="width:85%"></span><span class="bs-line sub" style="width:50%"></span></div>
+        <div class="bs-side-row"><span class="bs-line" style="width:54%"></span><span class="bs-line sub" style="width:36%"></span></div>
+        <div class="bs-side-row"><span class="bs-line" style="width:70%"></span><span class="bs-line sub" style="width:46%"></span></div>
+        <div class="bs-side-row"><span class="bs-line" style="width:60%"></span><span class="bs-line sub" style="width:40%"></span></div>
+        <div class="bs-side-row"><span class="bs-line" style="width:74%"></span><span class="bs-line sub" style="width:52%"></span></div>
+        <div class="bs-side-row"><span class="bs-line" style="width:56%"></span><span class="bs-line sub" style="width:38%"></span></div>
+      </div>
+    </div>
+    <div class="bs-bar">
+      <span class="bs-icon"></span>
+      <span class="bs-logo"><span class="l1"></span></span>
+      <span class="bs-status"><span class="bs-dot"></span><span class="bs-stext"></span></span>
+    </div>
+    <div class="bs-chat"></div>
+    <div class="bs-composer">
+      <div class="bs-input-wrap">
+        <div class="bs-input"></div>
+        <div class="bs-input-bar">
+          <span class="bs-icon"></span>
+          <span class="bs-spacer"></span>
+          <span class="bs-icon"></span>
+          <span class="bs-icon"></span>
+          <span class="bs-send"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="boot-splash" aria-hidden="true">
+    <div class="splash-center">
+      <svg class="splash-mascot" viewBox="0 0 12 10" width="92" height="77" shape-rendering="crispEdges" aria-hidden="true">
+        <rect x="2" y="0" width="2" height="2"/>
+        <rect x="8" y="0" width="2" height="2"/>
+        <rect x="1" y="2" width="10" height="1"/>
+        <rect x="0" y="3" width="12" height="1"/>
+        <rect x="0" y="4" width="3" height="2"/>
+        <rect x="5" y="4" width="2" height="2"/>
+        <rect x="9" y="4" width="3" height="2"/>
+        <rect x="0" y="6" width="12" height="1"/>
+        <rect x="1" y="7" width="10" height="1"/>
+        <rect x="1" y="8" width="2" height="2"/>
+        <rect x="5" y="8" width="2" height="2"/>
+        <rect x="9" y="8" width="2" height="2"/>
+      </svg>
+      <div class="splash-name">МАККОД</div>
+    </div>
+    <div class="splash-version">1.97</div>
+  </div>
+  <div id="app">
+    <header id="topbar">
+      <button id="threads-btn" class="icon-btn" title="Чаты" aria-label="Чаты"><span class="threads-btn__icon">☰</span><span id="threads-btn-badge" class="threads-btn__badge hidden"></span></button>
+      <div class="logo">
+        <div class="logo-text">
+          <input type="text" class="title topbar-title-btn" id="topbar-title" value="МАККОД" readonly tabindex="-1" maxlength="80" autocomplete="off" autocapitalize="sentences" autocorrect="off" spellcheck="false" inputmode="none" name="maccod_title_readonly" enterkeyhint="done" aria-haspopup="menu" aria-expanded="false" aria-label="название чата" title="меню чата — короткий тап. Удерживай — переименовать." />
+        </div>
+      </div>
+    </header>
+    <!-- v1092: #topbar-menu вынесен из <header> наружу. Внутри шапки её
+         backdrop-filter (styles.css:8402) делал topbar backdrop-root'ом, и блюр
+         меню сэмплил пустую шапку, а не чат — поэтому размытия не было. Теперь
+         меню — сосед топбара в #app (как #drawer), его backdrop-filter видит
+         чат за ним и реально размывает. Позиция — через --topbar-menu-top. -->
+    <div id="topbar-menu" class="hidden" role="menu" aria-hidden="true"></div>
+
+    <aside id="drawer" class="hidden" aria-hidden="true">
+      <div id="drawer-resize" aria-hidden="true" title="Потяни, чтобы изменить ширину"></div>
+      <div class="drawer-header">
+        <span id="drawer-title" class="drawer-title">ЧАТЫ</span>
+        <button id="thread-new" class="drawer-header-icon" title="Новый чат" aria-label="Новый чат">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <button id="thread-toggle" class="drawer-header-icon" title="Переключить экран" aria-label="Переключить экран">
+          <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 8a5 5 0 0 1 9-3"/>
+            <path d="M12 2.5V5.5H9"/>
+            <path d="M13 8a5 5 0 0 1-9 3"/>
+            <path d="M4 13.5V10.5H7"/>
+          </svg>
+        </button>
+        <button id="drawer-close" class="icon-btn" title="Закрыть">✕</button>
+      </div>
+      <div class="drawer-sticky-shared">
+        <div class="claude-usage-host" data-uc-host="shared"></div>
+        <div class="thread-search" role="search">
+          <span class="thread-search-icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="m10.4 10.4 3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </span>
+          <input id="thread-search-input" class="thread-search-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="Поиск" aria-label="Поиск" />
+          <button id="thread-search-clear" class="thread-search-clear hidden" type="button" title="Очистить" aria-label="Очистить">✕</button>
+          <button id="thread-search-ai" class="thread-search-ai-btn" type="button" title="Спросить ИИ (по смыслу)" aria-label="Спросить ИИ">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 1 3 9h4l-1 6 6-8H8l1-6Z" fill="currentColor"/></svg>
+          </button>
+        </div>
+        <div id="thread-search-status" class="thread-search-status hidden" aria-live="polite"></div>
+        <div id="search-history" class="search-history hidden" role="listbox" aria-label="История поиска"></div>
+        <div id="scope-chips" class="scope-chips" role="tablist" aria-label="Где искать">
+          <button class="scope-chip is-active" type="button" role="tab" aria-selected="true" data-scope="threads">Чаты</button>
+          <button class="scope-chip" type="button" role="tab" aria-selected="false" data-scope="mcp">MCP</button>
+          <button class="scope-chip" type="button" role="tab" aria-selected="false" data-scope="skills">Скиллы</button>
+          <button class="scope-chip" type="button" role="tab" aria-selected="false" data-scope="memory">Память</button>
+          <button class="scope-chip" type="button" role="tab" aria-selected="false" data-scope="configs">Конфиги</button>
+          <button class="scope-chip" type="button" role="tab" aria-selected="false" data-scope="routines">Автоматизации</button>
+        </div>
+      </div>
+      <div id="drawer-views" class="drawer-views">
+        <section class="drawer-view" data-view="chats" aria-label="Чаты">
+          <div class="drawer-scroll">
+            <ul id="thread-list"></ul>
+          </div>
+        </section>
+        <section class="drawer-view" data-view="home" aria-label="Домашняя">
+          <div id="drawer-home" class="drawer-home"></div>
+        </section>
+      </div>
+
+      <div class="drawer-footer">
+        <div class="drawer-foot-icons">
+          <!-- В каждой кнопке два набора иконок: пиксельный (legacy, для всех
+               тем кроме glass) и line-style (только для :root.theme-glass).
+               Переключение в CSS через display: none/flex по селектору темы. -->
+          <button class="drawer-foot-icon" data-act="connection" aria-label="Связь" title="Диагностика связи">
+            <span class="foot-icon foot-icon-legacy">
+              <svg viewBox="0 0 16 16" width="16" height="16" shape-rendering="crispEdges" aria-hidden="true">
+                <path fill="currentColor" d="M7 14h2v1h-2z M5 12h1v1h-1z M6 11h4v1h-4z M10 12h1v1h-1z M3 9h1v1h-1z M4 8h1v1h-1z M5 7h6v1h-6z M11 8h1v1h-1z M12 9h1v1h-1z M1 6h1v1h-1z M2 5h1v1h-1z M3 4h2v1h-2z M5 3h6v1h-6z M11 4h2v1h-2z M13 5h1v1h-1z M14 6h1v1h-1z"/>
+              </svg>
+            </span>
+            <span class="foot-icon foot-icon-glass">
+              <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 7.2a12 12 0 0 1 16 0"/>
+                <path d="M4.6 10a8 8 0 0 1 10.8 0"/>
+                <path d="M7.2 12.8a4 4 0 0 1 5.6 0"/>
+                <circle cx="10" cy="15.4" r="0.9" fill="currentColor" stroke="none"/>
+              </svg>
+            </span>
+            <span class="drawer-foot-badge hidden" id="conn-badge" aria-hidden="true"></span>
+          </button>
+          <button class="drawer-foot-icon" data-act="health" aria-label="Сервисы" title="Сервисы и скиллы">
+            <span class="foot-icon foot-icon-legacy">
+              <svg viewBox="0 0 16 16" width="16" height="16" shape-rendering="crispEdges" aria-hidden="true">
+                <path fill="currentColor" d="M2 11h2v3h-2zM6 7h2v7h-2zM10 9h2v5h-2zM13 4h1v1h-1zM12 5h1v1h-1zM11 6h1v1h-1zM10 7h1v1h-1zM9 6h1v1h-1zM8 5h1v1h-1z"/>
+              </svg>
+            </span>
+            <span class="foot-icon foot-icon-glass">
+              <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3.5 14V16"/>
+                <path d="M7.5 11V16"/>
+                <path d="M11.5 8V16"/>
+                <path d="M15.5 5V16"/>
+              </svg>
+            </span>
+            <span class="drawer-foot-badge hidden" id="health-badge" aria-hidden="true"></span>
+          </button>
+          <button class="drawer-foot-icon" data-act="routines" aria-label="Рутины" title="Рутины">
+            <span class="foot-icon foot-icon-legacy">
+              <svg viewBox="0 0 16 16" width="16" height="16" shape-rendering="crispEdges" aria-hidden="true">
+                <path fill="currentColor" d="M5 2h6v1h-6zM4 3h1v1h-1zM11 3h1v1h-1zM3 4h1v1h-1zM12 4h1v1h-1zM2 5h1v6h-1zM13 5h1v6h-1zM3 11h1v1h-1zM12 11h1v1h-1zM4 12h1v1h-1zM11 12h1v1h-1zM5 13h6v1h-6zM7 5h1v4h-1zM8 8h2v1h-2z"/>
+              </svg>
+            </span>
+            <span class="foot-icon foot-icon-glass">
+              <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="10" cy="10" r="7"/>
+                <path d="M10 6v4l2.6 1.6"/>
+              </svg>
+            </span>
+            <span class="drawer-foot-badge hidden" id="routines-badge" aria-hidden="true"></span>
+          </button>
+          <button class="drawer-foot-icon" data-act="tech" aria-label="Техническое" title="Техническое (MCP / Скиллы / Память)">
+            <span class="foot-icon foot-icon-legacy">
+              <svg viewBox="0 0 16 16" width="16" height="16" shape-rendering="crispEdges" aria-hidden="true">
+                <path fill="currentColor" d="M8 1h1v1h-1zM12 1h1v1h-1zM8 2h1v1h-1zM12 2h1v1h-1zM9 3h3v1h-3zM9 4h2v1h-2zM8 5h2v1h-2zM7 6h2v1h-2zM6 7h2v1h-2zM5 8h2v1h-2zM4 9h2v1h-2zM3 10h2v1h-2zM2 11h2v1h-2z"/>
+              </svg>
+            </span>
+            <span class="foot-icon foot-icon-glass">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
+              </svg>
+            </span>
+          </button>
+          <button class="drawer-foot-icon" data-act="news" aria-label="Новости" title="Новости и обновления">
+            <span class="foot-icon foot-icon-legacy">
+              <svg viewBox="0 0 16 16" width="16" height="16" shape-rendering="crispEdges" aria-hidden="true">
+                <path fill="currentColor" d="M2 2h12v1h-12z M2 13h12v1h-12z M2 2h1v12h-1z M13 2h1v12h-1z M4 4h8v2h-8z M4 7h8v1h-8z M4 9h8v1h-8z M4 11h5v1h-5z"/>
+              </svg>
+            </span>
+            <span class="foot-icon foot-icon-glass">
+              <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3.5" y="4" width="13" height="12" rx="1.5"/>
+                <path d="M6.2 7.5h7.6"/>
+                <path d="M6.2 10h7.6"/>
+                <path d="M6.2 12.5h5"/>
+              </svg>
+            </span>
+            <span class="drawer-foot-badge hidden" id="news-badge" aria-hidden="true"></span>
+          </button>
+          <button id="settings-open" class="drawer-foot-icon" aria-label="Настройки" title="Настройки" style="position:relative">
+            <span class="foot-icon foot-icon-legacy">
+              <svg viewBox="0 0 16 16" width="16" height="16" shape-rendering="crispEdges" aria-hidden="true">
+                <path fill="currentColor" d="M7 1h2v3h-2zM7 12h2v3h-2zM1 7h3v2h-3zM12 7h3v2h-3zM3 3h2v2h-2zM11 3h2v2h-2zM3 11h2v2h-2zM11 11h2v2h-2zM4 4h8v2h-8zM4 10h8v2h-8zM4 6h2v4h-2zM10 6h2v4h-2z"/>
+              </svg>
+            </span>
+            <span class="foot-icon foot-icon-glass">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+            </span>
+            <span class="drawer-foot-badge hidden" id="settings-badge" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+
+      <div id="settings-page" class="settings-page hidden" aria-hidden="true">
+        <div class="settings-header">
+          <span class="header-spacer" aria-hidden="true"></span>
+          <span class="settings-title">Настройки</span>
+          <button id="settings-back" class="icon-btn" aria-label="Закрыть">✕</button>
+        </div>
+        <div class="settings-scroll">
+          <div class="settings-group-title">Внешний вид</div>
+          <button class="settings-row" data-act="theme">
+            <span class="row-icon">◐</span>
+            <span class="row-label">Тема</span>
+            <span class="row-value" id="row-theme">—</span>
+            <span class="row-chev">›</span>
+          </button>
+          <button class="settings-row" data-act="zoom">
+            <span class="row-icon">⊕</span>
+            <span class="row-label">Масштаб</span>
+            <span class="row-value" id="row-zoom">—</span>
+            <span class="row-chev">›</span>
+          </button>
+          <button class="settings-row mobile-only" data-act="app-icon" id="settings-row-app-icon" hidden>
+            <span class="row-icon">▣</span>
+            <span class="row-label">Иконка приложения</span>
+            <span class="row-value" id="row-app-icon">—</span>
+            <span class="row-chev">›</span>
+          </button>
+
+          <div class="settings-group-title mobile-only">Ввод</div>
+          <button class="settings-row" data-act="autocorrect">
+            <span class="row-icon">Aa</span>
+            <span class="row-label">Автокоррекция iOS</span>
+            <span class="row-value" id="row-autocorrect">—</span>
+            <span class="row-chev">›</span>
+          </button>
+          <button class="settings-row" data-act="haptics">
+            <span class="row-icon">≋</span>
+            <span class="row-label">Вибрация</span>
+            <span class="row-value" id="row-haptics">—</span>
+            <span class="row-chev">›</span>
+          </button>
+
+          <div class="settings-group-title">Сообщения</div>
+          <button class="settings-row" data-act="code-copy">
+            <span class="row-icon">▤</span>
+            <span class="row-label">Копируемый код</span>
+            <span class="row-value" id="row-code-copy">—</span>
+            <span class="row-chev">›</span>
+          </button>
+
+          <div class="settings-group-title">Система</div>
+          <button class="settings-row" data-act="claude-code-version">
+            <span class="row-icon">◈</span>
+            <span class="row-label">Клод Код</span>
+            <span class="row-value" id="row-claude-code">—</span>
+            <span class="row-chev">›</span>
+          </button>
+          <button class="settings-row" data-act="claude-plan">
+            <span class="row-icon">★</span>
+            <span class="row-label">Тариф</span>
+            <span class="row-value" id="row-claude-plan">—</span>
+            <span class="row-chev">›</span>
+          </button>
+          <button class="settings-row" data-act="vercel-quota">
+            <span class="row-icon">▲</span>
+            <span class="row-label">Лимит Vercel</span>
+            <span class="row-value" id="row-vercel">—</span>
+            <span class="row-chev">›</span>
+          </button>
+          <button class="settings-row" data-act="versions">
+            <span class="row-icon">❑</span>
+            <span class="row-label">Версии</span>
+            <span class="row-value" id="row-versions">—</span>
+            <span class="row-chev">›</span>
+          </button>
+          <button class="settings-row" data-act="clear-cache">
+            <span class="row-icon">⌫</span>
+            <span class="row-label">Кеш</span>
+            <span class="row-value" id="row-cache-size">—</span>
+            <span class="row-chev">›</span>
+          </button>
+          <button class="settings-row" data-act="diag-hub">
+            <span class="row-icon">⌕</span>
+            <span class="row-label">Диагностика</span>
+            <span class="row-value">открыть</span>
+            <span class="row-chev">›</span>
+          </button>
+          <button class="settings-row danger" data-act="logout">
+            <span class="row-icon">⎋</span>
+            <span class="row-label">Выйти</span>
+            <span class="row-chev">›</span>
+          </button>
+          <div class="settings-version">Версия <span data-app-version>—</span></div>
+        </div>
+      </div>
+
+      <div id="health-page" class="settings-page health-page hidden" aria-hidden="true">
+        <div class="settings-header">
+          <button id="health-refresh" class="icon-btn" aria-label="Обновить" title="Обновить">⟳</button>
+          <span class="settings-title">Сервисы и скиллы</span>
+          <button id="health-back" class="icon-btn" aria-label="Закрыть">✕</button>
+        </div>
+        <div class="settings-scroll" id="health-scroll">
+          <div class="health-empty" id="health-empty">загрузка…</div>
+          <div id="health-list"></div>
+        </div>
+      </div>
+
+
+      <div id="connection-page" class="settings-page connection-page hidden" aria-hidden="true">
+        <div class="settings-header">
+          <button id="connection-refresh" class="icon-btn" aria-label="Обновить" title="Обновить">⟳</button>
+          <span class="settings-title">Диагностика связи</span>
+          <button id="connection-back" class="icon-btn" aria-label="Закрыть">✕</button>
+        </div>
+        <div class="settings-scroll" id="connection-scroll">
+          <div class="settings-group-title">WebSocket</div>
+          <div class="settings-row conn-info-row" data-info role="button" tabindex="0" aria-expanded="false">
+            <span class="row-icon" id="conn-ws-dot" aria-hidden="true">●</span>
+            <span class="row-label">Состояние</span>
+            <span class="row-value" id="conn-ws-state">—</span>
+            <span class="conn-info-caret" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </div>
+          <div class="conn-info-desc">Живая ли связь мини-аппы с мак-мини. «онлайн» — сообщения идут мгновенно.</div>
+          <div class="settings-row conn-info-row" data-info role="button" tabindex="0" aria-expanded="false">
+            <span class="row-icon conn-age-icon" id="conn-ws-age-icon" aria-hidden="true">●</span>
+            <span class="row-label">Последнее сообщение</span>
+            <span class="row-value" id="conn-ws-last-msg">—</span>
+            <span class="conn-info-caret" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </div>
+          <div class="conn-info-desc">Сколько прошло с последнего пакета от сервера. Если растёт — связь подвисла.</div>
+
+          <div class="settings-group-title">SSH-туннель (Aeza VPS)</div>
+          <div class="settings-row conn-info-row" data-info role="button" tabindex="0" aria-expanded="false">
+            <span class="row-icon" id="conn-tunnel-dot" aria-hidden="true">●</span>
+            <span class="row-label">Состояние</span>
+            <span class="row-value" id="conn-tunnel-state">—</span>
+            <span class="conn-info-caret" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </div>
+          <div class="conn-info-desc">Канал через Aeza VPS, по которому мини-аппа достаёт мак-мини снаружи. «running» — поднят.</div>
+
+          <div class="settings-group-title">Мак-мини</div>
+          <div class="settings-row conn-info-row" data-info role="button" tabindex="0" aria-expanded="false">
+            <span class="row-icon" id="conn-srv-dot" aria-hidden="true">●</span>
+            <span class="row-label">Uptime сервера</span>
+            <span class="row-value" id="conn-srv-uptime">—</span>
+            <span class="conn-info-caret" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </div>
+          <div class="conn-info-desc">Сколько мини-аппа-сервер (miniapp_ws) работает без перезапуска.</div>
+          <div class="settings-row conn-info-row" data-info role="button" tabindex="0" aria-expanded="false">
+            <span class="row-icon" id="conn-ram-dot" aria-hidden="true">●</span>
+            <span class="row-label">RAM</span>
+            <span class="row-value" id="conn-ram">—</span>
+            <span class="conn-info-caret" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </div>
+          <div class="conn-info-desc">Сколько оперативки занято на мак-мини. Ближе к 90% — начинает тормозить.</div>
+          <div class="settings-row conn-info-row" data-info role="button" tabindex="0" aria-expanded="false">
+            <span class="row-icon" id="conn-cpu-dot" aria-hidden="true">●</span>
+            <span class="row-label">CPU load</span>
+            <span class="row-value" id="conn-cpu">—</span>
+            <span class="conn-info-caret" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </div>
+          <div class="conn-info-desc">Средняя загрузка процессора за 1 и 5 минут. Больше числа ядер — перегрузка.</div>
+          <div class="settings-row conn-info-row" data-info role="button" tabindex="0" aria-expanded="false">
+            <span class="row-icon" id="conn-disk-dot" aria-hidden="true">●</span>
+            <span class="row-label">Диск</span>
+            <span class="row-value" id="conn-disk">—</span>
+            <span class="conn-info-caret" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+          </div>
+          <div class="conn-info-desc">Сколько места занято на системном диске мак-мини.</div>
+
+          <div class="settings-group-title">Действия</div>
+          <button class="settings-row" data-act="ws-reconnect">
+            <span class="row-icon conn-act-icon"><span class="classic-icon">↻</span><svg class="glass-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 4v5h-5"/></svg></span>
+            <span class="row-label">Переподключить WS</span>
+            <span class="row-chev">›</span>
+          </button>
+          <button class="settings-row" data-act="tunnel-restart">
+            <span class="row-icon conn-act-icon" id="conn-tunnel-restart-icon"><span class="classic-icon">↺</span><svg class="glass-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 4v5h-5"/></svg></span>
+            <span class="row-label">Перезапустить туннель</span>
+            <span class="row-chev">›</span>
+          </button>
+          <button class="settings-row" data-act="server-restart">
+            <span class="row-icon conn-act-icon" id="conn-server-restart-icon"><span class="classic-icon">↺</span><svg class="glass-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v8"/><path d="M7.5 7.5a7 7 0 1 0 9 0"/></svg></span>
+            <span class="row-label">Перезапустить сервер</span>
+            <span class="row-chev">›</span>
+          </button>
+          <button class="settings-row" data-act="reboot-mac">
+            <span class="row-icon conn-act-icon" id="conn-reboot-icon"><span class="classic-icon">⏻</span><svg class="glass-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v9"/><path d="M7.8 6.3a8 8 0 1 0 8.4 0"/></svg></span>
+            <span class="row-label">Перезагрузить комп</span>
+            <span class="row-chev">›</span>
+          </button>
+
+          <div class="settings-group-title hidden" id="conn-no-ws-group">Нет WS?</div>
+          <button class="settings-row hidden" id="conn-tg-btn" data-act="open-tg-restart">
+            <span class="row-icon conn-act-icon"><span class="classic-icon">→</span><svg class="glass-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></span>
+            <span class="row-label">Написать /restart в Telegram</span>
+            <span class="row-chev">›</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="news-page" class="settings-page news-page hidden" aria-hidden="true">
+        <div class="settings-header">
+          <button id="news-refresh" class="icon-btn" aria-label="Обновить" title="Обновить">⟳</button>
+          <span class="settings-title">Новости</span>
+          <button id="news-back" class="icon-btn" aria-label="Закрыть">✕</button>
+        </div>
+        <div class="settings-scroll" id="news-scroll">
+          <div class="news-empty" id="news-empty">загрузка…</div>
+          <div id="news-list"></div>
+        </div>
+      </div>
+
+    </aside>
+    <div id="routines-page" class="settings-page routines-page hidden" aria-hidden="true">
+      <div class="settings-header">
+        <button id="routines-refresh" class="icon-btn" aria-label="Обновить" title="Обновить">⟳</button>
+        <span class="settings-title">Рутины</span>
+        <button id="routines-add" class="icon-btn" aria-label="Новая рутина" title="Новая рутина">+</button>
+        <button id="routines-back" class="icon-btn" aria-label="Закрыть">✕</button>
+      </div>
+      <div class="settings-scroll" id="routines-scroll">
+        <div class="routines-sort-bar" id="routines-sort-bar" role="tablist" aria-label="Сортировка рутин">
+          <button type="button" class="routines-sort-btn" data-sort="lastRun" role="tab" aria-selected="true">по запуску</button>
+          <button type="button" class="routines-sort-btn" data-sort="created" role="tab" aria-selected="false">по созданию</button>
+          <button type="button" class="routines-sort-btn" data-sort="alpha" role="tab" aria-selected="false">по алфавиту</button>
+        </div>
+        <div class="routines-empty" id="routines-empty">загрузка…</div>
+        <div id="routines-list"></div>
+      </div>
+    </div>
+    <div id="tech-page" class="settings-page tech-page hidden" aria-hidden="true">
+      <div class="settings-header">
+        <button id="tech-refresh" class="icon-btn" aria-label="Обновить" title="Обновить">⟳</button>
+        <span class="settings-title">Техническое</span>
+        <button id="tech-add" class="icon-btn" aria-label="Новая память" title="Новая память">+</button>
+        <button id="tech-back" class="icon-btn" aria-label="Закрыть">✕</button>
+      </div>
+      <div class="tech-search-bar">
+        <span class="thread-search-icon" aria-hidden="true">
+          <svg viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="m10.4 10.4 3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </span>
+        <input id="tech-search-input" class="thread-search-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="Поиск" aria-label="Поиск" />
+        <button id="tech-search-clear" class="thread-search-clear hidden" type="button" title="Очистить" aria-label="Очистить">✕</button>
+        <button id="tech-search-ai" class="tech-search-ai" type="button" title="Умный поиск" aria-label="Умный поиск" aria-pressed="false">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 1 3 9h4l-1 6 6-8H8l1-6Z" fill="currentColor"/></svg>
+        </button>
+      </div>
+      <div id="tech-search-history" class="search-history hidden" role="listbox" aria-label="История поиска"></div>
+      <div class="tech-chips-row">
+        <div class="tech-chips" id="tech-chips" role="tablist" aria-label="Фильтр по типу">
+          <button type="button" class="tech-chip is-active" data-tech-kind="all" role="tab" aria-selected="true">Все</button>
+          <button type="button" class="tech-chip" data-tech-kind="mcp" role="tab" aria-selected="false">MCP</button>
+          <button type="button" class="tech-chip" data-tech-kind="cli" role="tab" aria-selected="false">CLI</button>
+          <button type="button" class="tech-chip" data-tech-kind="skill" role="tab" aria-selected="false">Скиллы</button>
+          <button type="button" class="tech-chip" data-tech-kind="memory" role="tab" aria-selected="false">Память</button>
+          <button type="button" class="tech-chip" data-tech-kind="config" role="tab" aria-selected="false">Конфиги</button>
+        </div>
+        <button type="button" class="tech-sort-toggle" id="tech-sort-toggle" title="Сортировка" aria-label="Сортировка">⇅</button>
+      </div>
+      <div class="settings-scroll" id="tech-scroll">
+        <div class="routines-sort-bar hidden" id="tech-sort-bar" role="tablist" aria-label="Сортировка">
+          <button type="button" class="routines-sort-btn is-active" data-tech-sort="mtime" role="tab" aria-selected="true">по дате изм.</button>
+          <button type="button" class="routines-sort-btn" data-tech-sort="ctime" role="tab" aria-selected="false">по дате созд.</button>
+          <button type="button" class="routines-sort-btn" data-tech-sort="alpha" role="tab" aria-selected="false">по алфавиту</button>
+          <button type="button" class="routines-sort-btn" data-tech-sort="kind" role="tab" aria-selected="false">по типу</button>
+          <button type="button" class="routines-sort-btn" data-tech-sort="size" role="tab" aria-selected="false">по размеру</button>
+        </div>
+        <div class="tech-mtype-chips hidden" id="tech-mtype-chips">
+          <button type="button" class="tech-mtype-chip is-active" data-mtype="">все</button>
+          <button type="button" class="tech-mtype-chip" data-mtype="user">user</button>
+          <button type="button" class="tech-mtype-chip" data-mtype="feedback">feedback</button>
+          <button type="button" class="tech-mtype-chip" data-mtype="project">project</button>
+          <button type="button" class="tech-mtype-chip" data-mtype="reference">reference</button>
+          <button type="button" class="tech-mtype-chip" data-mtype="identity">identity</button>
+        </div>
+        <div class="routines-empty" id="tech-empty">загрузка…</div>
+        <div id="tech-list"></div>
+      </div>
+    </div>
+    <div id="memory-edit-page" class="settings-page memory-edit-page hidden" aria-hidden="true">
+      <div class="settings-header">
+        <button id="memory-edit-insert" class="icon-btn icon-btn-accent" aria-label="В чат" title="В чат" style="visibility:hidden"><svg class="classic-icon" viewBox="0 0 16 16" width="15" height="15" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true"><rect x="1" y="2" width="14" height="1"/><rect x="1" y="10" width="9" height="1"/><rect x="1" y="2" width="1" height="9"/><rect x="14" y="2" width="1" height="9"/><rect x="3" y="11" width="2" height="1"/><rect x="4" y="12" width="1" height="1"/><rect x="4" y="5" width="2" height="2"/><rect x="7" y="5" width="2" height="2"/><rect x="10" y="5" width="2" height="2"/></svg><svg class="glass-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-12 6.93L4 20l1.07-3.5A8 8 0 1 1 21 12z"/></svg></button>
+        <span class="settings-title" id="memory-edit-title">Память</span>
+        <button id="memory-edit-crumb" class="file-view-crumb" type="button" aria-label="Назад к памяти">ПАМЯТЬ</button>
+        <button id="memory-edit-close" class="icon-btn" type="button" aria-label="Закрыть" title="Закрыть">✕</button>
+      </div>
+      <div class="memory-edit-scroll">
+        <label class="memory-edit-label" for="memory-edit-name">Название (русское)</label>
+        <input id="memory-edit-name" class="memory-edit-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Например: Профиль Кирилла" />
+        <label class="memory-edit-label" for="memory-edit-desc">Описание (одна строка)</label>
+        <input id="memory-edit-desc" class="memory-edit-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Зачем эта память, что в ней" />
+        <label class="memory-edit-label">Тип</label>
+        <input type="hidden" id="memory-edit-type" value="" />
+        <div class="mem-type-dropdown" id="mem-type-dropdown">
+          <button type="button" class="mem-type-trigger memory-edit-input" id="mem-type-trigger">
+            <span id="mem-type-label">— не задан —</span>
+            <svg viewBox="0 0 10 6" width="10" height="6" aria-hidden="true"><path fill="currentColor" d="M0 0h2v1h-2zM2 1h2v1h-2zM4 2h2v1h-2zM6 1h2v1h-2zM8 0h2v1h-2z"/></svg>
+          </button>
+          <div class="mem-type-list hidden" id="mem-type-list">
+            <button type="button" class="mem-type-option" data-value="">— не задан —</button>
+            <button type="button" class="mem-type-option" data-value="user">user</button>
+            <button type="button" class="mem-type-option" data-value="feedback">feedback</button>
+            <button type="button" class="mem-type-option" data-value="project">project</button>
+            <button type="button" class="mem-type-option" data-value="reference">reference</button>
+            <button type="button" class="mem-type-option" data-value="identity">identity</button>
+          </div>
+        </div>
+        <label class="memory-edit-label" for="memory-edit-body">Содержимое (markdown)</label>
+        <div id="memory-edit-body-md" class="memory-edit-md file-view-md is-tappable" hidden></div>
+        <textarea id="memory-edit-body" class="memory-edit-textarea" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Тело заметки…"></textarea>
+        <div class="memory-edit-path" id="memory-edit-path"></div>
+        <div class="memory-edit-actions">
+          <button id="memory-edit-save" class="icon-btn icon-btn-accent memory-edit-action-btn" type="button" title="Сохранить">✓</button>
+          <button id="memory-edit-delete" class="icon-btn memory-edit-delete-icon memory-edit-action-btn" type="button" title="Удалить" hidden><svg class="classic-icon" viewBox="0 0 16 16" width="15" height="15" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M5 4h3v1h-3zM3 5h8v1h-8zM4 6h1v6h-1zM9 6h1v6h-1zM5 11h4v1h-4zM6 7h1v3h-1zM8 7h1v3h-1z"/></svg><svg class="glass-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div id="file-view-page" class="settings-page file-view-page hidden" aria-hidden="true">
+      <div class="settings-header">
+        <button id="file-view-insert" class="icon-btn icon-btn-accent" aria-label="В чат" title="В чат" hidden><svg class="classic-icon" viewBox="0 0 16 16" width="15" height="15" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true"><rect x="1" y="2" width="14" height="1"/><rect x="1" y="10" width="9" height="1"/><rect x="1" y="2" width="1" height="9"/><rect x="14" y="2" width="1" height="9"/><rect x="3" y="11" width="2" height="1"/><rect x="4" y="12" width="1" height="1"/><rect x="4" y="5" width="2" height="2"/><rect x="7" y="5" width="2" height="2"/><rect x="10" y="5" width="2" height="2"/></svg><svg class="glass-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-12 6.93L4 20l1.07-3.5A8 8 0 1 1 21 12z"/></svg></button>
+        <span class="settings-title" id="file-view-title">файл</span>
+        <button id="file-view-crumb" class="file-view-crumb" type="button" aria-label="Назад к категории" hidden></button>
+        <button id="file-view-close" class="icon-btn" type="button" aria-label="Закрыть" title="Закрыть">✕</button>
+      </div>
+      <div class="file-view-scroll">
+        <pre id="file-view-body" class="file-view-pre"></pre>
+        <div id="file-view-md" class="file-view-md" hidden></div>
+        <textarea id="file-view-textarea" class="file-view-textarea" autocapitalize="off" autocorrect="off" spellcheck="false" hidden></textarea>
+        <div class="file-view-path" id="file-view-path"></div>
+        <div class="file-view-actions" id="file-view-actions" hidden>
+          <button id="file-view-save" class="icon-btn icon-btn-accent file-view-action-btn" type="button" title="Сохранить">✓</button>
+          <button id="file-view-delete" class="icon-btn file-view-delete-icon file-view-action-btn" type="button" title="Удалить" hidden><svg class="classic-icon" viewBox="0 0 16 16" width="15" height="15" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M5 4h3v1h-3zM3 5h8v1h-8zM4 6h1v6h-1zM9 6h1v6h-1zM5 11h4v1h-4zM6 7h1v3h-1zM8 7h1v3h-1z"/></svg><svg class="glass-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div id="drawer-overlay" class="hidden"></div>
+    <div id="edge-handle" aria-hidden="true"></div>
+
+    <div id="pin-bar" class="pin-bar hidden" role="button" tabindex="0" aria-label="Закреплённое сообщение">
+      <span class="pin-bar__accent" aria-hidden="true"></span>
+      <span class="pin-bar__icon" aria-hidden="true">
+        <svg viewBox="0 0 16 16" width="14" height="14" shape-rendering="crispEdges">
+          <path fill="currentColor" d="M6 2h4v1h-4zM5 3h1v3h-1zM10 3h1v3h-1zM4 6h8v1h-8zM7 7h2v6h-2z"/>
+        </svg>
+      </span>
+      <span class="pin-bar__col">
+        <span class="pin-bar__title" id="pin-bar-title">Закреплённое сообщение</span>
+        <span class="pin-bar__preview" id="pin-bar-preview"></span>
+      </span>
+      <button id="pin-bar-list" class="pin-bar__stack icon-btn" type="button" title="Все закреплённые" aria-label="Все закреплённые">
+        <svg viewBox="0 0 16 16" width="14" height="14" shape-rendering="crispEdges" aria-hidden="true">
+          <path fill="currentColor" d="M3 3h10v1h-10zM3 6h10v1h-10zM3 9h10v1h-10zM3 12h10v1h-10z"/>
+        </svg>
+      </button>
+    </div>
+
+    <main id="chat" aria-live="polite">
+      <div id="chat-thinking" aria-hidden="true">
+        <div class="role"><span class="role-label">МАККОД</span></div>
+        <div class="chat-thinking-row">
+          <svg class="chat-thinking-mac" width="24" height="20" viewBox="0 0 12 10" shape-rendering="crispEdges" aria-hidden="true">
+            <g>
+              <rect x="2" y="0" width="2" height="2"/>
+              <rect x="8" y="0" width="2" height="2"/>
+              <rect x="1" y="2" width="10" height="1"/>
+              <rect x="0" y="3" width="12" height="1"/>
+              <rect x="0" y="4" width="3" height="2"/>
+              <rect x="5" y="4" width="2" height="2"/>
+              <rect x="9" y="4" width="3" height="2"/>
+              <rect x="0" y="6" width="12" height="1"/>
+              <rect x="1" y="7" width="10" height="1"/>
+              <rect x="1" y="8" width="2" height="2"/>
+              <rect x="5" y="8" width="2" height="2"/>
+              <rect x="9" y="8" width="2" height="2"/>
+            </g>
+          </svg>
+          <span class="chat-thinking-dot"></span>
+          <span class="chat-thinking-dot"></span>
+          <span class="chat-thinking-dot"></span>
+        </div>
+      </div>
+    </main>
+    <div id="drop-overlay" class="hidden" aria-hidden="true">
+      <div class="drop-label">↓ отпустить для прикрепления</div>
+    </div>
+    <footer id="composer">
+      <button id="scroll-up-btn" class="icon-btn pixel-btn hidden" aria-label="К моему сообщению" title="К моему сообщению">
+        <svg class="classic-icon" viewBox="0 0 16 16" width="16" height="16" shape-rendering="crispEdges" aria-hidden="true">
+          <path fill="currentColor" d="M7 5h2v1h-2zM6 6h4v1h-4zM5 7h6v1h-6zM4 8h8v1h-8zM3 9h10v1h-10z"/>
+        </svg>
+        <svg class="glass-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="6 14 12 8 18 14"/>
+        </svg>
+      </button>
+      <button id="scroll-down-btn" class="icon-btn pixel-btn hidden" aria-label="Вниз" title="Вниз">
+        <span class="scroll-arrow" aria-hidden="true">
+          <svg class="classic-icon" viewBox="0 0 16 16" width="16" height="16" shape-rendering="crispEdges">
+            <path fill="currentColor" d="M3 6h10v1h-10zM4 7h8v1h-8zM5 8h6v1h-6zM6 9h4v1h-4zM7 10h2v1h-2z"/>
+          </svg>
+          <svg class="glass-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 10 12 16 18 10"/>
+          </svg>
+        </span>
+        <span id="scroll-badge" class="scroll-badge" aria-hidden="true"></span>
+      </button>
+      <div id="slash-suggest" class="hidden"></div>
+      <div id="chip-popover" class="hidden"></div>
+      <div id="meta-row">
+        <button class="chip" data-chip="context" id="chip-context" title="заполненность контекста · нажми чтобы сжать">C: 0%</button>
+        <button class="chip" data-chip="model" id="chip-model"></button>
+        <button class="chip" data-chip="effort" id="chip-effort"></button>
+        <button class="chip" data-chip="view" id="chip-view"></button>
+        <button class="chip" data-chip="slash" id="chip-slash">/ команды</button>
+        <button class="chip" data-chip="react" id="chip-react" title="чипы-фильтр реакций (на мобиле — свайп ↑ от инпута)">☆ реакции</button>
+        <button class="chip" data-chip="gen" id="chip-gen" title="источник/модель/количество для генерации картинок и видео">Ген</button>
+        <button class="chip danger" id="chip-stop" style="display:none">■ STOP</button>
+      </div>
+      <div id="fav-react-row" class="hidden" aria-label="фильтр избранного по реакциям"></div>
+      <div id="attach-row" class="hidden"></div>
+      <div id="input-row">
+        <input id="file-input" type="file" multiple accept="image/*,application/pdf,text/*,audio/*,video/*,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.csv,.json,.md" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+        <input id="file-input-photos" type="file" multiple accept="image/*,video/*" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+        <input id="file-input-camera" type="file" accept="image/*" capture="environment" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+        <input id="file-input-files" type="file" multiple style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+        <div class="input-wrap">
+          <textarea id="input" rows="1" placeholder=" " autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+          <div id="input-mirror" aria-hidden="true"></div>
+          <span id="input-ghost" aria-hidden="true">&gt;&nbsp;</span>
+          <div class="input-bottom-bar">
+            <button id="attach-btn" class="icon-btn pixel-btn input-bar-btn" type="button" aria-label="прикрепить" title="Прикрепить">
+              <svg class="glass-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 11.5 12.5 20a5.5 5.5 0 0 1-7.78-7.78l8.49-8.49a4 4 0 0 1 5.66 5.66l-8.49 8.49a2.5 2.5 0 1 1-3.54-3.54l7.78-7.78"/>
+              </svg>
+              <svg class="classic-icon pixel-clip" viewBox="0 0 7 11" shape-rendering="crispEdges" aria-hidden="true" fill="currentColor">
+                <rect x="1" y="0" width="1" height="1"/><rect x="2" y="0" width="1" height="1"/><rect x="3" y="0" width="1" height="1"/><rect x="4" y="0" width="1" height="1"/>
+                <rect x="0" y="1" width="1" height="1"/><rect x="5" y="1" width="1" height="1"/>
+                <rect x="0" y="2" width="1" height="1"/><rect x="2" y="2" width="1" height="1"/><rect x="3" y="2" width="1" height="1"/><rect x="5" y="2" width="1" height="1"/>
+                <rect x="0" y="3" width="1" height="1"/><rect x="2" y="3" width="1" height="1"/><rect x="5" y="3" width="1" height="1"/>
+                <rect x="0" y="4" width="1" height="1"/><rect x="2" y="4" width="1" height="1"/><rect x="5" y="4" width="1" height="1"/>
+                <rect x="0" y="5" width="1" height="1"/><rect x="2" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/>
+                <rect x="0" y="6" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="5" y="6" width="1" height="1"/>
+                <rect x="0" y="7" width="1" height="1"/><rect x="2" y="7" width="1" height="1"/><rect x="5" y="7" width="1" height="1"/>
+                <rect x="0" y="8" width="1" height="1"/><rect x="2" y="8" width="1" height="1"/><rect x="3" y="8" width="1" height="1"/><rect x="4" y="8" width="1" height="1"/>
+                <rect x="0" y="9" width="1" height="1"/>
+                <rect x="0" y="10" width="1" height="1"/><rect x="1" y="10" width="1" height="1"/><rect x="2" y="10" width="1" height="1"/><rect x="3" y="10" width="1" height="1"/>
+              </svg>
+            </button>
+            <button id="paste-input-btn" class="icon-btn pixel-btn input-bar-btn" type="button" aria-label="вставить" title="Вставить из буфера">
+              <svg class="glass-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="5" y="5" width="14" height="16" rx="2"/>
+                <rect x="9" y="3" width="6" height="4" rx="1"/>
+                <path d="M9 12h6"/>
+                <path d="M9 16h4"/>
+              </svg>
+              <svg class="classic-icon" viewBox="0 0 16 16" width="16" height="16" shape-rendering="crispEdges" aria-hidden="true">
+                <path fill="currentColor" d="M6 1h4v1h-4zM5 2h1v1h-1zM10 2h1v1h-1zM3 3h10v1h-10zM3 4h1v9h-1zM12 4h1v9h-1zM4 13h9v1h-9zM7 6h2v3h-2zM5 9h6v1h-6zM6 10h4v1h-4zM7 11h2v1h-2z"/>
+              </svg>
+            </button>
+            <button id="clear-input-btn" class="icon-btn pixel-btn input-bar-btn" aria-label="очистить" title="Очистить">
+              <svg class="glass-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="m9 9 6 6m0-6-6 6"/>
+              </svg>
+              <svg class="classic-icon" viewBox="0 0 16 16" width="16" height="16" shape-rendering="crispEdges" aria-hidden="true">
+                <path fill="currentColor" d="M3 3h2v1h-2zM11 3h2v1h-2zM4 4h2v1h-2zM10 4h2v1h-2zM5 5h2v1h-2zM9 5h2v1h-2zM6 6h2v1h-2zM8 6h2v1h-2zM7 7h2v1h-2zM7 8h2v1h-2zM6 9h2v1h-2zM8 9h2v1h-2zM5 10h2v1h-2zM9 10h2v1h-2zM4 11h2v1h-2zM10 11h2v1h-2zM3 12h2v1h-2zM11 12h2v1h-2z"/>
+              </svg>
+            </button>
+            <button id="copy-input-btn" class="icon-btn pixel-btn input-bar-btn" aria-label="копировать" title="Копировать текст">
+              <svg class="glass-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="8" y="8" width="13" height="13" rx="2.5"/>
+                <path d="M16 8V5.5A2.5 2.5 0 0 0 13.5 3h-8A2.5 2.5 0 0 0 3 5.5v8A2.5 2.5 0 0 0 5.5 16H8"/>
+              </svg>
+              <svg class="classic-icon" viewBox="0 0 16 16" width="16" height="16" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="6" y="2" width="7" height="1" fill="currentColor"/>
+                <rect x="6" y="3" width="1" height="2" fill="currentColor"/>
+                <rect x="12" y="3" width="1" height="7" fill="currentColor"/>
+                <rect x="10" y="10" width="3" height="1" fill="currentColor"/>
+                <rect x="3" y="5" width="8" height="1" fill="currentColor"/>
+                <rect x="3" y="6" width="1" height="7" fill="currentColor"/>
+                <rect x="10" y="6" width="1" height="7" fill="currentColor"/>
+                <rect x="3" y="12" width="8" height="1" fill="currentColor"/>
+              </svg>
+            </button>
+            <span class="bar-spacer"></span>
+            <div id="voice-strip" class="hidden" aria-hidden="true">
+              <canvas id="voice-strip-wave" aria-hidden="true"></canvas>
+              <span id="voice-strip-timer">0:00</span>
+              <div id="voice-strip-thinking" aria-hidden="true">
+                <span class="voice-thinking-dot"></span><span class="voice-thinking-dot"></span><span class="voice-thinking-dot"></span>
+                <span class="voice-strip-label">распознаю</span>
+              </div>
+            </div>
+            <button id="voice-mode-btn" class="icon-btn pixel-btn input-bar-btn" aria-label="голосовой режим" title="Голосовой режим">
+              <svg class="glass-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="4"  y1="10" x2="4"  y2="14"/>
+                <line x1="8"  y1="6"  x2="8"  y2="18"/>
+                <line x1="12" y1="3"  x2="12" y2="21"/>
+                <line x1="16" y1="7"  x2="16" y2="17"/>
+                <line x1="20" y1="10" x2="20" y2="14"/>
+              </svg>
+              <svg class="classic-icon" viewBox="0 0 16 16" width="16" height="16" shape-rendering="crispEdges" aria-hidden="true">
+                <path fill="currentColor" d="M2 6h1v1h1v2h1v-2h1v-1h1v-1h1v1h1v1h1v2h1v-2h1v-1h1v-1h1v6h-1v1h-1v-1h-1v-2h-1v2h-1v1h-1v-1h-1v-2h-1v2h-1v1h-1v-1h-1v-1h-1z"/>
+              </svg>
+            </button>
+            <button id="mic-btn" class="icon-btn pixel-btn input-bar-btn" aria-label="голосом" title="Голосом">
+              <svg class="glass-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="3" width="6" height="11" rx="3"/>
+                <path d="M5 11v1a7 7 0 0 0 14 0v-1"/>
+                <line x1="12" y1="19" x2="12" y2="22"/>
+              </svg>
+              <svg class="classic-icon" viewBox="0 0 16 16" width="16" height="16" shape-rendering="crispEdges" aria-hidden="true">
+                <path fill="currentColor" d="M6 2h4v1h1v6h-1v1h-4v-1h-1v-6h1zM3 8h1v2h1v1h1v1h4v-1h1v-1h1v-2h1v3h-1v1h-1v1h-2v2h-2v-2h-2v-1h-1v-1h-1z"/>
+              </svg>
+            </button>
+            <button id="send" class="icon-btn primary input-bar-btn-send" aria-label="отправить">
+              <svg class="send-mascot" viewBox="0 0 12 10" width="18" height="15" shape-rendering="crispEdges" aria-hidden="true">
+                <g fill="rgba(26, 19, 6, 0.45)">
+                  <rect x="2" y="0" width="2" height="2"/>
+                  <rect x="8" y="0" width="2" height="2"/>
+                  <rect x="1" y="2" width="10" height="1"/>
+                  <rect x="0" y="3" width="12" height="1"/>
+                  <rect x="0" y="4" width="3" height="2"/>
+                  <rect x="5" y="4" width="2" height="2"/>
+                  <rect x="9" y="4" width="3" height="2"/>
+                  <rect x="0" y="6" width="12" height="1"/>
+                  <rect x="1" y="7" width="10" height="1"/>
+                  <rect x="1" y="8" width="2" height="2"/>
+                  <rect x="5" y="8" width="2" height="2"/>
+                  <rect x="9" y="8" width="2" height="2"/>
+                </g>
+                <g class="send-mascot-eyelids" fill="rgba(26, 19, 6, 0.45)" opacity="0">
+                  <rect x="3" y="4" width="2" height="2"/>
+                  <rect x="7" y="4" width="2" height="2"/>
+                </g>
+              </svg>
+              <svg class="send-stop" viewBox="0 0 12 12" width="14" height="14" shape-rendering="crispEdges" aria-hidden="true">
+                <rect x="2" y="2" width="8" height="8"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="pull-spinner" class="pull-spinner" aria-hidden="true">
+      <div class="pull-spinner__icon">
+        <svg class="classic-icon" viewBox="0 0 24 24" width="22" height="22" shape-rendering="crispEdges" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="38 12"/>
+        </svg>
+        <svg class="glass-icon" viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+          <circle cx="16" cy="16" r="12" stroke-dasharray="56 20"/>
+        </svg>
+      </div>
+      <div class="pull-spinner__label"></div>
+    </div>
+
+    <div id="modal" class="hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <span id="modal-title">меню</span>
+          <button class="icon-btn" id="modal-close">✕</button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+      </div>
+    </div>
+
+    <div id="toast" class="hidden"></div>
+
+    <div id="image-viewer" class="hidden" aria-hidden="true">
+      <button id="image-viewer-close" class="icon-btn" aria-label="Закрыть">✕</button>
+      <span id="image-viewer-count" class="iv-count" hidden></span>
+      <div class="iv-actions">
+        <button id="image-viewer-save" class="iv-action" type="button" aria-label="Сохранить"></button>
+        <button id="image-viewer-share" class="iv-action" type="button" aria-label="Поделиться"></button>
+      </div>
+      <div id="iv-track" class="iv-track">
+        <div class="iv-slot iv-slot-prev"><img class="iv-img iv-img-prev" alt="" /></div>
+        <div class="iv-slot iv-slot-curr"><img id="image-viewer-img" class="iv-img" alt="" /></div>
+        <div class="iv-slot iv-slot-next"><img class="iv-img iv-img-next" alt="" /></div>
+      </div>
+    </div>
+
+    <div id="voice-mode-overlay" class="hidden" aria-hidden="true">
+      <div class="vmo-bg"></div>
+      <button id="vmo-close" class="icon-btn" aria-label="Выйти">ESC</button>
+      <div class="vmo-stage">
+        <pre id="vmo-mic" class="vmo-mic" aria-hidden="true"></pre>
+        <div id="vmo-status" class="vmo-status">[ ИНИЦИАЛИЗАЦИЯ ]</div>
+        <div id="vmo-hint" class="vmo-hint">говори — слушаю</div>
+        <div id="vmo-transcript" class="vmo-transcript" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+  <script src="capacitor.js"></script>
+  <script src="app.js?v=v1097"></script>
+  <script>
+    // Регистрируем Service Worker — мини-аппа кешируется и обновляется фоном.
+    // Работает и в Capacitor (iOS-обёртка с server.url), и в браузере, и в Telegram WebApp.
+    // НЕ перезагружаем страницу при смене контроллера: HTML грузится network-first,
+    // ассеты бьются querystring'ом ?v=vNNN, экстренные обновления — через min_app_build
+    // push-reload по WS. Без этого после каждого деплоя пользователь видел двойной
+    // рендер ("прогрузилось → бам, ещё раз прогрузилось").
+    (function () {
+      if (!("serviceWorker" in navigator)) return;
+      var origin = location.origin;
+      if (!/^https:/.test(origin) && origin !== "http://localhost") return;
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/sw.js").then(function (reg) {
+          window.addEventListener("focus", function () { try { reg.update(); } catch (_) {} });
+        }).catch(function (err) {
+          console.warn("[sw] register failed:", err);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
