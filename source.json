@@ -8,17 +8,36 @@
       "bundleIdentifier": "pro.kinemotor.makkod",
       "developerName": "KINEMOTOR",
       "subtitle": "Терминал-чат с Claude Code",
-      "version": "1.95",
-      "versionDate": "2026-05-31T22:47:57+03:00",
-      "versionDescription": "1.95 — докачка вебки по воздуху. Раньше обновление мини-аппы внутри приложения требовало переустановки IPA через AltStore. Теперь свежая версия прилетает сама: открой «Версии» — если на сервере обновлений есть билд новее, приложение скачает файлы вебки, проверит их по контрольной сумме (sha256) и применит без переустановки. История чатов и настройки сохраняются. Если обновление не запустилось — автоматический откат на прошлую рабочую версию.",
-      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.95.ipa",
+      "version": "1.96",
+      "versionDate": "2026-06-01T10:06:13+03:00",
+      "versionDescription": "Переключение версий теперь работает прямо в приложении: открой «версии», зажми любую сборку из канала обновлений — Маккод докачает её по воздуху и перезагрузится (история чатов и настройки на месте). Верхняя кнопка «обновить» — как раньше, на самую свежую.",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.96.ipa",
       "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
       "tintColor": "1A1A1A",
-      "size": 7371753,
+      "size": 7376012,
       "localizedDescription": "Мобильный фронт к Claude Code на мак-мини. Чат, скриншоты, голосовые, файлы.",
       "screenshotURLs": [],
       "permissions": [],
       "versions": [
+        {
+          "version": "1.96",
+          "buildVersion": "196",
+          "date": "2026-06-01T10:06:13+03:00",
+          "localizedDescription": "Переключение версий теперь работает прямо в приложении: открой «версии», зажми любую сборку из канала обновлений — Маккод докачает её по воздуху и перезагрузится (история чатов и настройки на месте). Верхняя кнопка «обновить» — как раньше, на самую свежую.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.96.ipa",
+          "size": 7376012,
+          "minOSVersion": "15.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+              "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+              "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
+            }
+          }
+        },
         {
           "version": "1.95",
           "buildVersion": "195",
