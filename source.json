@@ -8,17 +8,36 @@
       "bundleIdentifier": "pro.kinemotor.makkod",
       "developerName": "KINEMOTOR",
       "subtitle": "Терминал-чат с Claude Code",
-      "version": "1.96",
-      "versionDate": "2026-06-01T10:06:13+03:00",
-      "versionDescription": "Переключение версий теперь работает прямо в приложении: открой «версии», зажми любую сборку из канала обновлений — Маккод докачает её по воздуху и перезагрузится (история чатов и настройки на месте). Верхняя кнопка «обновить» — как раньше, на самую свежую.",
-      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.96.ipa",
+      "version": "1.97",
+      "versionDate": "2026-06-01T14:00:28+03:00",
+      "versionDescription": "Починил «приложуха висит». Теперь обёртка честно сообщает мини-аппе, когда ты вернулся на телефон из фона — связь поднимается мгновенно, без зависшего «подключение…». А в фоне Маккод больше не молотит переподключение впустую (раньше это жгло батарею и забивало канал).",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.97.ipa",
       "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
       "tintColor": "1A1A1A",
-      "size": 7376012,
-      "localizedDescription": "Мобильный фронт к Claude Code на мак-мини. Чат, скриншоты, голосовые, файлы.",
+      "size": 7381006,
+      "localizedDescription": "Починил «приложуха висит». Теперь обёртка честно сообщает мини-аппе, когда ты вернулся на телефон из фона — связь поднимается мгновенно, без зависшего «подключение…». А в фоне Маккод больше не молотит переподключение впустую (раньше это жгло батарею и забивало канал).",
       "screenshotURLs": [],
       "permissions": [],
       "versions": [
+        {
+          "version": "1.97",
+          "buildVersion": "197",
+          "date": "2026-06-01T14:00:28+03:00",
+          "localizedDescription": "Починил «приложуха висит». Теперь обёртка честно сообщает мини-аппе, когда ты вернулся на телефон из фона — связь поднимается мгновенно, без зависшего «подключение…». А в фоне Маккод больше не молотит переподключение впустую (раньше это жгло батарею и забивало канал).",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.97.ipa",
+          "size": 7381006,
+          "minOSVersion": "15.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+              "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+              "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
+            }
+          }
+        },
         {
           "version": "1.96",
           "buildVersion": "196",
