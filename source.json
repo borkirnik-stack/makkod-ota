@@ -546,17 +546,25 @@
       "bundleIdentifier": "pro.kinemotor.makkod.swift",
       "developerName": "KINEMOTOR",
       "subtitle": "Нативный SwiftUI-Маккод",
-      "version": "0.3",
-      "versionDate": "2026-05-19T22:42:00.000Z",
-      "versionDescription": "Дефолтный WS-URL сменён на wss://138-124-118-1.sslip.io:8443/ (как у обычного Маккода) — теперь коннектится с любой сети, не только домашней Wi-Fi. Старое значение mac-mini-kinemotor.local мигрирует автоматически.",
-      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.3.ipa",
+      "version": "0.4",
+      "versionDate": "2026-06-03T22:03:08.000Z",
+      "versionDescription": "Фикс шторма реконнектов: апп больше не открывает WebSocket без авторизации. Раньше пустой сокет ловил close 4002 каждые ~8 секунд (каскад переподключений и путаница между тредами) — теперь без deviceKey/PIN сокет не открывается, auth уходит первым кадром.",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.4.ipa",
       "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
       "tintColor": "1A1A1A",
-      "size": 726924,
+      "size": 828004,
       "localizedDescription": "Эксперимент: тот же Маккод-мини-аппа, но переписанный на нативном SwiftUI поверх того же WebSocket-сервера. Без WebView, без Capacitor — чистый Swift. Live параллельно с обычным Маккодом, отдельный bundle id.",
       "screenshotURLs": [],
       "permissions": [],
       "versions": [
+        {
+          "version": "0.4",
+          "buildVersion": "4",
+          "date": "2026-06-03T22:03:08.000Z",
+          "localizedDescription": "Фикс шторма реконнектов: апп больше не открывает WebSocket без авторизации. Раньше пустой сокет ловил close 4002 каждые ~8 секунд (каскад переподключений и путаница между тредами) — теперь без deviceKey/PIN сокет не открывается, auth уходит первым кадром.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.4.ipa",
+          "size": 828004
+        },
         {
           "version": "0.3",
           "buildVersion": "3",
@@ -573,7 +581,8 @@
           "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.2.ipa",
           "size": 726870
         }
-      ]
+      ],
+      "buildVersion": "4"
     }
   ],
   "news": []
