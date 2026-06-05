@@ -1,724 +1,742 @@
 {
-    "name": "Маккод KINEMOTOR",
-    "identifier": "pro.kinemotor.makkod-source",
-    "sourceURL": "https://borkirnik-stack.github.io/makkod-ota/source.json",
-    "apps": [
+  "name": "Маккод KINEMOTOR",
+  "identifier": "pro.kinemotor.makkod-source",
+  "sourceURL": "https://borkirnik-stack.github.io/makkod-ota/source.json",
+  "apps": [
+    {
+      "name": "Маккод",
+      "bundleIdentifier": "pro.kinemotor.makkod",
+      "developerName": "KINEMOTOR",
+      "subtitle": "Терминал-чат с Claude Code",
+      "version": "1.99",
+      "versionDate": "2026-06-03T22:58:27+03:00",
+      "versionDescription": "1.99 — «Встроенное» распознавание речи работает по-настоящему (нативный плагин Apple Speech). Плюс загрузочная заставка обёртки: версия снизу подтягивается автоматически и больше не врёт, маскот красится в акцентный цвет темы, переход заставка→интерфейс теперь плавный.",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.99.ipa",
+      "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
+      "tintColor": "1A1A1A",
+      "size": 7440859,
+      "localizedDescription": "1.99 — «Встроенное» распознавание речи наконец работает по-настоящему. Раньше переключатель Виспер/Встроенное в настройках для встроенного звал Web Speech API, которого в iOS-обёртке нет, — и режим молча не запускался. Теперь «Встроенное» — это нативный Apple Speech (SFSpeechRecognizer): распознаёт прямо на устройстве, быстрее серверного Виспера и без отправки аудио на сервер. Частоты (визуализация голоса) на встроенном режиме восстановлены — рисуются из реального уровня микрофона. Виспер остался вторым вариантом. Внутри свежая вебка 1141.",
+      "screenshotURLs": [],
+      "permissions": [],
+      "versions": [
         {
-            "name": "Маккод",
-            "bundleIdentifier": "pro.kinemotor.makkod",
-            "developerName": "KINEMOTOR",
-            "subtitle": "Терминал-чат с Claude Code",
-            "version": "1.99",
-            "versionDate": "2026-06-03T22:58:27+03:00",
-            "versionDescription": "1.99 — «Встроенное» распознавание речи работает по-настоящему (нативный плагин Apple Speech). Плюс загрузочная заставка обёртки: версия снизу подтягивается автоматически и больше не врёт, маскот красится в акцентный цвет темы, переход заставка→интерфейс теперь плавный.",
-            "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.99.ipa",
-            "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
-            "tintColor": "1A1A1A",
-            "size": 7440859,
-            "localizedDescription": "1.99 — «Встроенное» распознавание речи наконец работает по-настоящему. Раньше переключатель Виспер/Встроенное в настройках для встроенного звал Web Speech API, которого в iOS-обёртке нет, — и режим молча не запускался. Теперь «Встроенное» — это нативный Apple Speech (SFSpeechRecognizer): распознаёт прямо на устройстве, быстрее серверного Виспера и без отправки аудио на сервер. Частоты (визуализация голоса) на встроенном режиме восстановлены — рисуются из реального уровня микрофона. Виспер остался вторым вариантом. Внутри свежая вебка 1141.",
-            "screenshotURLs": [],
-            "permissions": [],
-            "versions": [
-                {
-                    "version": "1.99",
-                    "buildVersion": "199",
-                    "date": "2026-06-03T22:58:27+03:00",
-                    "localizedDescription": "1.99 — «Встроенное» распознавание речи работает по-настоящему (нативный плагин Apple Speech). Плюс загрузочная заставка обёртки: версия снизу подтягивается автоматически и больше не врёт, маскот красится в акцентный цвет темы, переход заставка→интерфейс теперь плавный.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.99.ipa",
-                    "size": 7440859,
-                    "minOSVersion": "15.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
-                            "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
-                            "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
-                            "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
-                            "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
-                        }
-                    }
-                },
-                {
-                    "version": "1.98",
-                    "buildVersion": "198",
-                    "date": "2026-06-01T16:40:40+03:00",
-                    "localizedDescription": "1.98 — обновление по воздуху больше не срывается с одного обрыва связи. Раньше загрузчик качал файлы вебки по очереди в один заход, и любой блип сети на LTE (а github из РФ любит обрывать соединение) ронял весь апдейт в «не удалось загрузить обновление». Теперь каждый файл и манифест качаются с ретраем — до 4 попыток с короткими паузами, так что случайный обрыв апдейт уже не убивает. Внутри свежая вебка 1080 с незаметным LTE-реконнектом.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.98.ipa",
-                    "size": 7385515,
-                    "minOSVersion": "15.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
-                            "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
-                            "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
-                            "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
-                            "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
-                        }
-                    }
-                },
-                {
-                    "version": "1.97",
-                    "buildVersion": "197",
-                    "date": "2026-06-01T14:00:28+03:00",
-                    "localizedDescription": "Починил «приложуха висит». Теперь обёртка честно сообщает мини-аппе, когда ты вернулся на телефон из фона — связь поднимается мгновенно, без зависшего «подключение…». А в фоне Маккод больше не молотит переподключение впустую (раньше это жгло батарею и забивало канал).",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.97.ipa",
-                    "size": 7381006,
-                    "minOSVersion": "15.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
-                            "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
-                            "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
-                            "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
-                            "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
-                        }
-                    }
-                },
-                {
-                    "version": "1.96",
-                    "buildVersion": "196",
-                    "date": "2026-06-01T10:06:13+03:00",
-                    "localizedDescription": "Переключение версий теперь работает прямо в приложении: открой «версии», зажми любую сборку из канала обновлений — Маккод докачает её по воздуху и перезагрузится (история чатов и настройки на месте). Верхняя кнопка «обновить» — как раньше, на самую свежую.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.96.ipa",
-                    "size": 7376012,
-                    "minOSVersion": "15.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
-                            "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
-                            "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
-                            "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
-                            "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
-                        }
-                    }
-                },
-                {
-                    "version": "1.95",
-                    "buildVersion": "195",
-                    "date": "2026-05-31T22:47:57+03:00",
-                    "localizedDescription": "1.95 — докачка вебки по воздуху. Раньше обновление мини-аппы внутри приложения требовало переустановки IPA через AltStore. Теперь свежая версия прилетает сама: открой «Версии» — если на сервере обновлений есть билд новее, приложение скачает файлы вебки, проверит их по контрольной сумме (sha256) и применит без переустановки. История чатов и настройки сохраняются. Если обновление не запустилось — автоматический откат на прошлую рабочую версию.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.95.ipa",
-                    "size": 7371753,
-                    "minOSVersion": "15.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
-                            "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
-                            "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
-                            "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
-                            "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
-                        }
-                    }
-                },
-                {
-                    "version": "1.94",
-                    "buildVersion": "194",
-                    "date": "2026-05-31T21:50:23+03:00",
-                    "localizedDescription": "1.94 — одна заставка вместо двух. Раньше на старте мелькали ДВА разных кадра: сначала серый нативный экран (системный LaunchScreen + сплеш Capacitor, оба на сером #262624 с оранжево-коричневым маскотом), потом чёрный веб-кадр с версией (заставка мини-аппы, на теме «Стекло» она чёрная). Серый→чёрный и выглядел как «одна картинка, потом вторая». Теперь все слои сведены в ОДИН кадр: чёрный фон, маскот цвета #d97757, надпись МАККОД и версия 1.94 внизу. Нативный стартовый экран (LaunchScreen.storyboard) сделан точной копией веб-заставки — те же цвета, маскот и версия нативным текстом. Лишний серый промежуточный сплеш Capacitor отключён (фон на всякий случай тоже чёрный). Версия теперь видна сразу и не дёргается сменой фона.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.94.ipa",
-                    "size": 7351132,
-                    "minOSVersion": "15.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
-                            "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
-                            "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
-                            "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
-                            "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
-                        }
-                    }
-                },
-                {
-                    "version": "1.93",
-                    "buildVersion": "193",
-                    "date": "2026-05-31T21:22:01+03:00",
-                    "localizedDescription": "1.93 — версия обёртки внизу заставки теперь видна при КАЖДОМ запуске, а не мелькает. Раньше на прогретом кеше заставка снималась почти мгновенно (как только аппа готова) и версию было не успеть прочитать — отсюда «показалась один раз». Теперь заставка с маскотом и версией держится минимум ~1.2с на каждом холодном старте. Интерфейс под ней уже активен (заставка не перехватывает нажатия), так что задержки взаимодействия нет — только сама картинка-заставка живёт чуть дольше.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.93.ipa",
-                    "size": 7394545,
-                    "minOSVersion": "15.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
-                            "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
-                            "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
-                            "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
-                            "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
-                        }
-                    }
-                },
-                {
-                    "version": "1.92",
-                    "buildVersion": "192",
-                    "date": "2026-05-31T20:33:34+03:00",
-                    "localizedDescription": "1.92 — настоящий офлайн с историей. Аппа теперь грузится из самой себя (вшитая в IPA копия на постоянном origin capacitor://localhost), а не каждый раз с Vercel. Раньше офлайн-копия открывалась как file://, где WKWebView не открывает IndexedDB — история чата и настройки в офлайне были мертвы и старт залипал. Теперь кеш истории (до 200 сообщений на чат), превью и медиа живут на одном стабильном origin и доступны без сети. Связь с сервером (WebSocket) от origin не зависит — работает как раньше. ВАЖНО: при первом запуске 1.92 один раз спросит PIN заново и сбросит тему на дефолт (origin сменился — старые localStorage/IndexedDB с Vercel-домена браузер по изоляции не отдаёт), история чата сама перетечёт с сервера. Пока правки вебки требуют переустановки IPA — фоновая докачка свежей вебки будет вторым заходом.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.92.ipa",
-                    "size": 7394292,
-                    "minOSVersion": "15.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
-                            "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
-                            "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
-                            "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
-                            "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
-                        }
-                    }
-                },
-                {
-                    "version": "1.91",
-                    "buildVersion": "191",
-                    "date": "2026-05-31T19:11:54+03:00",
-                    "localizedDescription": "1.91 — версия приложения теперь видна внизу стартового маскот-экрана (того, что показывается до загрузки и в офлайне). Плюс свежая вебка (билд 1060) с фиксом офлайн-зависания: на запуске без сети обёртка больше не залипает на заставке — через пару секунд разворачивает интерфейс из вшитой копии. Кеш превью и медиа подтянут.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.91.ipa",
-                    "size": 7399083
-                },
-                {
-                    "version": "1.89",
-                    "buildVersion": "189",
-                    "date": "2026-05-30T18:40:00+03:00",
-                    "localizedDescription": "1.89 — две правки нативной обёртки (IPA). (1) Заставка теперь с самого старта: серый скелетон-каркас в нативном LaunchScreen и голубой дефолтный сплеш Capacitor заменены на того же маскота-инвейдера (оранжевый, на тёмном #262624) с подписью МАККОД — единый кадр от тапа по иконке до полной загрузки интерфейса, без мелькания серых плейсхолдеров. (2) Офлайн-старт без зависания: если сети нет уже на запуске, мост больше не ждёт TCP/DNS-таймаут захода на Vercel (это и были те десятки секунд на скелетоне) — проактивный снимок сети (NWPathMonitor) при старте сразу грузит вшитую офлайн-копию; плюс страховка снятия скелетона перенесена в самое начало загрузки (до ранних return), а пин-гейт обёрнут в try/catch. v1046 мини-аппы.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.89.ipa",
-                    "size": 7387563,
-                    "minOSVersion": "15.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
-                            "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
-                            "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
-                            "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
-                            "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
-                        }
-                    }
-                },
-                {
-                    "version": "1.88",
-                    "buildVersion": "188",
-                    "date": "2026-05-30T17:12:00+03:00",
-                    "localizedDescription": "1.88 — вместо скелетона холодного старта в нативной обёртке (IPA) теперь заставка-сплеш: пиксельный маскот-инвейдер по центру с мягкой пульсацией, подпись МАККОД и версия обёртки (v1.88) внизу экрана. Сплеш показывается только в IPA (детект по UA MaccodNative), на вебе и в Telegram остаётся прежний скелетон. Снимается той же готовностью приложения (app-ready). Фон сплеша подстраивается под тему (классика/светлая/Стекло). v1046 мини-аппы.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.88.ipa",
-                    "size": 7366114,
-                    "minOSVersion": "15.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
-                            "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
-                            "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
-                            "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
-                            "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
-                        }
-                    }
-                },
-                {
-                    "version": "1.87",
-                    "buildVersion": "187",
-                    "date": "2026-05-30T16:02:12+03:00",
-                    "localizedDescription": "1.87 — починен офлайн-старт и выровнен скелетон. (1) Без интернета аппа больше не застревает на скелетоне холодного старта: на file://-origin (вшитая в IPA офлайн-копия) WKWebView подвешивал IndexedDB.open без ответа и стопорил весь boot — добавлен таймаут на открытие базы плюс безусловная страховка, снимающая скелетон через 4с. (2) Скелетон выровнен по фактическому топбару: раньше его полоса с гамбургером висела выше реального меню (floor-отступ 50px вместо точной safe-area), теперь привязан к той же формуле, что и реальный #topbar (calc(2px + var(--safe-top))). v1046 мини-аппы.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.87.ipa",
-                    "size": 7365388,
-                    "minOSVersion": "15.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
-                            "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
-                            "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
-                            "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
-                            "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
-                        }
-                    }
-                },
-                {
-                    "version": "1.86",
-                    "buildVersion": "186",
-                    "date": "2026-05-30T06:23:48+03:00",
-                    "localizedDescription": "1.86 — аппа открывается даже без интернета. Если при старте нет сети, нативный мост грузит вшитую в IPA копию мини-аппы (offline-fallback на public/index.html), а как вернётся сеть — сам перегружает свежий Vercel (NWPathMonitor). Happy-path не изменился: онлайн по-прежнему тянет свежий UI с Vercel, OTA как раньше. Мягкое вибро в теме «Стекло» — настоящий UIImpactFeedbackGenerator(.soft), мягче прежнего потолка Capacitor LIGHT. Скелетон холодного старта приведён к виду переключения чатов: чёрный фон, только полоски топбара и композёра, без фейковых пузырей. v1043 мини-аппы.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.86.ipa",
-                    "size": 7364560,
-                    "minOSVersion": "15.0"
-                },
-                {
-                    "version": "1.85",
-                    "buildVersion": "185",
-                    "date": "2026-05-29T20:26:37+03:00",
-                    "localizedDescription": "1.85 — откат фонового аудио-режима из 1.84: чинит установку через AltStore (VerificationError 6) и убирает постоянный оранжевый индикатор микрофона. Защита введённого текста от перезагрузки экрана — на стороне веб-обновления.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.85.ipa",
-                    "size": 7345429
-                },
-                {
-                    "version": "1.83",
-                    "buildVersion": "183",
-                    "date": "2026-05-29T15:35:00+03:00",
-                    "localizedDescription": "Настоящий Apple Liquid Glass для нижнего меню композёра в теме «Ликвид Гласс»: нативный слой UIGlassEffect (iOS 26) под прозрачным webview, с живым цветным градиентом-подложкой. Веб-контролы остаются чёткими поверх стекла. Glass включается флагом MACCODE_GLASS_A только в этой теме; на остальных темах поведение прежнее.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.83.ipa",
-                    "size": 7345437
-                },
-                {
-                    "version": "1.82",
-                    "buildVersion": "182",
-                    "date": "2026-05-28T06:00:00+03:00",
-                    "localizedDescription": "Phantom-reload фикс: убран toast «восстанавливаюсь — текст в безопасности», теперь тихий reload без UI при WebContent-OOM. Превентивный hook didReceiveMemoryWarning кидает maccodMemoryWarning в JS — видно в reload-логе до OOM-kill. v962 мини-аппы: камера на больших пузырях следует за верхом (не за низом) — ResizeObserver ждёт, пока пузырь дорастёт, и доводит камеру до начала сообщения.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.82.ipa",
-                    "size": 7296158,
-                    "minOSVersion": "15.0"
-                },
-                {
-                    "version": "1.81",
-                    "buildVersion": "181",
-                    "date": "2026-05-28T02:09:00+03:00",
-                    "localizedDescription": "Тонкий тост вместо блокирующего оверлея при WebContent-recovery (короткая полоска снизу, не блокирует UI, 2.5с вместо 4.5с). Инвейдер теперь реально primary-иконка в Info.plist — выбор иконок в Настройках работает корректно. v961 мини-аппы: ВСЕ вибрации мягкие во всех темах (tap=soft, bump/knock=light, ok/err/warn=soft impact вместо тройной notification).",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.81.ipa",
-                    "size": 7072820,
-                    "minOSVersion": "15.0"
-                },
-                {
-                    "version": "1.80",
-                    "buildVersion": "180",
-                    "date": "2026-05-28",
-                    "localizedDescription": "iOS-патч против phantom-reload: при гибели WebContent-процесса WKWebView перехватываем дефолтный моментальный reload Capacitor, показываем оверлей «Восстанавливаюсь… текст в безопасности» и ребутимся через 1.5с, не теряя draft. Под капотом MaccodNavDelegateProxy в MaccodBridge.swift, проксирующий WKNavigationDelegate. v959 мини-аппы: lazy + decoding=async на всех картинках чата.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.80.ipa",
-                    "size": 7107480
-                },
-                {
-                    "version": "1.79",
-                    "buildVersion": "179",
-                    "date": "2026-05-26",
-                    "localizedDescription": "Чистый чёрный LaunchScreen (без classic-плашек) — кадр старта бесшовно стыкуется с glass-скелетоном HTML. v848 мини-аппы: цветовой индикатор связи в диагностике (зелёный/жёлтый/красный dot), счётчик картинок в кеше, мягкие хаптики, виброотклик после допечатанного ответа и новых уведомлений.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.79.ipa",
-                    "size": 7259963
-                },
-                {
-                    "version": "1.78",
-                    "buildVersion": "178",
-                    "date": "2026-05-25",
-                    "localizedDescription": "Invader (пиксельный инопланетянин) — теперь иконка по умолчанию. Бывший оранжевый Маккод доступен в настройках как альтернативная иконка. Скелетоны загрузки адаптированы под все три темы (классика тёмная/светлая/Стекло). v843 мини-аппы.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.78.ipa",
-                    "size": 7123323
-                },
-                {
-                    "version": "1.77",
-                    "buildVersion": "177",
-                    "date": "2026-05-24",
-                    "localizedDescription": "Тема «Ликвид Гласс» — нативный системный blur (UIVisualEffectView .systemUltraThinMaterial) поверх WKWebView в зонах топбара и композёра. Включается в настройках темы. v693 мини-аппы.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.77.ipa",
-                    "size": 7103285
-                },
-                {
-                    "version": "1.76",
-                    "buildVersion": "176",
-                    "date": "2026-05-20T22:56:00.000Z",
-                    "localizedDescription": "Runtime-выбор иконки приложения в настройках (Default / Terminal / Invader). Стандартный Apple-механизм CFBundleAlternateIcons — иконка меняется без переустановки.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.76.ipa",
-                    "size": 7101129
-                },
-                {
-                    "version": "1.75",
-                    "buildVersion": "175",
-                    "date": "2026-05-19T12:08:00.000Z",
-                    "localizedDescription": "Адаптивный LaunchScreen (systemBackground). На светлом iOS-режиме нативный стартовый экран теперь светлый, а не тёмный.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.75.ipa",
-                    "size": 5389641
-                },
-                {
-                    "version": "1.74",
-                    "buildVersion": "174",
-                    "date": "2026-05-15T23:18:00.000Z",
-                    "localizedDescription": "Вернул нативные пикеры Camera + FilePicker (галерея/файлы открываются напрямую без iOS-шита). Keyboard.resize=none и translate3d-компенсация сохранены.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.74.ipa",
-                    "size": 5367476
-                },
-                {
-                    "version": "1.73",
-                    "buildVersion": "173",
-                    "date": "2026-05-15T22:48:00.000Z",
-                    "localizedDescription": "Плавная анимация клавиатуры: Keyboard.resize=none + JS translate3d-компенсация по UA-флагу MaccodNative-V166. Единый flat-shimmer skeleton для drawer и чата.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.73.ipa",
-                    "size": 5654673
-                },
-                {
-                    "version": "1.72",
-                    "buildVersion": "172",
-                    "date": "2026-05-15T22:40:00.000Z",
-                    "localizedDescription": "Плавная анимация клавиатуры: Keyboard.resize=none + JS translate3d-компенсация по UA-флагу MaccodNative-V166. Единый flat-shimmer skeleton для drawer и чата.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.72.ipa",
-                    "size": 5654672
-                },
-                {
-                    "version": "1.71",
-                    "buildVersion": "171",
-                    "date": "2026-05-15T14:52:00.000Z",
-                    "localizedDescription": "Пересборка после iOS update. Откат WKAppBoundDomains, фикс UX прикрепления фото (кастомная модалка с тремя пунктами, нативный шит при выборе через HTML).",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.71.ipa",
-                    "size": 5617835
-                },
-                {
-                    "version": "1.70",
-                    "buildVersion": "170",
-                    "date": "2026-05-15T13:55:00.000Z",
-                    "localizedDescription": "Та же сборка что 1.68/1.69 — откат WKAppBoundDomains; бамп для AltStore.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.70.ipa",
-                    "size": 5631220
-                },
-                {
-                    "version": "1.69",
-                    "buildVersion": "169",
-                    "date": "2026-05-15T13:45:00.000Z",
-                    "localizedDescription": "Та же сборка что 1.68 — откат WKAppBoundDomains; бамп версии чтобы AltStore точно увидел апдейт.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.69.ipa",
-                    "size": 5631222
-                },
-                {
-                    "version": "1.68",
-                    "buildVersion": "168",
-                    "date": "2026-05-15T13:30:00.000Z",
-                    "localizedDescription": "Откат WKAppBoundDomains из 1.67: ломалось прикрепление фоток (Capacitor Camera fetch на capacitor:// блокировался). Service Worker в обёртке отключён, кеш — только в Safari/TG.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.68.ipa",
-                    "size": 5631221
-                },
-                {
-                    "version": "1.67",
-                    "buildVersion": "167",
-                    "date": "2026-05-15T00:08:00.000Z",
-                    "localizedDescription": "Service Worker заработал в WKWebView: добавлен WKAppBoundDomains + limitsNavigationsToAppBoundDomains=true. Появится оффлайн-кеш.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.67.ipa",
-                    "size": 5631257
-                },
-                {
-                    "version": "1.66",
-                    "buildVersion": "166",
-                    "date": "2026-05-14T11:56:00.000Z",
-                    "localizedDescription": "Плавная анимация клавиатуры: Keyboard.resize=none + JS translate3d синхронно с iOS",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.66.ipa",
-                    "size": 5631224
-                },
-                {
-                    "version": "1.65",
-                    "buildVersion": "165",
-                    "date": "2026-05-14T10:47:00.000Z",
-                    "localizedDescription": "Композер прижат к клавиатуре: Keyboard.resize=native + отключена JS-компенсация на native",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.65.ipa",
-                    "size": 5614794
-                },
-                {
-                    "version": "1.64",
-                    "buildVersion": "164",
-                    "date": "2026-05-14T10:35:00.000Z",
-                    "localizedDescription": "Серая полоса iOS Form Assistant Bar убрана: пересобран канон с @capacitor/keyboard",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.64.ipa",
-                    "size": 5614672
-                },
-                {
-                    "version": "1.63",
-                    "buildVersion": "163",
-                    "date": "2026-05-14T10:20:00.000Z",
-                    "localizedDescription": "Композер прижат к клавиатуре; long-press на «Найти» в поиске тредов больше не открывает iOS-popover",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.63.ipa",
-                    "size": 5629980
-                },
-                {
-                    "version": "1.62",
-                    "buildVersion": "162",
-                    "date": "2026-05-06T11:10:43.000Z",
-                    "localizedDescription": "Композер чуть выше; в нативной версии поиск тредов не перекрывается клавиатурой",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.62.ipa",
-                    "size": 5648154
-                },
-                {
-                    "version": "1.61",
-                    "buildVersion": "161",
-                    "date": "2026-05-06T10:42:04.000Z",
-                    "localizedDescription": "Рефактор thinking-state: меньше залипаний UI и кривого морфа точек→текст",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.61.ipa",
-                    "size": 5637261
-                },
-                {
-                    "version": "1.60",
-                    "buildVersion": "160",
-                    "date": "2026-05-06T00:00:00.000Z",
-                    "localizedDescription": "Активная сессия в боковой панели подсвечена зелёным",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.60.ipa",
-                    "size": 5629696
-                },
-                {
-                    "version": "1.59",
-                    "buildVersion": "159",
-                    "date": "2026-05-06T00:00:00.000Z",
-                    "localizedDescription": "Pull-to-refresh: тяни чат снизу вверх — короткая тяга обновляет, длинная перезагружает аппу",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.59.ipa",
-                    "size": 5629355
-                },
-                {
-                    "version": "1.58",
-                    "buildVersion": "158",
-                    "date": "2026-05-06T00:00:00.000Z",
-                    "localizedDescription": "Фикс наезда текста на иконки в композере (multiline)",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.58.ipa",
-                    "size": 5628125
-                },
-                {
-                    "version": "1.57",
-                    "buildVersion": "157",
-                    "date": "2026-05-06T00:00:00.000Z",
-                    "localizedDescription": "Фикс DOM-порядка: текст-баббл больше не уезжает выше tool-карточки",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.57.ipa",
-                    "size": 5627916
-                },
-                {
-                    "version": "1.56",
-                    "buildVersion": "156",
-                    "date": "2026-05-05T18:00:00.000Z",
-                    "localizedDescription": "Голосовой ввод: таймер времени записи во время voice-mode",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.56.ipa",
-                    "size": 5625460
-                }
-            ],
-            "appPermissions": {
-                "entitlements": [],
-                "privacy": {
-                    "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
-                    "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
-                    "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
-                    "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
-                    "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
-                }
+          "version": "1.99",
+          "buildVersion": "199",
+          "date": "2026-06-03T22:58:27+03:00",
+          "localizedDescription": "1.99 — «Встроенное» распознавание речи работает по-настоящему (нативный плагин Apple Speech). Плюс загрузочная заставка обёртки: версия снизу подтягивается автоматически и больше не врёт, маскот красится в акцентный цвет темы, переход заставка→интерфейс теперь плавный.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.99.ipa",
+          "size": 7440859,
+          "minOSVersion": "15.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+              "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+              "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
             }
+          }
         },
         {
-            "name": "Xbox Remote Play",
-            "bundleIdentifier": "com.xboxremoteplay.app",
-            "developerName": "KINEMOTOR",
-            "subtitle": "Стриминг Xbox через WebRTC",
-            "version": "1.4",
-            "versionDate": "2026-05-18T04:14:00.000Z",
-            "versionDescription": "xHome: добавлены шаги /connect (с LPT) и /configuration перед SDP offer — без них Microsoft не возвращал SDP answer для домашней консоли (60s timeout). Теперь сессия доходит до Provisioned перед offer.",
-            "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/XboxRemotePlay-1.4.ipa",
-            "iconURL": "https://borkirnik-stack.github.io/makkod-ota/xbox-icon.png",
-            "tintColor": "107C10",
-            "size": 6241969,
-            "localizedDescription": "iOS-клиент Xbox Remote Play. Логин в Xbox Live, доступ к Cloud Gaming каталогу и стриму с домашней консоли, виртуальный геймпад поверх видео.",
-            "screenshotURLs": [],
-            "permissions": [],
-            "versions": [
-                {
-                    "version": "1.4",
-                    "buildVersion": "14",
-                    "date": "2026-05-18T04:14:00.000Z",
-                    "localizedDescription": "xHome: добавлены шаги /connect (с LPT) и /configuration перед SDP offer — без них Microsoft не возвращал SDP answer для домашней консоли (60s timeout). Теперь сессия доходит до Provisioned перед offer.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/XboxRemotePlay-1.4.ipa",
-                    "size": 6241969
-                },
-                {
-                    "version": "1.3",
-                    "buildVersion": "13",
-                    "date": "2026-05-18T01:03:41.000Z",
-                    "localizedDescription": "Иконка приложения (как в Mac-версии Kinemotor Gaming).",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/XboxRemotePlay-1.3.ipa",
-                    "size": 6238168
-                },
-                {
-                    "version": "1.2",
-                    "buildVersion": "12",
-                    "date": "2026-05-18T00:59:43.000Z",
-                    "localizedDescription": "Эмуляция Windows+Chrome desktop в X-MS-Device-Info: Microsoft signaling возвращает SDP answer (mobile-клиенты отбрасывались). Поправлен input.maxVersion 9 -> 8.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/XboxRemotePlay-1.2.ipa",
-                    "size": 5113580
-                },
-                {
-                    "version": "1.1",
-                    "buildVersion": "11",
-                    "date": "2026-05-18T00:22:38.000Z",
-                    "localizedDescription": "Увеличен таймаут SDP exchange с 15 до 60 секунд — даёт консоли время проснуться из Instant-On",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/XboxRemotePlay-1.1.ipa",
-                    "size": 5218003
-                }
-            ]
+          "version": "1.98",
+          "buildVersion": "198",
+          "date": "2026-06-01T16:40:40+03:00",
+          "localizedDescription": "1.98 — обновление по воздуху больше не срывается с одного обрыва связи. Раньше загрузчик качал файлы вебки по очереди в один заход, и любой блип сети на LTE (а github из РФ любит обрывать соединение) ронял весь апдейт в «не удалось загрузить обновление». Теперь каждый файл и манифест качаются с ретраем — до 4 попыток с короткими паузами, так что случайный обрыв апдейт уже не убивает. Внутри свежая вебка 1080 с незаметным LTE-реконнектом.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.98.ipa",
+          "size": 7385515,
+          "minOSVersion": "15.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+              "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+              "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
+            }
+          }
         },
         {
-            "name": "MakkodSwift",
-            "bundleIdentifier": "pro.kinemotor.makkod.swift",
-            "developerName": "KINEMOTOR",
-            "subtitle": "Нативный SwiftUI-Маккод",
-            "version": "1.2",
-            "versionDate": "2026-06-05T03:45:19+03:00",
-            "versionDescription": "1.2 — весь раздел «Настройки» и внешний вид перенесены из веба по пикселям. Полноэкранные настройки с группами Внешний вид / Ввод / Сообщения / Система. Тема — одна модалка «всё-в-одном»: стиль (Стекло / Ликвид Гласс / Ретро) с подписями, подсветка (Тёмная / Авто / Светлая / По расписанию — с выбором времени переключения), 11 пресетов акцента (Бирюза, Синий, Циан, Изумруд, Зелёный, Травяной, Янтарь, Оранжевый, Коралл, Малина, Фиалка) и выбор шрифта (JetBrains Mono, Inter, SF Pro, Segoe UI, Roboto Mono, IBM Plex Mono — каждый в списке нарисован своим начертанием). Масштаб шрифта 75–130%. Тумблеры энергосбережения, автокоррекции iOS, вибрации, копируемого кода. Шесть шрифтов забандлены и регистрируются нативно; тема «Ретро» теперь честно моноширинная во всём интерфейсе. Дальше — серверные данные (Система, Голос) и переливы.",
-            "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-1.2.ipa",
-            "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
-            "tintColor": "1A1A1A",
-            "size": 4320972,
-            "localizedDescription": "1.2 — весь раздел «Настройки» и внешний вид перенесены из веба по пикселям. Полноэкранные настройки с группами Внешний вид / Ввод / Сообщения / Система. Тема — одна модалка «всё-в-одном»: стиль (Стекло / Ликвид Гласс / Ретро) с подписями, подсветка (Тёмная / Авто / Светлая / По расписанию — с выбором времени переключения), 11 пресетов акцента (Бирюза, Синий, Циан, Изумруд, Зелёный, Травяной, Янтарь, Оранжевый, Коралл, Малина, Фиалка) и выбор шрифта (JetBrains Mono, Inter, SF Pro, Segoe UI, Roboto Mono, IBM Plex Mono — каждый в списке нарисован своим начертанием). Масштаб шрифта 75–130%. Тумблеры энергосбережения, автокоррекции iOS, вибрации, копируемого кода. Шесть шрифтов забандлены и регистрируются нативно; тема «Ретро» теперь честно моноширинная во всём интерфейсе. Дальше — серверные данные (Система, Голос) и переливы.",
-            "screenshotURLs": [],
-            "permissions": [],
-            "versions": [
-                {
-                    "version": "1.2",
-                    "buildVersion": "12",
-                    "date": "2026-06-05T03:45:19+03:00",
-                    "localizedDescription": "1.2 — весь раздел «Настройки» и внешний вид перенесены из веба по пикселям. Полноэкранные настройки с группами Внешний вид / Ввод / Сообщения / Система. Тема — одна модалка «всё-в-одном»: стиль (Стекло / Ликвид Гласс / Ретро) с подписями, подсветка (Тёмная / Авто / Светлая / По расписанию — с выбором времени переключения), 11 пресетов акцента (Бирюза, Синий, Циан, Изумруд, Зелёный, Травяной, Янтарь, Оранжевый, Коралл, Малина, Фиалка) и выбор шрифта (JetBrains Mono, Inter, SF Pro, Segoe UI, Roboto Mono, IBM Plex Mono — каждый в списке нарисован своим начертанием). Масштаб шрифта 75–130%. Тумблеры энергосбережения, автокоррекции iOS, вибрации, копируемого кода. Шесть шрифтов забандлены и регистрируются нативно; тема «Ретро» теперь честно моноширинная во всём интерфейсе. Дальше — серверные данные (Система, Голос) и переливы.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-1.2.ipa",
-                    "size": 4320972,
-                    "minOSVersion": "16.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
-                            "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
-                        }
-                    }
-                },
-                {
-                    "version": "1.1",
-                    "buildVersion": "11",
-                    "date": "2026-06-05T02:46:45+03:00",
-                    "localizedDescription": "1.1 — заставка и настоящее «жидкое стекло». При запуске теперь та же загрузочная заставка, что в веб-версии: чёрный экран, пульсирующий пиксельный маскот, «МАККОД» и номер версии снизу — копия 1:1, держится пока поднимается связь. Тема «Ликвид Гласс» переведена на родное стекло Apple (iOS 26, .glassEffect): верхняя и нижняя панели, иконки, чипы, поле ввода, пин-бар и кнопка прокрутки получили реальную оптику стекла — преломление фона, бликующую кромку и интерактивную деформацию под пальцем, а не CSS-имитацию. На старых iOS — усиленный материал с диагональным бликом. Темы «Классическая» и «Стекло» не тронуты. Дальше доезжают полные настройки и добор функций.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-1.1.ipa",
-                    "size": 3713764,
-                    "minOSVersion": "16.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
-                            "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
-                        }
-                    }
-                },
-                {
-                    "version": "1.0",
-                    "buildVersion": "10",
-                    "date": "2026-06-04T09:55:04+03:00",
-                    "localizedDescription": "1.0 — последняя иконка нижней панели, «Техническое», и теперь панель собрана целиком. Это полный инвентарь начинки Маккода в одном месте: MCP-серверы (Vimeo, Notion, Gmail…), CLI-утилиты (rg, ffmpeg, jq…), скиллы, записи памяти и конфиги. По каждому пункту — название, описание, путь, размер и дата. Сверху поиск с режимом ИИ (ищет по смыслу, а не по буквам), фильтр по типу и сортировка. Любой пункт можно закрепить наверх (до 10 штук). Скилл или конфиг открываются прямо в просмотрщике с подсветкой markdown и кнопкой «В чат» (вставит команду в поле ввода). Записи памяти редактируются на месте — название, описание, тип, текст — с сохранением или удалением. Нижняя панель закрыта полностью: Связь · Сервисы · Рутины · Техническое · Новости · Настройки.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-1.0.ipa",
-                    "size": 3688989,
-                    "minOSVersion": "16.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
-                            "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
-                        }
-                    }
-                },
-                {
-                    "version": "0.9",
-                    "buildVersion": "9",
-                    "date": "2026-06-04T08:55:51+03:00",
-                    "localizedDescription": "0.9 — в нижнюю панель добавились «Рутины» и «Новости». Рутины: список всех cron-задач мак-мини с человеческим расписанием (каждый час · по будням в 10:00), статус-точкой (работает / выключена / идёт), журналом последних прогонов (когда, сколько шла, чем кончилась — ок / споткнулся / ошибка) и управлением — тумблер включить-выключить и кнопка «Запустить сейчас». Новости: лента обновлений Маккода (новые модели и фичи) с пометкой непрочитанного и кнопкой «Обсудить» — открывает чат с уже набранным вопросом. На иконках красный счётчик: свежие прогоны рутин и непрочитанные новости.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.9.ipa",
-                    "size": 3559697,
-                    "minOSVersion": "16.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
-                            "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
-                        }
-                    }
-                },
-                {
-                    "version": "0.8",
-                    "buildVersion": "8",
-                    "date": "2026-06-04T06:00:04+03:00",
-                    "localizedDescription": "0.8 — нижняя панель шторки ожила. Иконка «Связь» открывает диагностику: живой статус WebSocket и SSH-туннеля до Aeza, uptime сервера, RAM/CPU/диск мак-мини с цветовыми порогами, плюс действия — переподключить WS, перезапустить туннель и сервер, перегрузить комп (срабатывают только по долгому удержанию, случайно не нажмёшь; при мёртвом WS — кнопка написать /restart в Telegram). Новая иконка «Сервисы» — здоровье сервисов и скиллов: что упало, что деградировало (IMAP-пул раскрывается по аккаунтам), когда последний раз отрабатывало; на иконке красный счётчик упавших.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.8.ipa",
-                    "size": 3474696,
-                    "minOSVersion": "16.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
-                            "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
-                        }
-                    }
-                },
-                {
-                    "version": "0.7",
-                    "buildVersion": "7",
-                    "date": "2026-06-04T05:22:41+03:00",
-                    "localizedDescription": "0.7 — поиск по тредам прямо в шторке. Тап по строке поиска сверху — мгновенный текстовый поиск по заголовкам и тексту переписок с подсветкой совпадений. Жмёшь ⚡ — ИИ-поиск по смыслу: находит треды, близкие по теме, показывает релевантность и причину, почему нашёл. Плюс индикатор сжатия контекста — видно плашку «Сжимаю контекст…» во время сжатия и разделитель со сводкой после, как в веб-Маккоде.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.7.ipa",
-                    "size": 3380995,
-                    "minOSVersion": "16.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
-                            "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
-                        }
-                    }
-                },
-                {
-                    "version": "0.6",
-                    "buildVersion": "6",
-                    "date": "2026-06-04T04:48:54+03:00",
-                    "localizedDescription": "0.6 — чат догнали до паритета с веб-Маккодом. Добавил: реакции на сообщения (долгий тап → бар реакций, пиксельный бейдж в углу пузыря), закреплённые сообщения с пин-баром сверху и маркером на пузыре, меню по долгому тапу (закрепить / ответить / в избранное / в инпут / новый тред / копировать), кнопку прокрутки вниз со счётчиком непрочитанных и умный автоскролл — камера больше не дёргается во время стрима ответа. И наконец иконка приложения: оранжевый пиксельный Маккод вместо белого квадрата.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.6.ipa",
-                    "size": 3344929,
-                    "minOSVersion": "16.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
-                            "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
-                        }
-                    }
-                },
-                {
-                    "version": "0.5",
-                    "buildVersion": "5",
-                    "date": "2026-06-04T03:48:13+03:00",
-                    "localizedDescription": "0.5 — нативная аппа дотянута почти до полного паритета с веб-Маккодом. Появились: картинки и файлы в ленте, голосовой ввод (микрофон → распознавание → текст), вложения (фото/камера/файл), попап генерации «Ген», лист «/ команды». Топбар и шторка треды приведены к вебу: бургер + заголовок сверху, связь и настройки — в футере шторки.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.5.ipa",
-                    "size": 786208,
-                    "minOSVersion": "16.0",
-                    "appPermissions": {
-                        "entitlements": [],
-                        "privacy": {
-                            "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
-                            "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
-                        }
-                    }
-                },
-                {
-                    "version": "0.4",
-                    "buildVersion": "4",
-                    "date": "2026-06-03T22:03:08.000Z",
-                    "localizedDescription": "Фикс шторма реконнектов: апп больше не открывает WebSocket без авторизации. Раньше пустой сокет ловил close 4002 каждые ~8 секунд (каскад переподключений и путаница между тредами) — теперь без deviceKey/PIN сокет не открывается, auth уходит первым кадром.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.4.ipa",
-                    "size": 828004
-                },
-                {
-                    "version": "0.3",
-                    "buildVersion": "3",
-                    "date": "2026-05-19T22:42:00.000Z",
-                    "localizedDescription": "Дефолтный WS-URL сменён на wss://138-124-118-1.sslip.io:8443/ (как у обычного Маккода) — теперь коннектится с любой сети, не только домашней Wi-Fi. Старое значение mac-mini-kinemotor.local мигрирует автоматически.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.3.ipa",
-                    "size": 726924
-                },
-                {
-                    "version": "0.2",
-                    "buildVersion": "2",
-                    "date": "2026-05-19T22:30:00.000Z",
-                    "localizedDescription": "Drawer тредов открывается свайпом от левой кромки + анимация. Гамбургер-кнопка работает как и раньше.",
-                    "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.2.ipa",
-                    "size": 726870
-                }
-            ],
-            "buildVersion": "12",
-            "appPermissions": {
-                "entitlements": [],
-                "privacy": {
-                    "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
-                    "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
-                }
+          "version": "1.97",
+          "buildVersion": "197",
+          "date": "2026-06-01T14:00:28+03:00",
+          "localizedDescription": "Починил «приложуха висит». Теперь обёртка честно сообщает мини-аппе, когда ты вернулся на телефон из фона — связь поднимается мгновенно, без зависшего «подключение…». А в фоне Маккод больше не молотит переподключение впустую (раньше это жгло батарею и забивало канал).",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.97.ipa",
+          "size": 7381006,
+          "minOSVersion": "15.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+              "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+              "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
             }
+          }
+        },
+        {
+          "version": "1.96",
+          "buildVersion": "196",
+          "date": "2026-06-01T10:06:13+03:00",
+          "localizedDescription": "Переключение версий теперь работает прямо в приложении: открой «версии», зажми любую сборку из канала обновлений — Маккод докачает её по воздуху и перезагрузится (история чатов и настройки на месте). Верхняя кнопка «обновить» — как раньше, на самую свежую.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.96.ipa",
+          "size": 7376012,
+          "minOSVersion": "15.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+              "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+              "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
+            }
+          }
+        },
+        {
+          "version": "1.95",
+          "buildVersion": "195",
+          "date": "2026-05-31T22:47:57+03:00",
+          "localizedDescription": "1.95 — докачка вебки по воздуху. Раньше обновление мини-аппы внутри приложения требовало переустановки IPA через AltStore. Теперь свежая версия прилетает сама: открой «Версии» — если на сервере обновлений есть билд новее, приложение скачает файлы вебки, проверит их по контрольной сумме (sha256) и применит без переустановки. История чатов и настройки сохраняются. Если обновление не запустилось — автоматический откат на прошлую рабочую версию.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.95.ipa",
+          "size": 7371753,
+          "minOSVersion": "15.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+              "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+              "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
+            }
+          }
+        },
+        {
+          "version": "1.94",
+          "buildVersion": "194",
+          "date": "2026-05-31T21:50:23+03:00",
+          "localizedDescription": "1.94 — одна заставка вместо двух. Раньше на старте мелькали ДВА разных кадра: сначала серый нативный экран (системный LaunchScreen + сплеш Capacitor, оба на сером #262624 с оранжево-коричневым маскотом), потом чёрный веб-кадр с версией (заставка мини-аппы, на теме «Стекло» она чёрная). Серый→чёрный и выглядел как «одна картинка, потом вторая». Теперь все слои сведены в ОДИН кадр: чёрный фон, маскот цвета #d97757, надпись МАККОД и версия 1.94 внизу. Нативный стартовый экран (LaunchScreen.storyboard) сделан точной копией веб-заставки — те же цвета, маскот и версия нативным текстом. Лишний серый промежуточный сплеш Capacitor отключён (фон на всякий случай тоже чёрный). Версия теперь видна сразу и не дёргается сменой фона.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.94.ipa",
+          "size": 7351132,
+          "minOSVersion": "15.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+              "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+              "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
+            }
+          }
+        },
+        {
+          "version": "1.93",
+          "buildVersion": "193",
+          "date": "2026-05-31T21:22:01+03:00",
+          "localizedDescription": "1.93 — версия обёртки внизу заставки теперь видна при КАЖДОМ запуске, а не мелькает. Раньше на прогретом кеше заставка снималась почти мгновенно (как только аппа готова) и версию было не успеть прочитать — отсюда «показалась один раз». Теперь заставка с маскотом и версией держится минимум ~1.2с на каждом холодном старте. Интерфейс под ней уже активен (заставка не перехватывает нажатия), так что задержки взаимодействия нет — только сама картинка-заставка живёт чуть дольше.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.93.ipa",
+          "size": 7394545,
+          "minOSVersion": "15.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+              "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+              "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
+            }
+          }
+        },
+        {
+          "version": "1.92",
+          "buildVersion": "192",
+          "date": "2026-05-31T20:33:34+03:00",
+          "localizedDescription": "1.92 — настоящий офлайн с историей. Аппа теперь грузится из самой себя (вшитая в IPA копия на постоянном origin capacitor://localhost), а не каждый раз с Vercel. Раньше офлайн-копия открывалась как file://, где WKWebView не открывает IndexedDB — история чата и настройки в офлайне были мертвы и старт залипал. Теперь кеш истории (до 200 сообщений на чат), превью и медиа живут на одном стабильном origin и доступны без сети. Связь с сервером (WebSocket) от origin не зависит — работает как раньше. ВАЖНО: при первом запуске 1.92 один раз спросит PIN заново и сбросит тему на дефолт (origin сменился — старые localStorage/IndexedDB с Vercel-домена браузер по изоляции не отдаёт), история чата сама перетечёт с сервера. Пока правки вебки требуют переустановки IPA — фоновая докачка свежей вебки будет вторым заходом.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.92.ipa",
+          "size": 7394292,
+          "minOSVersion": "15.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+              "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+              "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
+            }
+          }
+        },
+        {
+          "version": "1.91",
+          "buildVersion": "191",
+          "date": "2026-05-31T19:11:54+03:00",
+          "localizedDescription": "1.91 — версия приложения теперь видна внизу стартового маскот-экрана (того, что показывается до загрузки и в офлайне). Плюс свежая вебка (билд 1060) с фиксом офлайн-зависания: на запуске без сети обёртка больше не залипает на заставке — через пару секунд разворачивает интерфейс из вшитой копии. Кеш превью и медиа подтянут.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.91.ipa",
+          "size": 7399083
+        },
+        {
+          "version": "1.89",
+          "buildVersion": "189",
+          "date": "2026-05-30T18:40:00+03:00",
+          "localizedDescription": "1.89 — две правки нативной обёртки (IPA). (1) Заставка теперь с самого старта: серый скелетон-каркас в нативном LaunchScreen и голубой дефолтный сплеш Capacitor заменены на того же маскота-инвейдера (оранжевый, на тёмном #262624) с подписью МАККОД — единый кадр от тапа по иконке до полной загрузки интерфейса, без мелькания серых плейсхолдеров. (2) Офлайн-старт без зависания: если сети нет уже на запуске, мост больше не ждёт TCP/DNS-таймаут захода на Vercel (это и были те десятки секунд на скелетоне) — проактивный снимок сети (NWPathMonitor) при старте сразу грузит вшитую офлайн-копию; плюс страховка снятия скелетона перенесена в самое начало загрузки (до ранних return), а пин-гейт обёрнут в try/catch. v1046 мини-аппы.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.89.ipa",
+          "size": 7387563,
+          "minOSVersion": "15.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+              "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+              "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
+            }
+          }
+        },
+        {
+          "version": "1.88",
+          "buildVersion": "188",
+          "date": "2026-05-30T17:12:00+03:00",
+          "localizedDescription": "1.88 — вместо скелетона холодного старта в нативной обёртке (IPA) теперь заставка-сплеш: пиксельный маскот-инвейдер по центру с мягкой пульсацией, подпись МАККОД и версия обёртки (v1.88) внизу экрана. Сплеш показывается только в IPA (детект по UA MaccodNative), на вебе и в Telegram остаётся прежний скелетон. Снимается той же готовностью приложения (app-ready). Фон сплеша подстраивается под тему (классика/светлая/Стекло). v1046 мини-аппы.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.88.ipa",
+          "size": 7366114,
+          "minOSVersion": "15.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+              "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+              "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
+            }
+          }
+        },
+        {
+          "version": "1.87",
+          "buildVersion": "187",
+          "date": "2026-05-30T16:02:12+03:00",
+          "localizedDescription": "1.87 — починен офлайн-старт и выровнен скелетон. (1) Без интернета аппа больше не застревает на скелетоне холодного старта: на file://-origin (вшитая в IPA офлайн-копия) WKWebView подвешивал IndexedDB.open без ответа и стопорил весь boot — добавлен таймаут на открытие базы плюс безусловная страховка, снимающая скелетон через 4с. (2) Скелетон выровнен по фактическому топбару: раньше его полоса с гамбургером висела выше реального меню (floor-отступ 50px вместо точной safe-area), теперь привязан к той же формуле, что и реальный #topbar (calc(2px + var(--safe-top))). v1046 мини-аппы.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.87.ipa",
+          "size": 7365388,
+          "minOSVersion": "15.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+              "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+              "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
+            }
+          }
+        },
+        {
+          "version": "1.86",
+          "buildVersion": "186",
+          "date": "2026-05-30T06:23:48+03:00",
+          "localizedDescription": "1.86 — аппа открывается даже без интернета. Если при старте нет сети, нативный мост грузит вшитую в IPA копию мини-аппы (offline-fallback на public/index.html), а как вернётся сеть — сам перегружает свежий Vercel (NWPathMonitor). Happy-path не изменился: онлайн по-прежнему тянет свежий UI с Vercel, OTA как раньше. Мягкое вибро в теме «Стекло» — настоящий UIImpactFeedbackGenerator(.soft), мягче прежнего потолка Capacitor LIGHT. Скелетон холодного старта приведён к виду переключения чатов: чёрный фон, только полоски топбара и композёра, без фейковых пузырей. v1043 мини-аппы.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.86.ipa",
+          "size": 7364560,
+          "minOSVersion": "15.0"
+        },
+        {
+          "version": "1.85",
+          "buildVersion": "185",
+          "date": "2026-05-29T20:26:37+03:00",
+          "localizedDescription": "1.85 — откат фонового аудио-режима из 1.84: чинит установку через AltStore (VerificationError 6) и убирает постоянный оранжевый индикатор микрофона. Защита введённого текста от перезагрузки экрана — на стороне веб-обновления.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.85.ipa",
+          "size": 7345429
+        },
+        {
+          "version": "1.83",
+          "buildVersion": "183",
+          "date": "2026-05-29T15:35:00+03:00",
+          "localizedDescription": "Настоящий Apple Liquid Glass для нижнего меню композёра в теме «Ликвид Гласс»: нативный слой UIGlassEffect (iOS 26) под прозрачным webview, с живым цветным градиентом-подложкой. Веб-контролы остаются чёткими поверх стекла. Glass включается флагом MACCODE_GLASS_A только в этой теме; на остальных темах поведение прежнее.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.83.ipa",
+          "size": 7345437
+        },
+        {
+          "version": "1.82",
+          "buildVersion": "182",
+          "date": "2026-05-28T06:00:00+03:00",
+          "localizedDescription": "Phantom-reload фикс: убран toast «восстанавливаюсь — текст в безопасности», теперь тихий reload без UI при WebContent-OOM. Превентивный hook didReceiveMemoryWarning кидает maccodMemoryWarning в JS — видно в reload-логе до OOM-kill. v962 мини-аппы: камера на больших пузырях следует за верхом (не за низом) — ResizeObserver ждёт, пока пузырь дорастёт, и доводит камеру до начала сообщения.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.82.ipa",
+          "size": 7296158,
+          "minOSVersion": "15.0"
+        },
+        {
+          "version": "1.81",
+          "buildVersion": "181",
+          "date": "2026-05-28T02:09:00+03:00",
+          "localizedDescription": "Тонкий тост вместо блокирующего оверлея при WebContent-recovery (короткая полоска снизу, не блокирует UI, 2.5с вместо 4.5с). Инвейдер теперь реально primary-иконка в Info.plist — выбор иконок в Настройках работает корректно. v961 мини-аппы: ВСЕ вибрации мягкие во всех темах (tap=soft, bump/knock=light, ok/err/warn=soft impact вместо тройной notification).",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.81.ipa",
+          "size": 7072820,
+          "minOSVersion": "15.0"
+        },
+        {
+          "version": "1.80",
+          "buildVersion": "180",
+          "date": "2026-05-28",
+          "localizedDescription": "iOS-патч против phantom-reload: при гибели WebContent-процесса WKWebView перехватываем дефолтный моментальный reload Capacitor, показываем оверлей «Восстанавливаюсь… текст в безопасности» и ребутимся через 1.5с, не теряя draft. Под капотом MaccodNavDelegateProxy в MaccodBridge.swift, проксирующий WKNavigationDelegate. v959 мини-аппы: lazy + decoding=async на всех картинках чата.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.80.ipa",
+          "size": 7107480
+        },
+        {
+          "version": "1.79",
+          "buildVersion": "179",
+          "date": "2026-05-26",
+          "localizedDescription": "Чистый чёрный LaunchScreen (без classic-плашек) — кадр старта бесшовно стыкуется с glass-скелетоном HTML. v848 мини-аппы: цветовой индикатор связи в диагностике (зелёный/жёлтый/красный dot), счётчик картинок в кеше, мягкие хаптики, виброотклик после допечатанного ответа и новых уведомлений.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.79.ipa",
+          "size": 7259963
+        },
+        {
+          "version": "1.78",
+          "buildVersion": "178",
+          "date": "2026-05-25",
+          "localizedDescription": "Invader (пиксельный инопланетянин) — теперь иконка по умолчанию. Бывший оранжевый Маккод доступен в настройках как альтернативная иконка. Скелетоны загрузки адаптированы под все три темы (классика тёмная/светлая/Стекло). v843 мини-аппы.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.78.ipa",
+          "size": 7123323
+        },
+        {
+          "version": "1.77",
+          "buildVersion": "177",
+          "date": "2026-05-24",
+          "localizedDescription": "Тема «Ликвид Гласс» — нативный системный blur (UIVisualEffectView .systemUltraThinMaterial) поверх WKWebView в зонах топбара и композёра. Включается в настройках темы. v693 мини-аппы.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.77.ipa",
+          "size": 7103285
+        },
+        {
+          "version": "1.76",
+          "buildVersion": "176",
+          "date": "2026-05-20T22:56:00.000Z",
+          "localizedDescription": "Runtime-выбор иконки приложения в настройках (Default / Terminal / Invader). Стандартный Apple-механизм CFBundleAlternateIcons — иконка меняется без переустановки.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.76.ipa",
+          "size": 7101129
+        },
+        {
+          "version": "1.75",
+          "buildVersion": "175",
+          "date": "2026-05-19T12:08:00.000Z",
+          "localizedDescription": "Адаптивный LaunchScreen (systemBackground). На светлом iOS-режиме нативный стартовый экран теперь светлый, а не тёмный.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.75.ipa",
+          "size": 5389641
+        },
+        {
+          "version": "1.74",
+          "buildVersion": "174",
+          "date": "2026-05-15T23:18:00.000Z",
+          "localizedDescription": "Вернул нативные пикеры Camera + FilePicker (галерея/файлы открываются напрямую без iOS-шита). Keyboard.resize=none и translate3d-компенсация сохранены.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.74.ipa",
+          "size": 5367476
+        },
+        {
+          "version": "1.73",
+          "buildVersion": "173",
+          "date": "2026-05-15T22:48:00.000Z",
+          "localizedDescription": "Плавная анимация клавиатуры: Keyboard.resize=none + JS translate3d-компенсация по UA-флагу MaccodNative-V166. Единый flat-shimmer skeleton для drawer и чата.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.73.ipa",
+          "size": 5654673
+        },
+        {
+          "version": "1.72",
+          "buildVersion": "172",
+          "date": "2026-05-15T22:40:00.000Z",
+          "localizedDescription": "Плавная анимация клавиатуры: Keyboard.resize=none + JS translate3d-компенсация по UA-флагу MaccodNative-V166. Единый flat-shimmer skeleton для drawer и чата.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.72.ipa",
+          "size": 5654672
+        },
+        {
+          "version": "1.71",
+          "buildVersion": "171",
+          "date": "2026-05-15T14:52:00.000Z",
+          "localizedDescription": "Пересборка после iOS update. Откат WKAppBoundDomains, фикс UX прикрепления фото (кастомная модалка с тремя пунктами, нативный шит при выборе через HTML).",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.71.ipa",
+          "size": 5617835
+        },
+        {
+          "version": "1.70",
+          "buildVersion": "170",
+          "date": "2026-05-15T13:55:00.000Z",
+          "localizedDescription": "Та же сборка что 1.68/1.69 — откат WKAppBoundDomains; бамп для AltStore.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.70.ipa",
+          "size": 5631220
+        },
+        {
+          "version": "1.69",
+          "buildVersion": "169",
+          "date": "2026-05-15T13:45:00.000Z",
+          "localizedDescription": "Та же сборка что 1.68 — откат WKAppBoundDomains; бамп версии чтобы AltStore точно увидел апдейт.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.69.ipa",
+          "size": 5631222
+        },
+        {
+          "version": "1.68",
+          "buildVersion": "168",
+          "date": "2026-05-15T13:30:00.000Z",
+          "localizedDescription": "Откат WKAppBoundDomains из 1.67: ломалось прикрепление фоток (Capacitor Camera fetch на capacitor:// блокировался). Service Worker в обёртке отключён, кеш — только в Safari/TG.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.68.ipa",
+          "size": 5631221
+        },
+        {
+          "version": "1.67",
+          "buildVersion": "167",
+          "date": "2026-05-15T00:08:00.000Z",
+          "localizedDescription": "Service Worker заработал в WKWebView: добавлен WKAppBoundDomains + limitsNavigationsToAppBoundDomains=true. Появится оффлайн-кеш.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.67.ipa",
+          "size": 5631257
+        },
+        {
+          "version": "1.66",
+          "buildVersion": "166",
+          "date": "2026-05-14T11:56:00.000Z",
+          "localizedDescription": "Плавная анимация клавиатуры: Keyboard.resize=none + JS translate3d синхронно с iOS",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.66.ipa",
+          "size": 5631224
+        },
+        {
+          "version": "1.65",
+          "buildVersion": "165",
+          "date": "2026-05-14T10:47:00.000Z",
+          "localizedDescription": "Композер прижат к клавиатуре: Keyboard.resize=native + отключена JS-компенсация на native",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.65.ipa",
+          "size": 5614794
+        },
+        {
+          "version": "1.64",
+          "buildVersion": "164",
+          "date": "2026-05-14T10:35:00.000Z",
+          "localizedDescription": "Серая полоса iOS Form Assistant Bar убрана: пересобран канон с @capacitor/keyboard",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.64.ipa",
+          "size": 5614672
+        },
+        {
+          "version": "1.63",
+          "buildVersion": "163",
+          "date": "2026-05-14T10:20:00.000Z",
+          "localizedDescription": "Композер прижат к клавиатуре; long-press на «Найти» в поиске тредов больше не открывает iOS-popover",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.63.ipa",
+          "size": 5629980
+        },
+        {
+          "version": "1.62",
+          "buildVersion": "162",
+          "date": "2026-05-06T11:10:43.000Z",
+          "localizedDescription": "Композер чуть выше; в нативной версии поиск тредов не перекрывается клавиатурой",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.62.ipa",
+          "size": 5648154
+        },
+        {
+          "version": "1.61",
+          "buildVersion": "161",
+          "date": "2026-05-06T10:42:04.000Z",
+          "localizedDescription": "Рефактор thinking-state: меньше залипаний UI и кривого морфа точек→текст",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.61.ipa",
+          "size": 5637261
+        },
+        {
+          "version": "1.60",
+          "buildVersion": "160",
+          "date": "2026-05-06T00:00:00.000Z",
+          "localizedDescription": "Активная сессия в боковой панели подсвечена зелёным",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.60.ipa",
+          "size": 5629696
+        },
+        {
+          "version": "1.59",
+          "buildVersion": "159",
+          "date": "2026-05-06T00:00:00.000Z",
+          "localizedDescription": "Pull-to-refresh: тяни чат снизу вверх — короткая тяга обновляет, длинная перезагружает аппу",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.59.ipa",
+          "size": 5629355
+        },
+        {
+          "version": "1.58",
+          "buildVersion": "158",
+          "date": "2026-05-06T00:00:00.000Z",
+          "localizedDescription": "Фикс наезда текста на иконки в композере (multiline)",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.58.ipa",
+          "size": 5628125
+        },
+        {
+          "version": "1.57",
+          "buildVersion": "157",
+          "date": "2026-05-06T00:00:00.000Z",
+          "localizedDescription": "Фикс DOM-порядка: текст-баббл больше не уезжает выше tool-карточки",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.57.ipa",
+          "size": 5627916
+        },
+        {
+          "version": "1.56",
+          "buildVersion": "156",
+          "date": "2026-05-05T18:00:00.000Z",
+          "localizedDescription": "Голосовой ввод: таймер времени записи во время voice-mode",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/Makkod-1.56.ipa",
+          "size": 5625460
         }
-    ],
-    "news": []
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {
+          "NSCameraUsageDescription": "Маккод использует камеру для отправки фото в чат.",
+          "NSMicrophoneUsageDescription": "Маккод использует микрофон для голосового ввода в чате.",
+          "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет файлы в Фото.",
+          "NSPhotoLibraryUsageDescription": "Маккод запрашивает доступ к фото для прикрепления к сообщениям.",
+          "NSSpeechRecognitionUsageDescription": "Маккод распознаёт твою речь, чтобы отвечать в голосовом режиме."
+        }
+      }
+    },
+    {
+      "name": "Xbox Remote Play",
+      "bundleIdentifier": "com.xboxremoteplay.app",
+      "developerName": "KINEMOTOR",
+      "subtitle": "Стриминг Xbox через WebRTC",
+      "version": "1.4",
+      "versionDate": "2026-05-18T04:14:00.000Z",
+      "versionDescription": "xHome: добавлены шаги /connect (с LPT) и /configuration перед SDP offer — без них Microsoft не возвращал SDP answer для домашней консоли (60s timeout). Теперь сессия доходит до Provisioned перед offer.",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/XboxRemotePlay-1.4.ipa",
+      "iconURL": "https://borkirnik-stack.github.io/makkod-ota/xbox-icon.png",
+      "tintColor": "107C10",
+      "size": 6241969,
+      "localizedDescription": "iOS-клиент Xbox Remote Play. Логин в Xbox Live, доступ к Cloud Gaming каталогу и стриму с домашней консоли, виртуальный геймпад поверх видео.",
+      "screenshotURLs": [],
+      "permissions": [],
+      "versions": [
+        {
+          "version": "1.4",
+          "buildVersion": "14",
+          "date": "2026-05-18T04:14:00.000Z",
+          "localizedDescription": "xHome: добавлены шаги /connect (с LPT) и /configuration перед SDP offer — без них Microsoft не возвращал SDP answer для домашней консоли (60s timeout). Теперь сессия доходит до Provisioned перед offer.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/XboxRemotePlay-1.4.ipa",
+          "size": 6241969
+        },
+        {
+          "version": "1.3",
+          "buildVersion": "13",
+          "date": "2026-05-18T01:03:41.000Z",
+          "localizedDescription": "Иконка приложения (как в Mac-версии Kinemotor Gaming).",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/XboxRemotePlay-1.3.ipa",
+          "size": 6238168
+        },
+        {
+          "version": "1.2",
+          "buildVersion": "12",
+          "date": "2026-05-18T00:59:43.000Z",
+          "localizedDescription": "Эмуляция Windows+Chrome desktop в X-MS-Device-Info: Microsoft signaling возвращает SDP answer (mobile-клиенты отбрасывались). Поправлен input.maxVersion 9 -> 8.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/XboxRemotePlay-1.2.ipa",
+          "size": 5113580
+        },
+        {
+          "version": "1.1",
+          "buildVersion": "11",
+          "date": "2026-05-18T00:22:38.000Z",
+          "localizedDescription": "Увеличен таймаут SDP exchange с 15 до 60 секунд — даёт консоли время проснуться из Instant-On",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/XboxRemotePlay-1.1.ipa",
+          "size": 5218003
+        }
+      ]
+    },
+    {
+      "name": "MakkodSwift",
+      "bundleIdentifier": "pro.kinemotor.makkod.swift",
+      "developerName": "KINEMOTOR",
+      "subtitle": "Нативный SwiftUI-Маккод",
+      "version": "1.3",
+      "versionDate": "2026-06-05T04:51:32+03:00",
+      "versionDescription": "1.3 — серверные данные и голос. Новый раздел «Голос»: Распознавание (Виспер или встроенное на устройстве, без отправки записи на сервер) и Голос озвучки — серверные мужские голоса плюс системные русские голоса с прослушиванием по тапу. Раздел «Система» дополнен живыми данными: Клод Код (текущая версия, подсветка обновления и кнопка «Обновить»), Тариф (план Max, дата продления, сколько дней осталось), Лимит Vercel (остаток деплоев, полоса расхода и таймер до сброса) и Версии (история сборок с датами). Лента уведомлений: колокол в шапке со счётчиком непрочитанных, фильтры все / непрочитанные / прочитанные, отметить всё прочитанным, рутины и статусы сервисов. Распознавание речи работает на устройстве через Apple Speech.",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-1.3.ipa",
+      "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
+      "tintColor": "1A1A1A",
+      "size": 4432320,
+      "localizedDescription": "1.3 — серверные данные и голос. Новый раздел «Голос»: Распознавание (Виспер или встроенное на устройстве, без отправки записи на сервер) и Голос озвучки — серверные мужские голоса плюс системные русские голоса с прослушиванием по тапу. Раздел «Система» дополнен живыми данными: Клод Код (текущая версия, подсветка обновления и кнопка «Обновить»), Тариф (план Max, дата продления, сколько дней осталось), Лимит Vercel (остаток деплоев, полоса расхода и таймер до сброса) и Версии (история сборок с датами). Лента уведомлений: колокол в шапке со счётчиком непрочитанных, фильтры все / непрочитанные / прочитанные, отметить всё прочитанным, рутины и статусы сервисов. Распознавание речи работает на устройстве через Apple Speech.",
+      "screenshotURLs": [],
+      "permissions": [],
+      "versions": [
+        {
+          "version": "1.3",
+          "buildVersion": "13",
+          "date": "2026-06-05T04:51:32+03:00",
+          "localizedDescription": "1.3 — серверные данные и голос. Новый раздел «Голос»: Распознавание (Виспер или встроенное на устройстве, без отправки записи на сервер) и Голос озвучки — серверные мужские голоса плюс системные русские голоса с прослушиванием по тапу. Раздел «Система» дополнен живыми данными: Клод Код (текущая версия, подсветка обновления и кнопка «Обновить»), Тариф (план Max, дата продления, сколько дней осталось), Лимит Vercel (остаток деплоев, полоса расхода и таймер до сброса) и Версии (история сборок с датами). Лента уведомлений: колокол в шапке со счётчиком непрочитанных, фильтры все / непрочитанные / прочитанные, отметить всё прочитанным, рутины и статусы сервисов. Распознавание речи работает на устройстве через Apple Speech.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-1.3.ipa",
+          "size": 4432320,
+          "minOSVersion": "16.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
+              "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт речь на устройстве, чтобы превратить голос в текст без отправки записи на сервер."
+            }
+          }
+        },
+        {
+          "version": "1.2",
+          "buildVersion": "12",
+          "date": "2026-06-05T03:45:19+03:00",
+          "localizedDescription": "1.2 — весь раздел «Настройки» и внешний вид перенесены из веба по пикселям. Полноэкранные настройки с группами Внешний вид / Ввод / Сообщения / Система. Тема — одна модалка «всё-в-одном»: стиль (Стекло / Ликвид Гласс / Ретро) с подписями, подсветка (Тёмная / Авто / Светлая / По расписанию — с выбором времени переключения), 11 пресетов акцента (Бирюза, Синий, Циан, Изумруд, Зелёный, Травяной, Янтарь, Оранжевый, Коралл, Малина, Фиалка) и выбор шрифта (JetBrains Mono, Inter, SF Pro, Segoe UI, Roboto Mono, IBM Plex Mono — каждый в списке нарисован своим начертанием). Масштаб шрифта 75–130%. Тумблеры энергосбережения, автокоррекции iOS, вибрации, копируемого кода. Шесть шрифтов забандлены и регистрируются нативно; тема «Ретро» теперь честно моноширинная во всём интерфейсе. Дальше — серверные данные (Система, Голос) и переливы.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-1.2.ipa",
+          "size": 4320972,
+          "minOSVersion": "16.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
+              "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
+            }
+          }
+        },
+        {
+          "version": "1.1",
+          "buildVersion": "11",
+          "date": "2026-06-05T02:46:45+03:00",
+          "localizedDescription": "1.1 — заставка и настоящее «жидкое стекло». При запуске теперь та же загрузочная заставка, что в веб-версии: чёрный экран, пульсирующий пиксельный маскот, «МАККОД» и номер версии снизу — копия 1:1, держится пока поднимается связь. Тема «Ликвид Гласс» переведена на родное стекло Apple (iOS 26, .glassEffect): верхняя и нижняя панели, иконки, чипы, поле ввода, пин-бар и кнопка прокрутки получили реальную оптику стекла — преломление фона, бликующую кромку и интерактивную деформацию под пальцем, а не CSS-имитацию. На старых iOS — усиленный материал с диагональным бликом. Темы «Классическая» и «Стекло» не тронуты. Дальше доезжают полные настройки и добор функций.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-1.1.ipa",
+          "size": 3713764,
+          "minOSVersion": "16.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
+              "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
+            }
+          }
+        },
+        {
+          "version": "1.0",
+          "buildVersion": "10",
+          "date": "2026-06-04T09:55:04+03:00",
+          "localizedDescription": "1.0 — последняя иконка нижней панели, «Техническое», и теперь панель собрана целиком. Это полный инвентарь начинки Маккода в одном месте: MCP-серверы (Vimeo, Notion, Gmail…), CLI-утилиты (rg, ffmpeg, jq…), скиллы, записи памяти и конфиги. По каждому пункту — название, описание, путь, размер и дата. Сверху поиск с режимом ИИ (ищет по смыслу, а не по буквам), фильтр по типу и сортировка. Любой пункт можно закрепить наверх (до 10 штук). Скилл или конфиг открываются прямо в просмотрщике с подсветкой markdown и кнопкой «В чат» (вставит команду в поле ввода). Записи памяти редактируются на месте — название, описание, тип, текст — с сохранением или удалением. Нижняя панель закрыта полностью: Связь · Сервисы · Рутины · Техническое · Новости · Настройки.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-1.0.ipa",
+          "size": 3688989,
+          "minOSVersion": "16.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
+              "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
+            }
+          }
+        },
+        {
+          "version": "0.9",
+          "buildVersion": "9",
+          "date": "2026-06-04T08:55:51+03:00",
+          "localizedDescription": "0.9 — в нижнюю панель добавились «Рутины» и «Новости». Рутины: список всех cron-задач мак-мини с человеческим расписанием (каждый час · по будням в 10:00), статус-точкой (работает / выключена / идёт), журналом последних прогонов (когда, сколько шла, чем кончилась — ок / споткнулся / ошибка) и управлением — тумблер включить-выключить и кнопка «Запустить сейчас». Новости: лента обновлений Маккода (новые модели и фичи) с пометкой непрочитанного и кнопкой «Обсудить» — открывает чат с уже набранным вопросом. На иконках красный счётчик: свежие прогоны рутин и непрочитанные новости.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.9.ipa",
+          "size": 3559697,
+          "minOSVersion": "16.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
+              "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
+            }
+          }
+        },
+        {
+          "version": "0.8",
+          "buildVersion": "8",
+          "date": "2026-06-04T06:00:04+03:00",
+          "localizedDescription": "0.8 — нижняя панель шторки ожила. Иконка «Связь» открывает диагностику: живой статус WebSocket и SSH-туннеля до Aeza, uptime сервера, RAM/CPU/диск мак-мини с цветовыми порогами, плюс действия — переподключить WS, перезапустить туннель и сервер, перегрузить комп (срабатывают только по долгому удержанию, случайно не нажмёшь; при мёртвом WS — кнопка написать /restart в Telegram). Новая иконка «Сервисы» — здоровье сервисов и скиллов: что упало, что деградировало (IMAP-пул раскрывается по аккаунтам), когда последний раз отрабатывало; на иконке красный счётчик упавших.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.8.ipa",
+          "size": 3474696,
+          "minOSVersion": "16.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
+              "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
+            }
+          }
+        },
+        {
+          "version": "0.7",
+          "buildVersion": "7",
+          "date": "2026-06-04T05:22:41+03:00",
+          "localizedDescription": "0.7 — поиск по тредам прямо в шторке. Тап по строке поиска сверху — мгновенный текстовый поиск по заголовкам и тексту переписок с подсветкой совпадений. Жмёшь ⚡ — ИИ-поиск по смыслу: находит треды, близкие по теме, показывает релевантность и причину, почему нашёл. Плюс индикатор сжатия контекста — видно плашку «Сжимаю контекст…» во время сжатия и разделитель со сводкой после, как в веб-Маккоде.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.7.ipa",
+          "size": 3380995,
+          "minOSVersion": "16.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
+              "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
+            }
+          }
+        },
+        {
+          "version": "0.6",
+          "buildVersion": "6",
+          "date": "2026-06-04T04:48:54+03:00",
+          "localizedDescription": "0.6 — чат догнали до паритета с веб-Маккодом. Добавил: реакции на сообщения (долгий тап → бар реакций, пиксельный бейдж в углу пузыря), закреплённые сообщения с пин-баром сверху и маркером на пузыре, меню по долгому тапу (закрепить / ответить / в избранное / в инпут / новый тред / копировать), кнопку прокрутки вниз со счётчиком непрочитанных и умный автоскролл — камера больше не дёргается во время стрима ответа. И наконец иконка приложения: оранжевый пиксельный Маккод вместо белого квадрата.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.6.ipa",
+          "size": 3344929,
+          "minOSVersion": "16.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
+              "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
+            }
+          }
+        },
+        {
+          "version": "0.5",
+          "buildVersion": "5",
+          "date": "2026-06-04T03:48:13+03:00",
+          "localizedDescription": "0.5 — нативная аппа дотянута почти до полного паритета с веб-Маккодом. Появились: картинки и файлы в ленте, голосовой ввод (микрофон → распознавание → текст), вложения (фото/камера/файл), попап генерации «Ген», лист «/ команды». Топбар и шторка треды приведены к вебу: бургер + заголовок сверху, связь и настройки — в футере шторки.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.5.ipa",
+          "size": 786208,
+          "minOSVersion": "16.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
+              "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению."
+            }
+          }
+        },
+        {
+          "version": "0.4",
+          "buildVersion": "4",
+          "date": "2026-06-03T22:03:08.000Z",
+          "localizedDescription": "Фикс шторма реконнектов: апп больше не открывает WebSocket без авторизации. Раньше пустой сокет ловил close 4002 каждые ~8 секунд (каскад переподключений и путаница между тредами) — теперь без deviceKey/PIN сокет не открывается, auth уходит первым кадром.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.4.ipa",
+          "size": 828004
+        },
+        {
+          "version": "0.3",
+          "buildVersion": "3",
+          "date": "2026-05-19T22:42:00.000Z",
+          "localizedDescription": "Дефолтный WS-URL сменён на wss://138-124-118-1.sslip.io:8443/ (как у обычного Маккода) — теперь коннектится с любой сети, не только домашней Wi-Fi. Старое значение mac-mini-kinemotor.local мигрирует автоматически.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.3.ipa",
+          "size": 726924
+        },
+        {
+          "version": "0.2",
+          "buildVersion": "2",
+          "date": "2026-05-19T22:30:00.000Z",
+          "localizedDescription": "Drawer тредов открывается свайпом от левой кромки + анимация. Гамбургер-кнопка работает как и раньше.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-0.2.ipa",
+          "size": 726870
+        }
+      ],
+      "buildVersion": "13",
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {
+          "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
+          "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению.",
+          "NSSpeechRecognitionUsageDescription": "Маккод распознаёт речь на устройстве, чтобы превратить голос в текст без отправки записи на сервер."
+        }
+      }
+    }
+  ],
+  "news": []
 }
