@@ -546,17 +546,35 @@
       "bundleIdentifier": "pro.kinemotor.makkod.swift",
       "developerName": "KINEMOTOR",
       "subtitle": "Нативный SwiftUI-Маккод",
-      "version": "3.32",
+      "version": "3.33",
       "versionDate": "2026-06-09",
-      "versionDescription": "@-меншен вложений: печатаешь @ в конце сообщения — всплывает список прикреплённых файлов с номерами, тап вставляет @N. Сервер подхватывает их как контекст.",
-      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-3.32.ipa",
+      "versionDescription": "Инлайн-код в сообщениях копируется по тапу (с тостом «скопировано»), а пути к файлам открываются попапом-просмотрщиком — как в веб-версии. Пустой и новый чат прижаты к низу, как в Telegram: сообщения больше не уезжают вверх. Голые ссылки теперь видимые и кликабельные.",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-3.33.ipa",
       "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
       "tintColor": "1A1A1A",
-      "size": 4963481,
-      "localizedDescription": "@-меншен вложений: печатаешь @ в конце сообщения — всплывает список прикреплённых файлов с номерами, тап вставляет @N. Сервер подхватывает их как контекст.",
+      "size": 4980394,
+      "localizedDescription": "Инлайн-код в сообщениях копируется по тапу (с тостом «скопировано»), а пути к файлам открываются попапом-просмотрщиком — как в веб-версии. Пустой и новый чат прижаты к низу, как в Telegram: сообщения больше не уезжают вверх. Голые ссылки теперь видимые и кликабельные.",
       "screenshotURLs": [],
       "permissions": [],
       "versions": [
+        {
+          "version": "3.33",
+          "buildVersion": "333",
+          "date": "2026-06-09",
+          "localizedDescription": "Инлайн-код в сообщениях копируется по тапу (с тостом «скопировано»), а пути к файлам открываются попапом-просмотрщиком — как в веб-версии. Пустой и новый чат прижаты к низу, как в Telegram: сообщения больше не уезжают вверх. Голые ссылки теперь видимые и кликабельные.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-3.33.ipa",
+          "size": 4980394,
+          "sha256": "f701debfa5f16b95d12b88c01c9a94995cc3fa825efa26a4ee91f13d033e61f5",
+          "minOSVersion": "16.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
+              "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт речь на устройстве, чтобы превратить голос в текст без отправки записи на сервер."
+            }
+          }
+        },
         {
           "version": "3.32",
           "buildVersion": "332",
@@ -896,7 +914,7 @@
           }
         }
       ],
-      "buildVersion": "332",
+      "buildVersion": "333",
       "appPermissions": {
         "entitlements": [],
         "privacy": {
