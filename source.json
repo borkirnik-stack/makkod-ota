@@ -558,6 +558,25 @@
       "permissions": [],
       "versions": [
         {
+          "version": "3.47",
+          "buildVersion": "347",
+          "date": "2026-06-10",
+          "localizedDescription": "Боковое меню: счётчик непрочитанных в кружке чата теперь растёт в реальном времени, пока тред думает (1, 2, 3…), а не допечатывается разом в конце. Цифра видна и на пульсирующем «думающем» кольце.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-3.47.ipa",
+          "size": 5023633,
+          "sha256": "e59a26dc917b97983dcc32831573f7194ae3223367815a801f9d27deba5b2278",
+          "minOSVersion": "16.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
+              "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт речь на устройстве, чтобы превратить голос в текст без отправки записи на сервер.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет картинку из чата в вашу галерею."
+            }
+          }
+        },
+        {
           "version": "3.46",
           "buildVersion": "346",
           "date": "2026-06-10",
