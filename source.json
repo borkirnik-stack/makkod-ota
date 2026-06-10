@@ -546,7 +546,7 @@
       "bundleIdentifier": "pro.kinemotor.makkod.swift",
       "developerName": "KINEMOTOR",
       "subtitle": "Нативный SwiftUI-Маккод",
-      "version": "3.48",
+      "version": "3.49",
       "versionDate": "2026-06-10",
       "versionDescription": "Свайп вправо по строке теперь переключает прочитано/непрочитано (а не закрепить) — в Чатах, в Сессиях и Автоматизациях на Домашней, и по каждому прогону в журнале рутин. Свайпы дают виброотклик. Плюс чат точнее сохраняет позицию при переключении между тредами — больше не «уезжает».",
       "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-3.48.ipa",
@@ -557,6 +557,25 @@
       "screenshotURLs": [],
       "permissions": [],
       "versions": [
+        {
+          "version": "3.49",
+          "buildVersion": "349",
+          "date": "2026-06-10",
+          "localizedDescription": "Боковое меню: статусы чатов (кружки непрочитанных/занятости) больше не сбрасываются при холодном старте. Снапшот непрочитанных синхронизируется между устройствами и переживает перезапуск приложения.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-3.49.ipa",
+          "size": 5039435,
+          "sha256": "edd0758bf3f565e42dbe34587754250e9c1c28d9084f6e151fedc112b487fb0d",
+          "minOSVersion": "16.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
+              "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт речь на устройстве, чтобы превратить голос в текст без отправки записи на сервер.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет картинку из чата в вашу галерею."
+            }
+          }
+        },
         {
           "version": "3.48",
           "buildVersion": "348",
