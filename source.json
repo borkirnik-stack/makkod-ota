@@ -546,7 +546,7 @@
       "bundleIdentifier": "pro.kinemotor.makkod.swift",
       "developerName": "KINEMOTOR",
       "subtitle": "Нативный SwiftUI-Маккод",
-      "version": "3.37",
+      "version": "3.40",
       "versionDate": "2026-06-10",
       "versionDescription": "3.37 — Чаты в стиле Домашней (строки темнее, выбранный — акцентом), попап картинки с зумом/перетаскиванием двумя пальцами и кнопками Скачать/Поделиться, аккуратные непрочитанные автоматизации, фикс мигания акцента в Уведомлениях + вибро на свайп.",
       "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-3.37.ipa",
@@ -557,6 +557,25 @@
       "screenshotURLs": [],
       "permissions": [],
       "versions": [
+        {
+          "version": "3.40",
+          "buildVersion": "340",
+          "date": "2026-06-10",
+          "localizedDescription": "3.40 — фикс рассинхрона бокового меню и шапки.\n• Баг: вверху открыт один чат, а в боковом меню акцентом подсвечен другой. Причина — фоновое обновление списка чатов перетягивало «текущий чат» на тот тред, что в этот момент работал на сервере (например, думающий «Swift»), а название в шапке оставалось от открытого. Теперь фоновое обновление НЕ уводит открытый чат: что открыто на телефоне — решает телефон, а заголовок шапки всегда берётся из того же чата, что подсвечен в меню. Разъехаться они больше не могут.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-3.40.ipa",
+          "size": 5011008,
+          "sha256": "9f1667bc866d44feecf81827f50f27a943e368b6bbc18dab0747eccfac3fbcda",
+          "minOSVersion": "16.0",
+          "appPermissions": {
+            "entitlements": [],
+            "privacy": {
+              "NSMicrophoneUsageDescription": "Маккод записывает голос, чтобы распознать речь и вставить текст в поле ввода.",
+              "NSCameraUsageDescription": "Маккод открывает камеру, чтобы снять фото и приложить его к сообщению.",
+              "NSSpeechRecognitionUsageDescription": "Маккод распознаёт речь на устройстве, чтобы превратить голос в текст без отправки записи на сервер.",
+              "NSPhotoLibraryAddUsageDescription": "Маккод сохраняет картинку из чата в вашу галерею."
+            }
+          }
+        },
         {
           "version": "3.39",
           "buildVersion": "339",
