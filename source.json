@@ -546,17 +546,26 @@
       "bundleIdentifier": "pro.kinemotor.makkod.swift",
       "developerName": "KINEMOTOR",
       "subtitle": "Нативный SwiftUI-Маккод",
-      "version": "3.65",
+      "version": "3.66",
       "versionDate": "2026-06-11",
-      "versionDescription": "Самый бесячий баг: открываешь тред — кидает в пустоту ниже последнего сообщения, счётчик непрочитанных сгорает, а при попытке вернуться вниз камера дерётся со скроллом. Корень один: провал ниже дна ленты читался как «я у дна». Теперь: непрочитанные и разделитель в провале не стираются, позиция чтения не травится, пустой экран сам лечится за полсекунды (к разделителю непрочитанных или к последнему сообщению), мгновенный снап больше не воюет с пальцем у дна.",
-      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-3.65.ipa",
+      "versionDescription": "Возврат к месту чтения добит: если строка, где ты остановился, старше загруженного хвоста — история докачивается сама (до 4 страниц), камера встаёт ровно туда. Плюс диагностика наведения камеры в системный лог (MAKKOD-CAM).",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-3.66.ipa",
       "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
       "tintColor": "1A1A1A",
-      "size": 5083408,
+      "size": 5086480,
       "localizedDescription": "3.63\n\n• Вернул боковые стрелки навигации (↑/↓ по твоим сообщениям) — теперь они видны всегда, пока в треде есть диалог. Раньше у самого низа они прятались, и в коротких чатах их было не достать.\n\n• Добавил в выбор модели Fable 5 — свежую топовую модель Anthropic (чип «M:» над полем ввода). Mythos 5 не добавлял: это узкая кибербез-версия под Project Glasswing, не для общего чата.",
       "screenshotURLs": [],
       "permissions": [],
       "versions": [
+        {
+          "version": "3.66",
+          "buildVersion": "366",
+          "date": "2026-06-11",
+          "localizedDescription": "Возврат к месту чтения добит: если строка, где ты остановился, старше загруженного хвоста — история докачивается сама (до 4 страниц), камера встаёт ровно туда. Плюс диагностика наведения камеры в системный лог (MAKKOD-CAM).",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-3.66.ipa",
+          "size": 5086480,
+          "minOSVersion": "16.0"
+        },
         {
           "version": "3.65",
           "buildVersion": "365",
@@ -584,7 +593,7 @@
           "size": 5090736
         }
       ],
-      "buildVersion": "365",
+      "buildVersion": "366",
       "appPermissions": {
         "entitlements": [],
         "privacy": {
