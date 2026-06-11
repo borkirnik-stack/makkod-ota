@@ -1,0 +1,59 @@
+{
+  "feed_version": 2,
+  "items": [
+    {
+      "id": "fable-5",
+      "date": "2026-06-09",
+      "tag": "Модель",
+      "priority": "high",
+      "title": "Claude Fable 5",
+      "body": "Новейшая и самая способная модель Anthropic (claude-fable-5), Mythos-класс. SOTA почти на всех бенчмарках: код, knowledge work, vision, наука. Бесплатно на Pro/Max/Team до 22 июня, дальше — по API ($10/$50 за млн токенов).",
+      "url": "https://www.anthropic.com/news/claude-fable-5-mythos-5"
+    },
+    {
+      "id": "mythos-5",
+      "date": "2026-06-09",
+      "tag": "Модель",
+      "priority": "normal",
+      "title": "Claude Mythos 5",
+      "body": "Та же модель, что Fable 5, но со снятыми ограничителями. Сильнейший кибербез среди всех моделей мира. Доступна только госсектору США через Project Glasswing — обычным юзерам не выдают.",
+      "url": "https://www.anthropic.com/news/claude-fable-5-mythos-5"
+    },
+    {
+      "id": "opus-4-8",
+      "date": "2026-05-28",
+      "tag": "Модель",
+      "priority": "high",
+      "title": "Claude Opus 4.8",
+      "body": "Новый флагман Anthropic. В ~4 раза реже пропускает ошибки в коде, лучше судит в агентных задачах и честнее про неуверенность. Уже доступен в выборе модели мини-аппы (claude-opus-4-8).",
+      "url": "https://www.anthropic.com/news/claude-opus-4-8"
+    },
+    {
+      "id": "fast-mode-opus48",
+      "date": "2026-05-28",
+      "tag": "Фича",
+      "priority": "high",
+      "title": "Fast Mode — это и есть «турбо»",
+      "body": "Не отдельная модель, а режим: тот же Opus, но выдаёт ответ в 2.5× быстрее и втрое дешевле, чем раньше. Включается командой /fast.",
+      "url": "https://www.anthropic.com/news/claude-opus-4-8"
+    },
+    {
+      "id": "dynamic-workflows",
+      "date": "2026-05-28",
+      "tag": "Клод Код",
+      "priority": "normal",
+      "title": "Динамические воркфлоу",
+      "body": "В Клод-коде появились параллельные субагенты для крупных задач (research preview) — несколько агентов работают над разными частями одновременно.",
+      "url": "https://www.anthropic.com/news/claude-opus-4-8"
+    },
+    {
+      "id": "miniapp-v1009-news",
+      "date": "2026-05-28",
+      "tag": "Мини-аппа",
+      "priority": "normal",
+      "title": "Лента новостей в Настройках",
+      "body": "Теперь свежие модели и фичи Anthropic собираются здесь. Непрочитанное подсвечивается точкой на шестерёнке.",
+      "url": ""
+    }
+  ]
+}
