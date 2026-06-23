@@ -546,17 +546,24 @@
       "bundleIdentifier": "pro.kinemotor.makkod.swift",
       "developerName": "KINEMOTOR",
       "subtitle": "Нативный SwiftUI-Маккод",
-      "version": "5.17",
-      "versionDate": "2026-06-23T15:23:59+03:00",
-      "versionDescription": "Переезд на нейтральный домен makkod.kmlab.io — открывается из РФ-мобилы (МТС) без VPN, минуя DPI по SNI-имени «kinemotor». Старые .app/.pro мигрируют автоматически.",
-      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-5.17.ipa",
+      "version": "5.18",
+      "versionDate": "2026-06-23T16:14:43+03:00",
+      "versionDescription": "Переезд на sslip-хост makkod.109-196-99-153.sslip.io: домен kmlab.io оказался сожжён — ТСПУ режет TLS по SNI-строке «kmlab.io» (доказано split-тестом 23.06). Новый адрес открывается из РФ-мобилы (МТС) без VPN. Старые домены (kmlab.io/.app/.pro) мигрируют автоматически.",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-5.18.ipa",
       "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
       "tintColor": "1A1A1A",
-      "size": 7837844,
+      "size": 7882181,
       "localizedDescription": "5.16 — связь с сервером через Cloudflare (makkod.kinemotor.app).\n• Адрес сервера переехал на makkod.kinemotor.app — Маккод открывается из России без VPN (старый makkod.kinemotor.pro резался мобильным DPI по IP сервера).\n• Со старого адреса миграция автоматическая при первом подключении.",
       "screenshotURLs": [],
       "permissions": [],
       "versions": [
+        {
+          "version": "5.18",
+          "date": "2026-06-23T16:14:43+03:00",
+          "size": 7882181,
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-5.18.ipa",
+          "localizedDescription": "Переезд на sslip-хост makkod.109-196-99-153.sslip.io: домен kmlab.io оказался сожжён — ТСПУ режет TLS по SNI-строке «kmlab.io» (доказано split-тестом 23.06). Новый адрес открывается из РФ-мобилы (МТС) без VPN. Старые домены (kmlab.io/.app/.pro) мигрируют автоматически."
+        },
         {
           "version": "5.17",
           "date": "2026-06-23T15:23:59+03:00",
@@ -1165,7 +1172,7 @@
           "minOSVersion": "16.0"
         }
       ],
-      "buildVersion": "516",
+      "buildVersion": "518",
       "appPermissions": {
         "entitlements": [],
         "privacy": {
