@@ -546,17 +546,26 @@
       "bundleIdentifier": "pro.kinemotor.makkod.swift",
       "developerName": "KINEMOTOR",
       "subtitle": "Нативный SwiftUI-Маккод",
-      "version": "4.46",
-      "versionDate": "2026-06-18T04:34:02+03:00",
-      "versionDescription": "4.46 — переключение Claude-аккаунтов.\n• Настройки → Система → «Аккаунт»: переключатель Основной/Запасной. У аккаунтов раздельные недельные лимиты — выбьет один, жмёшь другой; личность, скиллы и память общие.\n• Активный аккаунт виден в строке настроек; если он не залогинен — подсказка с командой /login для мак-мини.\n• Связь с сервером — на новом адресе (Timeweb), со старого мигрирует автоматически.",
-      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-4.46.ipa",
+      "version": "5.16",
+      "versionDate": "2026-06-23T03:30:13+03:00",
+      "versionDescription": "5.16 — связь с сервером через Cloudflare (makkod.kinemotor.app).\n• Адрес сервера переехал на makkod.kinemotor.app — Маккод открывается из России без VPN (старый makkod.kinemotor.pro резался мобильным DPI по IP сервера).\n• Со старого адреса миграция автоматическая при первом подключении.",
+      "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-5.16.ipa",
       "iconURL": "https://borkirnik-stack.github.io/makkod-ota/icon.png",
       "tintColor": "1A1A1A",
-      "size": 5602482,
-      "localizedDescription": "4.46 — переключение Claude-аккаунтов.\n• Настройки → Система → «Аккаунт»: переключатель Основной/Запасной. У аккаунтов раздельные недельные лимиты — выбьет один, жмёшь другой; личность, скиллы и память общие.\n• Активный аккаунт виден в строке настроек; если он не залогинен — подсказка с командой /login для мак-мини.\n• Связь с сервером — на новом адресе (Timeweb), со старого мигрирует автоматически.",
+      "size": 7833532,
+      "localizedDescription": "5.16 — связь с сервером через Cloudflare (makkod.kinemotor.app).\n• Адрес сервера переехал на makkod.kinemotor.app — Маккод открывается из России без VPN (старый makkod.kinemotor.pro резался мобильным DPI по IP сервера).\n• Со старого адреса миграция автоматическая при первом подключении.",
       "screenshotURLs": [],
       "permissions": [],
       "versions": [
+        {
+          "version": "5.16",
+          "buildVersion": "516",
+          "date": "2026-06-23T03:30:13+03:00",
+          "localizedDescription": "5.16 — связь с сервером через Cloudflare (makkod.kinemotor.app).\n• Адрес сервера переехал на makkod.kinemotor.app — Маккод открывается из России без VPN (старый makkod.kinemotor.pro резался мобильным DPI по IP сервера).\n• Со старого адреса миграция автоматическая при первом подключении.",
+          "downloadURL": "https://borkirnik-stack.github.io/makkod-ota/MakkodSwift-5.16.ipa",
+          "size": 7833532,
+          "minOSVersion": "16.0"
+        },
         {
           "version": "4.46",
           "buildVersion": "446",
@@ -1149,7 +1158,7 @@
           "minOSVersion": "16.0"
         }
       ],
-      "buildVersion": "446",
+      "buildVersion": "516",
       "appPermissions": {
         "entitlements": [],
         "privacy": {
